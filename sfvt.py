@@ -5,14 +5,6 @@ import sys
 
 def main(argv):
 
-    import argparse
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("afile", type=argparse.FileType("r"), help="input the name of an alignment file. format: example.example")
-    parser.add_argument("rsfile", type=argparse.FileType("r"), help="input reference sequence file name. format: example.example")
-    parser.add_argument("positions", type=str, help="input the positions for the ref. seq.")
-    parser.add_argument("alignpositions", type=str, help="input the positions for the alignments")
-    args = parser.parse_args()
 
     first_slice1 = []
     first_slice2 = []
@@ -346,4 +338,13 @@ def main(argv):
 
 
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("afile", type=argparse.FileType("r"), help="input the name of an alignment file. format: example.example")
+    parser.add_argument("rsfile", type=argparse.FileType("r"), help="input reference sequence file name. format: example.example")
+    parser.add_argument("positions", type=str, help="input the positions for the ref. seq.")
+    parser.add_argument("alignpositions", type=str, help="input the positions for the alignments")
+    args = parser.parse_args()
+
     main(sys.argv)
