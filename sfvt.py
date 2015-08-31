@@ -367,9 +367,11 @@ if __name__ == "__main__":
                         required=True,
                         help="input the name of an alignment file. format: example.example")
     parser.add_argument("-r", "--reference",
+                        required=True,
                         type=argparse.FileType("r"),
                         help="input reference sequence file name. format: example.example")
     parser.add_argument("-p", "--positions",
+                        required=True,
                         type=str,
                         help="input the positions for the ref. seq.")
     #parser.add_argument("alignpositions", type=str, help="input the positions for the alignments")
