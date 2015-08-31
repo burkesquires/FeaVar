@@ -1,18 +1,16 @@
 __author__ = 'komatsouliscy'
 
-
 import sys
 
-def main(argv):
 
-
+def parse_position_input(positions):
     first_slice1 = []
     first_slice2 = []
     second_slice1 = []
     second_slice2 = []
     iterator = 0
     the_positions = []
-    literal_positions = args.positions.split(",")
+    literal_positions = positions.split(",")
     while iterator <= (len(literal_positions)-1):
         """Splits the positions input and adds splits to a list. Example: 12-13,14 -> [ [12-13], [14] ]."""
         actual_positions = literal_positions[iterator].split("-")
@@ -63,8 +61,14 @@ def main(argv):
         elif list_positions2 > len(a_the_positions):
             break
 
+
+def main(argv):
+
     from Bio.Alphabet import IUPAC
     from Bio import SeqIO
+
+    parse_position_input(args.positions)
+
 
     record = SeqIO.read(args.rsfile, "fasta", IUPAC.extended_protein)
 
@@ -338,13 +342,37 @@ def main(argv):
 
 
 if __name__ == "__main__":
+    import os
+    import sys
+    import logging
+    import datetime
     import argparse
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("afile", type=argparse.FileType("r"), help="input the name of an alignment file. format: example.example")
-    parser.add_argument("rsfile", type=argparse.FileType("r"), help="input reference sequence file name. format: example.example")
-    parser.add_argument("positions", type=str, help="input the positions for the ref. seq.")
-    parser.add_argument("alignpositions", type=str, help="input the positions for the alignments")
+#    d = datetime.datetime.today()
+    d = datetime.date.today()
+    fh = logging.FileHandler('./%s.log' % d.isoformat())
+    logging.basicConfig(stream=sys.stdout,  level=logging.DEBUG) #filename=fh.baseFilename, filemode="w"
+
+    parser = argparse.ArgumentParser(
+        #prog='sfvt.py',
+        #usage="%(prog)s -a alignment\n",
+        #description='Scans a directory of directories for peptides that have been '
+        #            'predicted and processes them, uploading results to the '
+        #            'DBAASP database.',
+        #formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=15),
+        #add_help=False
+    )
+    parser.add_argument('-a', "--alignment",
+                        type=argparse.FileType("r"),
+                        required=True,
+                        help="input the name of an alignment file. format: example.example")
+    parser.add_argument("-r", "--reference",
+                        type=argparse.FileType("r"),
+                        help="input reference sequence file name. format: example.example")
+    parser.add_argument("-p", "--positions",
+                        type=str,
+                        help="input the positions for the ref. seq.")
+    #parser.add_argument("alignpositions", type=str, help="input the positions for the alignments")
     args = parser.parse_args()
 
-    main(sys.argv)
+    main(args)
