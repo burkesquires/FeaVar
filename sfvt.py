@@ -3,83 +3,54 @@ __author__ = 'komatsouliscy'
 import sys
 
 
-def parse_position_input(positions):
-    first_slice1 = []
-    first_slice2 = []
-    second_slice1 = []
-    second_slice2 = []
-    iterator = 0
-    the_positions = []
-    literal_positions = positions.split(",")
-    while iterator <= (len(literal_positions)-1):
-        """Splits the positions input and adds splits to a list. Example: 12-13,14 -> [ [12-13], [14] ]."""
-        actual_positions = literal_positions[iterator].split("-")
-        the_positions.append(actual_positions)
-        iterator += 1
+def parse_position_input(raw_positions):
+    """
+    This method will take a string argument for positions and plit it out into individual start and stop positions. The
+    positions can be one or more columns or integers and linear or non-linear.
 
-    list_positions = 0
-    while list_positions < len(the_positions):
-        """
-        If the input is linear, start and end positions are added to a separate list. If not, the end positions are created.
-        Then, the start and end positions are added to a separate list.
-        """
-        if len(the_positions[list_positions]) == 2:
-            first_slice1.append(int(the_positions[list_positions][0]))
-            first_slice2.append(int(the_positions[list_positions][1]))
-            list_positions += 1
-        elif len(the_positions[list_positions]) == 1:
-            second_slice1.append(int(the_positions[list_positions][0]))
-            second_slice2.append(int(int((the_positions[list_positions][0])) + 1))
-            list_positions += 1
-        elif list_positions > len(the_positions):
-            break
+    :param raw_positions:
+    :return:
+    """
 
-    a_iterator = 0
-    a_the_positions = []
-    aliteral_positions = args.alignpositions.split(",")
-    while a_iterator <= (len(aliteral_positions)-1):
-        """Splits the alignment sequences positions."""
-        aactual_positions = aliteral_positions[a_iterator].split("-")
-        a_the_positions.append(aactual_positions)
-        a_iterator += 1
+    position_groupings = raw_positions.split(",")
+    positions_coordinates = []
+    for position_grouping in position_groupings:
+        positions = position_grouping.split("-")
+        if len(positions) == 2:
+            positions_coordinates.append([int(positions[0]), int(positions[1])])
+        elif len(positions) == 1:
+            positions_coordinates.append([int(positions[0]), int(positions[0]) + 1])
 
-    a_first_slice1 = []
-    a_first_slice2 = []
-    a_second_slice1 = []
-    a_second_slice2 = []
-    list_positions2 = 0
-    while list_positions2 < len(a_the_positions):
-        """Creates end positions for non linear and separates start and end for linear input. This is for the alignments."""
-        if len(a_the_positions[list_positions2]) == 2:
-            a_first_slice1.append(int(a_the_positions[list_positions2][0]))
-            a_first_slice2.append(int(a_the_positions[list_positions2][1]))
-            list_positions2 += 1
-        elif len(a_the_positions[list_positions2]) == 1:
-            a_second_slice1.append(int(a_the_positions[list_positions2][0]))
-            a_second_slice2.append(int(int((a_the_positions[list_positions2][0])) + 1))
-            list_positions2 += 1
-        elif list_positions2 > len(a_the_positions):
-            break
+    return positions_coordinates
 
 
-def main(argv):
+def main(args):
 
-    from Bio.Alphabet import IUPAC
-    from Bio import SeqIO
-
-    parse_position_input(args.positions)
-
-
-    record = SeqIO.read(args.rsfile, "fasta", IUPAC.extended_protein)
-
-    # Already Aligned Sequences
     from Bio import AlignIO
+    from Bio import SeqIO
+    from Bio.Alphabet import IUPAC
+    import os
+
+
+    # Parse positions
+    positions = parse_position_input(args.positions)
+
+    # read in reference sequence
+    reference = args.reference
+
+    if not os.path.isfile(reference):
+         print("Invalid reference file: %s" % reference)
+
+    record = SeqIO.read(reference, "fasta", IUPAC.extended_protein)
+
+
+    # read in multiple sequence alignment
+    alignment = args.alignment
+    align = AlignIO.read(alignment, "clustal")
 
     my_accession = []
-
     sequences = []
 
-    align = AlignIO.read(args.afile, "clustal")
     for record in align:
         """Adds all the sequences and their accession numbers to their respective lists."""
         sequences.append(record.seq)
@@ -100,7 +71,7 @@ def main(argv):
     two_list.append([])  # 1 for counts
     two_list.append([])  # for accession in 2
 
-    record = SeqIO.read("ProteinFastaResults.fasta", "fasta", IUPAC.extended_protein)
+    record = SeqIO.read(reference, "fasta", IUPAC.extended_protein)
     ref_seq = []
     ref_seq.append(record.seq)
     actual_seq = ref_seq[0]
@@ -363,12 +334,12 @@ if __name__ == "__main__":
         #add_help=False
     )
     parser.add_argument('-a', "--alignment",
-                        type=argparse.FileType("r"),
+                        type=str,
                         required=True,
                         help="input the name of an alignment file. format: example.example")
     parser.add_argument("-r", "--reference",
                         required=True,
-                        type=argparse.FileType("r"),
+                        type=str,
                         help="input reference sequence file name. format: example.example")
     parser.add_argument("-p", "--positions",
                         required=True,
@@ -378,3 +349,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(args)
+
+
