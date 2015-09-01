@@ -19,9 +19,10 @@ def parse_position_input(raw_positions):
     for position_grouping in position_groupings:
         positions = position_grouping.split("-")
         if len(positions) == 2:
-            positions_coordinates.append([int(positions[0]), int(positions[1])])
+            temp_list = list(range(int(positions[0]), int(positions[1]) + 1))
+            positions_coordinates += temp_list
         elif len(positions) == 1:
-            positions_coordinates.append([int(positions[0]), int(positions[0]) + 1])
+            positions_coordinates.append(int(positions[0]))
 
     return positions_coordinates
 
@@ -45,7 +46,7 @@ def confirm_reference_seq_in_alignment(reference_identifier, alignment, format="
                 reference_sequence = record.seq
     return test, reference_sequence
 
-def confirm_sequence_feature_in_reference(reference_sequence, alignment, sequence_feature_positions):
+def confirm_sequence_feature_in_reference(reference_sequence, sequence_feature_positions):
     """
     This method will test to see if the sequence feature positions can be found in the reference sequence.
 
@@ -56,7 +57,7 @@ def confirm_sequence_feature_in_reference(reference_sequence, alignment, sequenc
     """
 
     test = True
-    length = len(confirm_sequence_feature_in_reference)
+    length = len(reference_sequence)
     for position in sequence_feature_positions:
         if position > length:
             test = False
@@ -95,27 +96,22 @@ def main(args):
     positions = parse_position_input(args.positions)
     logging.info("The positions (parsed): %s" % positions)
 
-    test = confirm_sequence_feature_in_reference(reference_sequence, args.alignment, positions)
+    test = confirm_sequence_feature_in_reference(reference_sequence, positions)
 
     if test:
         # read in multiple sequence alignment
-        alignment = AlignIO.read(args.alignment, "clustal")
+        alignment = AlignIO.read(args.alignment, args.alignment_format)
         #logging.debug("The alignment is: %s" % alignment)
 
         checked_positions = check_reference_positions(reference_sequence, positions)
 
-
-        alignment in AlignIO.parse(args.alignment, format):
+        variants = []
         for record in alignment:
-            sequence_feature_temp =
+            sequence = record.seq
+            sequence_feature_temp = [ sequence[index] for index in checked_positions ]
+            variants.append([record.id, sequence_feature_temp])
+            logging.info(sequence_feature_temp)
 
-
-
-        aligned_accessions_sequences = []
-
-        for record in alignment:
-            """Adds all the aligned_sequences and their accession numbers to their respective lists."""
-            aligned_accessions_sequences.append([record.id, record.seq])
 
         #record = SeqIO.read(reference, "fasta", IUPAC.extended_protein)
         # ref_seq = []
@@ -380,6 +376,11 @@ if __name__ == "__main__":
                         type=str,
                         required=True,
                         help="The name (and path) of the alignment file. Format: clustal")
+    parser.add_argument("-f", "--alignment_format",
+                        required=False,
+                        type=str,
+                        default="clustal",
+                        help="The alignment file format. Default = clustal")
     parser.add_argument("-r", "--reference_identifier",
                         required=True,
                         type=str,
