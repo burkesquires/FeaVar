@@ -1,6 +1,7 @@
 __author__ = 'komatsouliscy'
 
 import sys
+from Bio import AlignIO
 
 
 def parse_position_input(raw_positions):
@@ -30,48 +31,85 @@ def confirm_reference_seq_in_alignment(reference_identifier, alignment, format="
     This method will test to see if the reference identifier (accession, etc) can be found in one of the alignemnt
     sequence identifiers.
 
-    :param identifier: The identifier (accession, gid) of the reference sequence
+    :param reference_identifier: The identifier (accession, gid) of the reference sequence
     :param alignment: The alignment to be used for the SFVT analysis
     :param format: The format of the alignment, default is clustal
     :return:
     """
 
-    from Bio import AlignIO
     test = False
     for alignment in AlignIO.parse(alignment, format):
         for record in alignment:
             if reference_identifier in record.id:
                 test = True
+                reference_sequence = record.seq
+    return test, reference_sequence
+
+def confirm_sequence_feature_in_reference(reference_sequence, alignment, sequence_feature_positions):
+    """
+    This method will test to see if the sequence feature positions can be found in the reference sequence.
+
+    :param reference_identifier: The identifier (accession, gid) of the reference sequence
+    :param alignment: The alignment to be used for the SFVT analysis
+    :param sequence_feature_positions: A list of the positions of teh variant type in the sequence feature
+    :return:
+    """
+
+    test = True
+    length = len(confirm_sequence_feature_in_reference)
+    for position in sequence_feature_positions:
+        if position > length:
+            test = False
+
+    logging.info("confirm_sequence_feature_in_reference test result: %s" % test)
     return test
-
-#def confirm_sequence_feature_in_reference(reference_identifier, alignment, sequence_feature_positions):
-
     
+def check_reference_positions(reference_sequence, positions):
+    """
+    This function takes the aligned reference sequence and the lsit of parsed positions and checks to see if there are
+    any dashes at the beginning of the sequence. If there are, they are removed and the positions are corrected.
+
+    :param reference_sequence: The reference sequence from the alignment
+    :param positions: The list of parsed positions
+    :return: The original positions or adjusted positions in adjusted.
+    """
+
+    length_raw = len(reference_sequence)
+    length_adjusted = len(reference_sequence.lstrip('-'))
+    adjustment = length_raw - length_adjusted
+    if adjustment != 0:
+        positions[:] = [x - 13 for x in positions]
+    return positions
 
 
 def main(args):
 
     from Bio import AlignIO
 
-    reference_test = confirm_reference_seq_in_alignment(args.reference_identifier, args.alignment)
-    logging.info("The reference seqeunce is in the alignment: %s" % reference_test)
+    test = False
 
-    if reference_test:
-        # Parse positions
-        positions = parse_position_input(args.positions)
-        logging.info("The positions (parsed): %s" % positions)
+    test, reference_sequence = confirm_reference_seq_in_alignment(args.reference_identifier, args.alignment)
+    logging.info("Reference seqeunce test result: %s" % test)
 
+    # Parse positions
+    positions = parse_position_input(args.positions)
+    logging.info("The positions (parsed): %s" % positions)
 
-        ## read in reference sequence
-        if args.reference_identifier == "":
-             logging.error("No reference identifier found: %s" % args.reference_identifier)
+    test = confirm_sequence_feature_in_reference(reference_sequence, args.alignment, positions)
 
-        #reference = SeqIO.read(args.reference, "fasta", IUPAC.extended_protein)
-        #logging.debug("The reference sequence is: %s" % reference.description)
-
+    if test:
         # read in multiple sequence alignment
         alignment = AlignIO.read(args.alignment, "clustal")
         #logging.debug("The alignment is: %s" % alignment)
+
+        checked_positions = check_reference_positions(reference_sequence, positions)
+
+
+        alignment in AlignIO.parse(args.alignment, format):
+        for record in alignment:
+            sequence_feature_temp =
+
+
 
         aligned_accessions_sequences = []
 
@@ -319,7 +357,8 @@ def main(args):
         #         print("SEQUENCE FEATURE '%s' NOT IN ALIGNMENTS" % two_list[0][0])
         #         if len(two_list[0][0]) != len(two_list[9][0]):
         #             print("LENGTH OF SEQUENCE FEATURE DOES NOT MATCH LENGTH OF FEATURE IN ALIGNMENTS")
-
+    else:
+        logging.error("No reference identifier found: %s" % args.reference_identifier)
 
 if __name__ == "__main__":
     import os
