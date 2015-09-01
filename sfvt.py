@@ -25,16 +25,26 @@ def parse_position_input(raw_positions):
     return positions_coordinates
 
 
-def confirm_reference_seq_in_alignment(identifier, alignment, format="clustal"):
+def confirm_reference_seq_in_alignment(reference_identifier, alignment, format="clustal"):
+    """
+    This method will test to see if the reference identifier (accession, etc) can be found in one of the alignemnt
+    sequence identifiers.
+
+    :param identifier: The identifier (accession, gid) of the reference sequence
+    :param alignment: The alignment to be used for the SFVT analysis
+    :param format: The format of the alignment, default is clustal
+    :return:
+    """
+
     from Bio import AlignIO
     test = False
     for alignment in AlignIO.parse(alignment, format):
         for record in alignment:
-            if identifier in record.id:
+            if reference_identifier in record.id:
                 test = True
     return test
 
-#def confirm_sequence_feature_in_reference(reference_sequence, sequence_feature_positions):
+#def confirm_sequence_feature_in_reference(reference_identifier, alignment, sequence_feature_positions):
 
     
 
