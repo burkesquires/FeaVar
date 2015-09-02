@@ -86,6 +86,7 @@ def check_reference_positions(reference_sequence, positions):
 def main(args):
 
     from Bio import AlignIO
+    import pandas as pd
 
     test = False
 
@@ -108,9 +109,16 @@ def main(args):
         variants = []
         for record in alignment:
             sequence = record.seq
-            sequence_feature_temp = [ sequence[index] for index in checked_positions ]
+            sequence_feature_temp = ''.join([sequence[index] for index in checked_positions ])
             variants.append([record.id, sequence_feature_temp])
-            logging.info(sequence_feature_temp)
+            #logging.debug(sequence_feature_temp)
+
+        headers = ['identifier', 'variant_type']
+        df = pd.DataFrame(variants, columns=headers)
+        df_by_variant_type = df.groupby('variant_type')
+        count_by_variant_type = df_by_variant_type.count()
+        count_by_variant_type.sort(ascending=False, inplace=True)
+        print(count_by_variant_type.to_string())
 
 
         #record = SeqIO.read(reference, "fasta", IUPAC.extended_protein)
