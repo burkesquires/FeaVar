@@ -162,13 +162,7 @@ def main(args):
         df = pd.DataFrame(variants, columns=headers)
         df.to_csv('df_accession_index.csv')
 
-        df_by_variant_type = df.groupby('variant_type')
-        count_by_variant_type = df_by_variant_type.count()
-
-        count_by_variant_type.sort('accession', ascending=False, inplace=True)
-        count_by_variant_type.to_csv("sfvt_%s.csv" % file_name)
-        report = count_by_variant_type.to_string()
-        print(report)
+        count_sequences_per_variant_type(df, file_name)
 
         if args.metadata_file is not None:
             df_metadata = import_metadata(args.metadata_file)
@@ -176,29 +170,10 @@ def main(args):
             df_all_data = pd.merge(df, df_metadata, on='accession', how='outer')
             df_all_data.to_csv("df_all_data.csv")
 
-            column = df_all_data.columns
+            columns = list(df_all_data.columns)
             print(columns)
 
-        #
-        # print("")
-        # for x in range(0, 100, 3):
-        #     if len(two_list[0]) > 1:
-        #         """Prints the lengths of the list."""
-        #         if x == 0:
-        #             print("The following numbers are the lengths of the VT sorted lists:")
-        #             print(len(two_list[x]))
-        #         elif x > 0:
-        #             print(len(two_list[x]))
-        #
-        # for x in range(0, 33, 3):
-        #     if len(two_list[0]) > 1:
-        #         """This list comprehension prints the results"""
-        #         print("\nVT-%s." % int(((x / 3) + 1)))
-        #         print("aligned_sequences: %s" % two_list[x])
-        #         print("strain count: %s" % len(two_list[x + 1]))
-        #         print("accession numbers: %s" % two_list[x + 2])
-        #
-        #
+
         # for x in range(0, 3):
         #     """This is the error message for if the primary output is not what is desired."""
         #     if len(two_list[0]) == 1:
@@ -213,6 +188,16 @@ def main(args):
 
     else:
         logging.error("No reference identifier found: %s" % args.reference_identifier)
+
+
+def count_sequences_per_variant_type(dataframe, file_name):
+    df_by_variant_type = dataframe.groupby('variant_type')
+    count_by_variant_type = df_by_variant_type.count()
+    count_by_variant_type.sort('accession', ascending=False, inplace=True)
+    count_by_variant_type.to_csv("sfvt_%s.csv" % file_name)
+    report = count_by_variant_type.to_string()
+    logging.info("Sequences per variant type:\n%s" % report)
+
 
 if __name__ == "__main__":
     import os
