@@ -47,6 +47,7 @@ def confirm_reference_seq_in_alignment(reference_identifier, alignment, format="
                 reference_sequence = record.seq
     return test, reference_sequence
 
+
 def confirm_sequence_feature_in_reference(reference_sequence, sequence_feature_positions):
     """
     This method will test to see if the sequence feature positions can be found in the reference sequence.
@@ -65,7 +66,8 @@ def confirm_sequence_feature_in_reference(reference_sequence, sequence_feature_p
 
     logging.info("confirm_sequence_feature_in_reference test result: %s" % test)
     return test
-    
+
+
 def check_reference_positions(reference_sequence, positions):
     """
     This function takes the aligned reference sequence and the lsit of parsed positions and checks to see if there are
@@ -122,6 +124,7 @@ def parse_directory_filename_and_extension(file_path):
 def import_metadata(file_path):
     df_metadata = pd.read_table(file_path)#, skiprows=[0,1,2], header=0)?
     df_metadata.to_csv("df_metadata.csv")
+    return df_metadata
 
 
 def main(args):
@@ -155,18 +158,26 @@ def main(args):
 
         null, null, null, file_name, file_extension = parse_directory_filename_and_extension(args.alignment)
 
-        headers = ['identifier', 'variant_type']
+        headers = ['accession', 'variant_type']
         df = pd.DataFrame(variants, columns=headers)
+        df.to_csv('df_accession_index.csv')
+
         df_by_variant_type = df.groupby('variant_type')
-        df.to_csv('df.csv')
         count_by_variant_type = df_by_variant_type.count()
-        count_by_variant_type.sort("identifier", ascending=False, inplace=True)
+
+        count_by_variant_type.sort('accession', ascending=False, inplace=True)
         count_by_variant_type.to_csv("sfvt_%s.csv" % file_name)
         report = count_by_variant_type.to_string()
+        print(report)
 
         if args.metadata_file is not None:
-            import_metadata(args.metadata_file)
+            df_metadata = import_metadata(args.metadata_file)
+            df_metadata.to_csv("df_metadata.csv")
+            df_all_data = pd.merge(df, df_metadata, on='accession', how='outer')
+            df_all_data.to_csv("df_all_data.csv")
 
+            column = df_all_data.columns
+            print(columns)
 
         #
         # print("")
