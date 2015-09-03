@@ -154,7 +154,7 @@ def main(args):
         df = pd.DataFrame(variants, columns=headers)
         df_by_variant_type = df.groupby('variant_type')
         count_by_variant_type = df_by_variant_type.count()
-        count_by_variant_type.sort(ascending=False, inplace=True)
+        count_by_variant_type.sort("identifier", ascending=False, inplace=True)
         count_by_variant_type.to_csv("sfvt_%s.csv" % file_name)
         print(count_by_variant_type.to_string())
 
