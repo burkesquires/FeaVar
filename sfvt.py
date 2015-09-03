@@ -83,6 +83,41 @@ def check_reference_positions(reference_sequence, positions):
     return positions
 
 
+def parse_directory_filename_and_extension(file_path):
+    """
+    This class will parse out a file path, file name and extension. The conventions used follow a PHP convention
+     (apparently).
+
+        /path/to/file.zip     # path
+        /path/to              # dirname
+        file.zip              # basename
+        file                  # filename
+        zip                   # extension
+
+    :rtype : tuple
+    :param file_path: The input realtive or full path of a file
+    :return:
+    """
+    #TODO: Test if this works for Mac, Linux and windows
+
+    import os.path
+
+    if os.path.exists(file_path):
+
+        absolute_path = os.path.abspath(file_path)
+        base_name = os.path.basename(file_path)
+        file_name = base_name.split(".")[0]
+        file_extension = base_name.split(".")[1]
+        directory_name = os.path.dirname(file_path)
+
+        return absolute_path, directory_name, base_name, file_name, file_extension
+
+    else:
+
+        logging.error("File was not found: %s" % file_path)
+        return None, None, None
+
+
 def main(args):
 
     from Bio import AlignIO
@@ -113,11 +148,14 @@ def main(args):
             variants.append([record.id, sequence_feature_temp])
             #logging.debug(sequence_feature_temp)
 
+        null, null, null, file_name, file_extension = parse_directory_filename_and_extension(args.alignment)
+
         headers = ['identifier', 'variant_type']
         df = pd.DataFrame(variants, columns=headers)
         df_by_variant_type = df.groupby('variant_type')
         count_by_variant_type = df_by_variant_type.count()
         count_by_variant_type.sort(ascending=False, inplace=True)
+        count_by_variant_type.to_csv("sfvt_%s.csv" % file_name)
         print(count_by_variant_type.to_string())
 
 
