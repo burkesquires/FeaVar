@@ -127,6 +127,15 @@ def import_metadata(file_path):
     return df_metadata
 
 
+def count_sequences_per_variant_type(dataframe, file_name):
+    df_by_variant_type = dataframe.groupby('variant_type')
+    count_by_variant_type = df_by_variant_type.count()
+    count_by_variant_type.sort('accession', ascending=False, inplace=True)
+    count_by_variant_type.to_csv("sfvt_%s.csv" % file_name)
+    report = count_by_variant_type.to_string()
+    logging.info("Sequences per variant type:\n%s" % report)
+
+
 def main(args):
 
     from Bio import AlignIO
@@ -188,15 +197,6 @@ def main(args):
 
     else:
         logging.error("No reference identifier found: %s" % args.reference_identifier)
-
-
-def count_sequences_per_variant_type(dataframe, file_name):
-    df_by_variant_type = dataframe.groupby('variant_type')
-    count_by_variant_type = df_by_variant_type.count()
-    count_by_variant_type.sort('accession', ascending=False, inplace=True)
-    count_by_variant_type.to_csv("sfvt_%s.csv" % file_name)
-    report = count_by_variant_type.to_string()
-    logging.info("Sequences per variant type:\n%s" % report)
 
 
 if __name__ == "__main__":
