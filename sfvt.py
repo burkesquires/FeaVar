@@ -140,22 +140,19 @@ def count_sequences_per_variant_type(dataframe, file_name):
     return df_by_variant_type
 
 
-def plot_variant_type_data(df, field):
+def plot_variant_type_data(df, field, counter):
 
     sizer = df.groupby(['variant_type', field]).size()
     unpacked = sizer.unstack(level=1)
     plot = unpacked.plot(kind='bar', subplots=False)
+    #plot.hold(False)
     fig = plot.get_figure()
-    fig.savefig("sfvt_%s.svg" % field)
+    fig.savefig("sfvt_%s-%s.svg" % (field, counter))
 
 
 def main(args):
 
     from Bio import AlignIO
-    import matplotlib.pyplot as plt
-
-
-    test = False
 
     test, reference_sequence = confirm_reference_seq_in_alignment(args.reference_identifier, args.alignment)
     logging.info("Reference seqeunce test result: %s" % test)
@@ -193,7 +190,6 @@ def main(args):
             logging.debug("Metadata file is present at: %s" % args.metadata_file)
 
             df_metadata = import_metadata(args.metadata_file)
-            #df_metadata.to_csv("df_metadata.csv")
             df_all_data = pd.merge(df, df_metadata, on='accession', how='outer')
             df_all_data.to_csv("df_all_data.csv")
 
@@ -205,6 +201,7 @@ def main(args):
             variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
             logging.debug("The variant types are: %s" % variant_types)
 
+            i = 1
             for variant_type in variant_types:
 
                 if variant_type is not np.nan:
@@ -215,7 +212,9 @@ def main(args):
 
                         logging.debug("Now looking at the field: %s" % field)
 
-                        plot_variant_type_data(df_all_data, field)
+                        plot_variant_type_data(df_all_data, field, i)
+
+                        i += 1
 
             #df_grouping.to_csv("df_grouing.csv")
 
