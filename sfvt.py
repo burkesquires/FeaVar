@@ -205,8 +205,6 @@ def main(args):
             variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
             logging.debug("The variant types are: %s" % variant_types)
 
-            df_grouping = pd.DataFrame
-
             for variant_type in variant_types:
 
                 if variant_type is not np.nan:
@@ -218,10 +216,6 @@ def main(args):
                         logging.debug("Now looking at the field: %s" % field)
 
                         plot_variant_type_data(df_all_data, field)
-
-                        #df_temp = df_all_data.groupby( [ variant_type, field] ).count()
-
-                        #df_grouping = pd.merge(df_grouping, df_temp, on=['accession', 'variant_type'], how='outer')
 
             #df_grouping.to_csv("df_grouing.csv")
 
