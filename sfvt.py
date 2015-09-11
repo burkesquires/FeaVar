@@ -140,14 +140,14 @@ def count_sequences_per_variant_type(dataframe, file_name):
     return df_by_variant_type
 
 
-def plot_variant_type_data(df, field, counter):
+def plot_variant_type_data(df, field):
 
     sizer = df.groupby(['variant_type', field]).size()
     unpacked = sizer.unstack(level=1)
     plot = unpacked.plot(kind='bar', subplots=False)
     #plot.hold(False)
     fig = plot.get_figure()
-    fig.savefig("sfvt_%s-%s.svg" % (field, counter))
+    fig.savefig("sfvt_%s.svg" % field)
 
 
 def main(args):
@@ -201,22 +201,11 @@ def main(args):
             variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
             logging.debug("The variant types are: %s" % variant_types)
 
-            i = 1
-            for variant_type in variant_types:
+            for field in columns[2:]:
 
-                if variant_type is not np.nan:
+                logging.debug("Now plotting graph for: %s" % field)
 
-                    logging.debug("Now looking at the variant_type: %s" % variant_type)
-
-                    for field in columns[2:]:
-
-                        logging.debug("Now looking at the field: %s" % field)
-
-                        plot_variant_type_data(df_all_data, field, i)
-
-                        i += 1
-
-            #df_grouping.to_csv("df_grouing.csv")
+                plot_variant_type_data(df_all_data, field)
 
     else:
         logging.error("No reference identifier found: %s" % args.reference_identifier)
