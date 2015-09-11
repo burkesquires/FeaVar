@@ -140,6 +140,15 @@ def count_sequences_per_variant_type(dataframe, file_name):
     return df_by_variant_type
 
 
+def plot_variant_type_data(df, field):
+
+    sizer = df.groupby(['variant_type', field]).size()
+    unpacked = sizer.unstack(level=1)
+    plot = unpacked.plot(kind='bar', subplots=False)
+    fig = plot.get_figure()
+    fig.savefig("sfvt_%s.svg" % field)
+
+
 def main(args):
 
     from Bio import AlignIO
@@ -188,10 +197,13 @@ def main(args):
             df_all_data = pd.merge(df, df_metadata, on='accession', how='outer')
             df_all_data.to_csv("df_all_data.csv")
 
+            #df_all_data_with_vt = calculate_variant_types(df_all_data)
+
             columns = list(df_all_data.columns)
             logging.debug("The columns in the %s dataframe are: %s" % ("df_all_data", columns))
 
             variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
+            logging.debug("The variant types are: %s" % variant_types)
 
             df_grouping = pd.DataFrame
 
@@ -205,31 +217,13 @@ def main(args):
 
                         logging.debug("Now looking at the field: %s" % field)
 
+                        plot_variant_type_data(df_all_data, field)
+
                         #df_temp = df_all_data.groupby( [ variant_type, field] ).count()
 
                         #df_grouping = pd.merge(df_grouping, df_temp, on=['accession', 'variant_type'], how='outer')
 
             #df_grouping.to_csv("df_grouing.csv")
-
-                        # df_temp = df_all_data.loc[df_all_data['variant_type'] == variant_type]
-                        # for key, grp in df_temp.groupby([field]):
-                        #     data = grp[key].count()
-                        #     print(data)
-                        #     plt.plot(data)
-                        #     plt.savefig("svft_%s.svg" % field)
-
-
-        # for x in range(0, 3):
-        #     """This is the error message for if the primary output is not what is desired."""
-        #     if len(two_list[0]) == 1:
-        #         print("ERROR")
-        #
-        # for x in range(0, 1):
-        #     """This is the helpful error message for the previously mentioned problem as well as different length issues."""
-        #     if len(two_list[0]) == 1:
-        #         print("SEQUENCE FEATURE '%s' NOT IN ALIGNMENTS" % two_list[0][0])
-        #         if len(two_list[0][0]) != len(two_list[9][0]):
-        #             print("LENGTH OF SEQUENCE FEATURE DOES NOT MATCH LENGTH OF FEATURE IN ALIGNMENTS")
 
     else:
         logging.error("No reference identifier found: %s" % args.reference_identifier)
