@@ -3,6 +3,7 @@ __author__ = 'komatsouliscy'
 import sys
 from Bio import AlignIO
 import pandas as pd
+import numpy as np
 
 
 def parse_position_input(raw_positions):
@@ -131,14 +132,19 @@ def count_sequences_per_variant_type(dataframe, file_name):
     df_by_variant_type = dataframe.groupby('variant_type')
     count_by_variant_type = df_by_variant_type.count()
     count_by_variant_type.sort('accession', ascending=False, inplace=True)
+
     count_by_variant_type.to_csv("sfvt_%s.csv" % file_name)
     report = count_by_variant_type.to_string()
     logging.info("Sequences per variant type:\n%s" % report)
+
+    return df_by_variant_type
 
 
 def main(args):
 
     from Bio import AlignIO
+    import matplotlib.pyplot as plt
+
 
     test = False
 
@@ -174,13 +180,43 @@ def main(args):
         count_sequences_per_variant_type(df, file_name)
 
         if args.metadata_file is not None:
+
+            logging.debug("Metadata file is present at: %s" % args.metadata_file)
+
             df_metadata = import_metadata(args.metadata_file)
-            df_metadata.to_csv("df_metadata.csv")
+            #df_metadata.to_csv("df_metadata.csv")
             df_all_data = pd.merge(df, df_metadata, on='accession', how='outer')
             df_all_data.to_csv("df_all_data.csv")
 
             columns = list(df_all_data.columns)
-            print(columns)
+            logging.debug("The columns in the %s dataframe are: %s" % ("df_all_data", columns))
+
+            variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
+
+            df_grouping = pd.DataFrame
+
+            for variant_type in variant_types:
+
+                if variant_type is not np.nan:
+
+                    logging.debug("Now looking at the variant_type: %s" % variant_type)
+
+                    for field in columns[2:]:
+
+                        logging.debug("Now looking at the field: %s" % field)
+
+                        #df_temp = df_all_data.groupby( [ variant_type, field] ).count()
+
+                        #df_grouping = pd.merge(df_grouping, df_temp, on=['accession', 'variant_type'], how='outer')
+
+            #df_grouping.to_csv("df_grouing.csv")
+
+                        # df_temp = df_all_data.loc[df_all_data['variant_type'] == variant_type]
+                        # for key, grp in df_temp.groupby([field]):
+                        #     data = grp[key].count()
+                        #     print(data)
+                        #     plt.plot(data)
+                        #     plt.savefig("svft_%s.svg" % field)
 
 
         # for x in range(0, 3):
