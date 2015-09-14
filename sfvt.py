@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from Bio import AlignIO
+from pandas import DataFrame
 import pandas as pd
 
 __authors__ = 'R. Burke Squires, Carolyn Komatsoulis'
@@ -165,16 +166,20 @@ def count_sequences_per_variant_type(dataframe, file_path):
         The file path of the output file to be saved.
     """
     df_by_variant_type = dataframe.groupby('variant_type')
-    count_by_variant_type = df_by_variant_type.count()
-    count_by_variant_type.sort('accession', ascending=False, inplace=True)
 
-    row_length = len(count_by_variant_type)
-    count_by_variant_type["VT"] = ["VT-" + str(i) for i in range(1,row_length + 1)]
-    #count_by_variant_type.reset_index()
-    count_by_variant_type.reindex(index=["VT"])
+    df_by_variant_type = DataFrame({'count' : dataframe.groupby( ["variant_type"] ).size()}).reset_index()
 
-    count_by_variant_type.to_csv("sfvt_%s.csv" % file_path)
-    report = count_by_variant_type.to_string()
+    #count_by_variant_type = df_by_variant_type.count()
+    df_by_variant_type.sort('count', ascending=False, inplace=True)
+
+    #count_by_variant_type.add_suffix('_Count').reset_index()
+
+    row_length = len(df_by_variant_type)
+    df_by_variant_type["VT"] = ["VT-" + str(i) for i in range(1,row_length + 1)]
+    df_by_variant_type.reindex(index=["VT"])
+
+    df_by_variant_type.to_csv("sfvt_%s.csv" % file_path)
+    report = df_by_variant_type.to_string()
     logging.info("Sequences per variant type:\n%s" % report)
 
     return df_by_variant_type
