@@ -1,18 +1,21 @@
-__author__ = 'komatsouliscy'
+#!/usr/bin/env python
 
-import sys
 from Bio import AlignIO
 import pandas as pd
-import numpy as np
+
+__authors__ = 'R. Burke Squires, Carolyn Komatsoulis'
 
 
 def parse_position_input(raw_positions):
     """
-    This method will take a string argument for positions and plit it out into individual start and stop positions. The
+    Takes a string argument for positions and splits it out into individual start and stop positions. The
     positions can be one or more columns or integers and linear or non-linear.
 
-    :param raw_positions:
-    :return:
+    Parameters
+    ----------
+    raw_positions : string
+        The raw positions of the refernce sequence to assemble a sequence feature from.
+
     """
 
     position_groupings = raw_positions.split(",")
@@ -31,13 +34,18 @@ def parse_position_input(raw_positions):
 
 def confirm_reference_seq_in_alignment(reference_identifier, alignment, format="clustal"):
     """
-    This method will test to see if the reference identifier (accession, etc) can be found in one of the alignemnt
-    sequence identifiers.
+    Tests to see if the reference identifier (accession, etc) can be found in one of the alignment sequence identifiers.
 
-    :param reference_identifier: The identifier (accession, gid) of the reference sequence
-    :param alignment: The alignment to be used for the SFVT analysis
-    :param format: The format of the alignment, default is clustal
-    :return:
+    Parameters
+    ----------
+    reference_identifier : string
+        The identifier (accession, gid) of the reference sequence
+
+    alignment :
+        The alignment to be used for the SFVT analysis
+
+    format : string
+        The format of the alignment, default is clustal
     """
 
     test = False
@@ -51,12 +59,18 @@ def confirm_reference_seq_in_alignment(reference_identifier, alignment, format="
 
 def confirm_sequence_feature_in_reference(reference_sequence, sequence_feature_positions):
     """
-    This method will test to see if the sequence feature positions can be found in the reference sequence.
+    Tests to see if the sequence feature positions can be found in the reference sequence.
 
-    :param reference_identifier: The identifier (accession, gid) of the reference sequence
-    :param alignment: The alignment to be used for the SFVT analysis
-    :param sequence_feature_positions: A list of the positions of teh variant type in the sequence feature
-    :return:
+    Parameters
+    ----------
+    reference_identifier : string
+        The identifier (accession, gid) of the reference sequence
+
+    alignment : string
+        The alignment to be used for the SFVT analysis
+
+    sequence_feature_positions : string
+        A list of the positions of teh variant type in the sequence feature
     """
 
     test = True
@@ -71,12 +85,16 @@ def confirm_sequence_feature_in_reference(reference_sequence, sequence_feature_p
 
 def check_reference_positions(reference_sequence, positions):
     """
-    This function takes the aligned reference sequence and the lsit of parsed positions and checks to see if there are
+    Takes the aligned reference sequence and the list of parsed positions and checks to see if there are
     any dashes at the beginning of the sequence. If there are, they are removed and the positions are corrected.
 
-    :param reference_sequence: The reference sequence from the alignment
-    :param positions: The list of parsed positions
-    :return: The original positions or adjusted positions in adjusted.
+    Parameters
+    ----------
+    reference_sequence : string
+        The reference sequence from the alignment
+
+    positions : string
+        The list of parsed positions
     """
 
     length_raw = len(reference_sequence)
@@ -89,8 +107,7 @@ def check_reference_positions(reference_sequence, positions):
 
 def parse_directory_filename_and_extension(file_path):
     """
-    This class will parse out a file path, file name and extension. The conventions used follow a PHP convention
-     (apparently).
+    Parses a file path, file name and extension. The conventions used follow a PHP convention (apparently).
 
         /path/to/file.zip     # path
         /path/to              # dirname
@@ -98,12 +115,11 @@ def parse_directory_filename_and_extension(file_path):
         file                  # filename
         zip                   # extension
 
-    :rtype : tuple
-    :param file_path: The input realtive or full path of a file
-    :return:
+    Parameters
+    ----------
+    file_path : string
+        The input realtive or full path of a file
     """
-    #TODO: Test if this works for Mac, Linux and windows
-
     import os.path
 
     if os.path.exists(file_path):
@@ -123,29 +139,62 @@ def parse_directory_filename_and_extension(file_path):
 
 
 def import_metadata(file_path):
-    df_metadata = pd.read_table(file_path)#, skiprows=[0,1,2], header=0)?
+    """
+    Import delimited file with metadata for each sequence by accession number
+
+    Parameters
+    ----------
+    file_path : string
+        The file path of the metadata file to be imported.
+    """
+    df_metadata = pd.read_table(file_path) #, skiprows=[0,1,2], header=0)?
     df_metadata.to_csv("df_metadata.csv")
     return df_metadata
 
 
-def count_sequences_per_variant_type(dataframe, file_name):
+def count_sequences_per_variant_type(dataframe, file_path):
+    """
+    Counts sequences per variant type
+
+    Parameters
+    ----------
+    dataframe : dataframe
+        The pandas dataframe with all data inti
+
+    file_path : string
+        The file path of the output file to be saved.
+    """
     df_by_variant_type = dataframe.groupby('variant_type')
     count_by_variant_type = df_by_variant_type.count()
     count_by_variant_type.sort('accession', ascending=False, inplace=True)
 
-    count_by_variant_type.to_csv("sfvt_%s.csv" % file_name)
+    count_by_variant_type.to_csv("sfvt_%s.csv" % file_path)
     report = count_by_variant_type.to_string()
     logging.info("Sequences per variant type:\n%s" % report)
 
     return df_by_variant_type
 
 
-def plot_variant_type_data(df, field):
+def plot_variant_type_data(dataframe, field):
+    """
 
-    sizer = df.groupby(['variant_type', field]).size()
+    Parameters
+    ----------
+    reference_identifier : string
+        The identifier (accession, gid) of the reference sequence
+
+    Parameters
+    ----------
+    dataframe : dataframe
+        The pandas dataframe with all data inti
+
+    field : string
+        The metadata field to be plotted.
+    """
+    sizer = dataframe.groupby(['variant_type', field]).size()
     unpacked = sizer.unstack(level=1)
     plot = unpacked.plot(kind='bar', subplots=False)
-    #plot.hold(False)
+    # plot.hold(False)
     fig = plot.get_figure()
     fig.savefig("sfvt_%s.svg" % field)
 
@@ -166,16 +215,15 @@ def main(args):
     if test:
         # read in multiple sequence alignment
         alignment = AlignIO.read(args.alignment, args.alignment_format)
-        #logging.debug("The alignment is: %s" % alignment)
 
         checked_positions = check_reference_positions(reference_sequence, positions)
 
         variants = []
         for record in alignment:
             sequence = record.seq
-            sequence_feature_temp = ''.join([sequence[index] for index in checked_positions ])
+            sequence_feature_temp = ''.join([sequence[index] for index in checked_positions])
             variants.append([record.id, sequence_feature_temp])
-            #logging.debug(sequence_feature_temp)
+            # logging.debug(sequence_feature_temp)
 
         null, null, null, file_name, file_extension = parse_directory_filename_and_extension(args.alignment)
 
@@ -193,7 +241,7 @@ def main(args):
             df_all_data = pd.merge(df, df_metadata, on='accession', how='outer')
             df_all_data.to_csv("df_all_data.csv")
 
-            #df_all_data_with_vt = calculate_variant_types(df_all_data)
+            # df_all_data_with_vt = calculate_variant_types(df_all_data)
 
             columns = list(df_all_data.columns)
             logging.debug("The columns in the %s dataframe are: %s" % ("df_all_data", columns))
@@ -219,13 +267,13 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(
-        #prog='sfvt.py',
-        #usage="%(prog)s -a alignment\n",
-        #description='Scans a directory of directories for peptides that have been '
-        #            'predicted and processes them, uploading results to the '
-        #            'DBAASP database.',
-        #formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=15),
-        #add_help=False
+        # prog='sfvt.py',
+        # usage="%(prog)s -a alignment\n",
+        # description='Scans a directory of directories for peptides that have been '
+        #             'predicted and processes them, uploading results to the '
+        #             'DBAASP database.',
+        # formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=15),
+        # add_help=False
     )
     parser.add_argument('-a', "--alignment",
                         type=str,
