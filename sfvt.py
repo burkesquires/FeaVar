@@ -14,7 +14,7 @@ def parse_position_input(raw_positions):
     Parameters
     ----------
     raw_positions : string
-        The raw positions of the refernce sequence to assemble a sequence feature from.
+        The raw positions of the reference sequence to assemble a sequence feature from.
 
     """
 
@@ -32,7 +32,7 @@ def parse_position_input(raw_positions):
     return positions_coordinates
 
 
-def confirm_reference_seq_in_alignment(reference_identifier, alignment, format="clustal"):
+def confirm_reference_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
     """
     Tests to see if the reference identifier (accession, etc) can be found in one of the alignment sequence identifiers.
 
@@ -44,12 +44,12 @@ def confirm_reference_seq_in_alignment(reference_identifier, alignment, format="
     alignment :
         The alignment to be used for the SFVT analysis
 
-    format : string
-        The format of the alignment, default is clustal
+    msa_format : string
+        The msa_format of the alignment, default is clustal
     """
-
+    reference_sequence = ""
     test = False
-    for alignment in AlignIO.parse(alignment, format):
+    for alignment in AlignIO.parse(alignment, msa_format):
         for record in alignment:
             if reference_identifier in record.id:
                 test = True
@@ -118,7 +118,7 @@ def parse_directory_filename_and_extension(file_path):
     Parameters
     ----------
     file_path : string
-        The input realtive or full path of a file
+        The input relative or full path of a file
     """
     import os.path
 
@@ -147,7 +147,7 @@ def import_metadata(file_path):
     file_path : string
         The file path of the metadata file to be imported.
     """
-    df_metadata = pd.read_table(file_path) #, skiprows=[0,1,2], header=0)?
+    df_metadata = pd.read_table(file_path)  # , skiprows=[0,1,2], header=0)?
     df_metadata.to_csv("df_metadata.csv")
     return df_metadata
 
@@ -167,6 +167,11 @@ def count_sequences_per_variant_type(dataframe, file_path):
     df_by_variant_type = dataframe.groupby('variant_type')
     count_by_variant_type = df_by_variant_type.count()
     count_by_variant_type.sort('accession', ascending=False, inplace=True)
+
+    row_length = len(count_by_variant_type)
+    count_by_variant_type["VT"] = ["VT-" + str(i) for i in range(1,row_length + 1)]
+    #count_by_variant_type.reset_index()
+    count_by_variant_type.reindex(index=["VT"])
 
     count_by_variant_type.to_csv("sfvt_%s.csv" % file_path)
     report = count_by_variant_type.to_string()
@@ -199,22 +204,20 @@ def plot_variant_type_data(dataframe, field):
     fig.savefig("sfvt_%s.svg" % field)
 
 
-def main(args):
+def main(arguments):
 
-    from Bio import AlignIO
-
-    test, reference_sequence = confirm_reference_seq_in_alignment(args.reference_identifier, args.alignment)
+    test, reference_sequence = confirm_reference_seq_in_alignment(arguments.reference_identifier, arguments.alignment)
     logging.info("Reference seqeunce test result: %s" % test)
 
     # Parse positions
-    positions = parse_position_input(args.positions)
+    positions = parse_position_input(arguments.positions)
     logging.info("The positions (parsed): %s" % positions)
 
     test = confirm_sequence_feature_in_reference(reference_sequence, positions)
 
     if test:
         # read in multiple sequence alignment
-        alignment = AlignIO.read(args.alignment, args.alignment_format)
+        alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
 
         checked_positions = check_reference_positions(reference_sequence, positions)
 
@@ -225,7 +228,7 @@ def main(args):
             variants.append([record.id, sequence_feature_temp])
             # logging.debug(sequence_feature_temp)
 
-        null, null, null, file_name, file_extension = parse_directory_filename_and_extension(args.alignment)
+        null, null, null, file_name, null = parse_directory_filename_and_extension(arguments.alignment)
 
         headers = ['accession', 'variant_type']
         df = pd.DataFrame(variants, columns=headers)
@@ -233,11 +236,11 @@ def main(args):
 
         count_sequences_per_variant_type(df, file_name)
 
-        if args.metadata_file is not None:
+        if arguments.metadata_file is not None:
 
-            logging.debug("Metadata file is present at: %s" % args.metadata_file)
+            logging.debug("Metadata file is present at: %s" % arguments.metadata_file)
 
-            df_metadata = import_metadata(args.metadata_file)
+            df_metadata = import_metadata(arguments.metadata_file)
             df_all_data = pd.merge(df, df_metadata, on='accession', how='outer')
             df_all_data.to_csv("df_all_data.csv")
 
@@ -256,11 +259,10 @@ def main(args):
                 plot_variant_type_data(df_all_data, field)
 
     else:
-        logging.error("No reference identifier found: %s" % args.reference_identifier)
+        logging.error("No reference identifier found: %s" % arguments.reference_identifier)
 
 
 if __name__ == "__main__":
-    import os
     import sys
     import logging
     import datetime
@@ -302,10 +304,9 @@ if __name__ == "__main__":
                         help="What level of logging would you like to see? (info, debug, error; default=debug).")
     args = parser.parse_args()
 
-
     d = datetime.date.today()
     fh = logging.FileHandler('./%s.log' % d.isoformat())
-    logging.basicConfig(stream=sys.stdout,  level=args.loglevel.upper())
+    logging.basicConfig(stream=sys.stdout, level=args.loglevel.upper())
 
     main(args)
 
