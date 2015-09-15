@@ -165,14 +165,8 @@ def count_sequences_per_variant_type(dataframe, file_path):
     file_path : string
         The file path of the output file to be saved.
     """
-    df_by_variant_type = dataframe.groupby('variant_type')
-
-    df_by_variant_type = DataFrame({'count' : dataframe.groupby( ["variant_type"] ).size()}).reset_index()
-
-    #count_by_variant_type = df_by_variant_type.count()
+    df_by_variant_type = DataFrame({'count' : dataframe.groupby(["variant_type"]).size()}).reset_index()
     df_by_variant_type.sort('count', ascending=False, inplace=True)
-
-    #count_by_variant_type.add_suffix('_Count').reset_index()
 
     row_length = len(df_by_variant_type)
     df_by_variant_type["VT"] = ["VT-" + str(i) for i in range(1,row_length + 1)]
@@ -185,7 +179,7 @@ def count_sequences_per_variant_type(dataframe, file_path):
     return df_by_variant_type
 
 
-def plot_variant_type_data(dataframe, field):
+def plot_variant_type_data(df_all_data, field):
     """
 
     Parameters
@@ -195,16 +189,18 @@ def plot_variant_type_data(dataframe, field):
 
     Parameters
     ----------
-    dataframe : dataframe
-        The pandas dataframe with all data inti
+    df_all_data : df_all_data
+        The pandas df_all_data with all data inti
 
     field : string
         The metadata field to be plotted.
     """
-    sizer = dataframe.groupby(['variant_type', field]).size()
-    unpacked = sizer.unstack(level=1)
+    df_all_data.to_csv("df_by_field.csv")
+    df_by_one_field = df_all_data.groupby(['VT', field]).size()
+    df_by_one_field.to_csv("df_by_%s.csv" % field)
+
+    unpacked = df_by_one_field.unstack(level=1)
     plot = unpacked.plot(kind='bar', subplots=False)
-    # plot.hold(False)
     fig = plot.get_figure()
     fig.savefig("sfvt_%s.svg" % field)
 
@@ -239,7 +235,7 @@ def main(arguments):
         df = pd.DataFrame(variants, columns=headers)
         df.to_csv('df_accession_index.csv')
 
-        count_sequences_per_variant_type(df, file_name)
+        df_by_variant_type = count_sequences_per_variant_type(df, file_name)
 
         if arguments.metadata_file is not None:
 
@@ -249,7 +245,8 @@ def main(arguments):
             df_all_data = pd.merge(df, df_metadata, on='accession', how='outer')
             df_all_data.to_csv("df_all_data.csv")
 
-            # df_all_data_with_vt = calculate_variant_types(df_all_data)
+            df_all_data_with_variant_type = pd.merge(df_all_data, df_by_variant_type, on='variant_type', how='outer')
+            df_all_data_with_variant_type.to_csv("df_all_data_with_variant_type.csv")
 
             columns = list(df_all_data.columns)
             logging.debug("The columns in the %s dataframe are: %s" % ("df_all_data", columns))
@@ -261,7 +258,8 @@ def main(arguments):
 
                 logging.debug("Now plotting graph for: %s" % field)
 
-                plot_variant_type_data(df_all_data, field)
+                #df_all_data_counts = count_sequences_per_variant_type(df_all_data_with_variant_type, file_name)
+                plot_variant_type_data(df_all_data_with_variant_type, field)
 
     else:
         logging.error("No reference identifier found: %s" % arguments.reference_identifier)
@@ -300,7 +298,7 @@ if __name__ == "__main__":
                         type=str,
                         help="The position(s) of the sequence feature. Example: '100-110' or '100-110, 120, 130'")
     parser.add_argument("-m", "--metadata_file",
-                        required=False,
+                        required=True,
                         type=str,
                         help="The metadata file (tab delimited).")
     parser.add_argument("-log", "--loglevel",
