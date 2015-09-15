@@ -220,6 +220,10 @@ def plot_variant_type_data(df_all_data, field):
     fig = plot.get_figure()
     fig.savefig("sfvt_%s.svg" % field)
 
+    plot = unpacked.plot(kind='bar', stacked=True, subplots=False)
+    fig = plot.get_figure()
+    fig.savefig("sfvt_stacked_%s.svg" % field)
+
 
 def main(arguments):
     """
