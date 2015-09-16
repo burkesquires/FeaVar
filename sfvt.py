@@ -167,6 +167,11 @@ def import_metadata(file_path):
     return df_metadata
 
 
+def VT_count(i):
+    vt_id = "VT-%03d" % (i,)
+    return vt_id
+
+
 def count_seqs_per_variant_type(dataframe, file_path):
     """
     Counts sequences per variant type
@@ -184,8 +189,7 @@ def count_seqs_per_variant_type(dataframe, file_path):
     df_by_variant_type.sort('count', ascending=False, inplace=True)
 
     row_length = len(df_by_variant_type)
-    df_by_variant_type["VT"] = ["VT-" + str(i) for i in range(1,
-                                                              row_length + 1)]
+    df_by_variant_type["VT"] = [VT_count(i) for i in range(1, row_length + 1)]
     df_by_variant_type.reindex(index=["VT"])
 
     df_by_variant_type.to_csv("sfvt_%s.csv" % file_path)
@@ -222,7 +226,17 @@ def plot_variant_type_data(df_all_data, field):
 
     plot = unpacked.plot(kind='bar', stacked=True, subplots=False)
     fig = plot.get_figure()
-    fig.savefig("sfvt_stacked_%s.svg" % field)
+    fig.set_size_inches(18.5, 10.5)
+    fig.savefig("sfvt_stacked_%s.svg" % field, dpi=100)
+
+def select_vts_to_plot(df, count):
+    """
+    Selects top variant top for plotting
+
+    """
+    vts_to_select =  ["VT-%03d" % i for i in range(count)]
+    df_selected = df[df['VT'].isin(vts_to_select)]
+    return df_selected
 
 
 def main(arguments):
@@ -281,8 +295,14 @@ def main(arguments):
                                                      df_by_variant_type,
                                                      on='variant_type',
                                                      how='outer')
-            df_all_data_with_variant_type.to_csv(
-                "df_all_data_with_variant_type.csv")
+            df_file_name = "df_all_data_with_variant_type.csv"
+            df_all_data_with_variant_type.to_csv(df_file_name)
+
+            # for large dataframes select the top X rows
+            df_top = select_vts_to_plot(df_all_data_with_variant_type,
+                                        arguments.top)
+            if arguments.loglevel == 'debug':
+                df_top.to_csv("df_top.csv")
 
             columns = list(df_all_data.columns)
             logging.debug("The columns in the %s dataframe are: %s" %
@@ -294,7 +314,7 @@ def main(arguments):
             for field in columns[2:]:
 
                 logging.info("Now plotting graph for: %s" % field)
-                plot_variant_type_data(df_all_data_with_variant_type, field)
+                plot_variant_type_data(df_top, field)
 
     else:
         logging.error("No reference identifier found: %s" %
@@ -326,15 +346,21 @@ if __name__ == "__main__":
     PARSER.add_argument("-p", "--positions",
                         required=True,
                         type=str,
-                        help="The position(s) of the sequence feature. "
-                             "Example: '100-110' or '100-110, 120, 130'")
+                        help="The position(s) of the sequence feature. No"
+                             "spaces are allowed. Example: '100-110' or "
+                             "'100-110,120,130'")
     PARSER.add_argument("-m", "--metadata_file",
                         required=False,
                         type=str,
                         help="The metadata file (tab delimited).")
+    PARSER.add_argument("-t", "--top",
+                        required=False,
+                        type=str,
+                        default=25,
+                        help="The number (top) of variant types to plot (default=25).")
     PARSER.add_argument("-log", "--loglevel",
                         required=False,
-                        default="info",
+                        default="debug",
                         help="What level of logging would you like to see? "
                              "(info, debug, error; default=info).")
     ARGS = PARSER.parse_args()
