@@ -356,8 +356,8 @@ if __name__ == "__main__":
     PARSER.add_argument("-t", "--top",
                         required=False,
                         type=str,
-                        default=25,
-                        help="The number (top) of variant types to plot (default=25).")
+                        default=10,
+                        help="The number (top) of variant types to plot (default=10).")
     PARSER.add_argument("-log", "--loglevel",
                         required=False,
                         default="debug",
