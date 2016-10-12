@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """
+FeaVar
 
 This module computes the variant type in a given sequence feature and creates
 plots for each different type of metadata given.
@@ -9,8 +10,8 @@ from Bio import AlignIO
 from pandas import DataFrame
 import pandas as pd
 
-__authors__ = 'R. Burke Squires, Carolyn Komatsoulis'
-
+__author__ = 'R. Burke Squires'
+__author__ = 'Carolyn Komatsoulis'
 
 def parse_position_input(raw_positions):
     """
