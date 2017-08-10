@@ -1,6 +1,6 @@
-FeaVar or __Fea__ture __Var__iant
-
-FeaVar is a python package that reads in multiple sequence alignments, a reference sequence, and given a feature location, will group individual sequences into one of many clusters or variant types. This package is a generalization of the sequence feature variant type work undertaken in hte lab of Richard Scheuermann while at UT Southwestern.
+FeaVar
+ 
+ FeaVar, short for Sequence **Fea**ture, **Var**iant Type, is a python package that reads in multiple sequence alignments, a reference sequence, and given feature location(s), will group individual sequences into one of many clusters or variant types. This package is a generalization of the sequence feature variant type work undertaken in hte lab of Richard Scheuermann while at UT Southwestern.
 
 Thanks to Joe Wan for the name suggestion!
 

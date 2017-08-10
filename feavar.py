@@ -10,12 +10,19 @@ from Bio import AlignIO
 from pandas import DataFrame
 import pandas as pd
 
-__author__ = 'R. Burke Squires'
-__author__ = 'Carolyn Komatsoulis'
+__author__ = 'R. Burke Squires, Carolyn Komatsoulis'
+__copyright__ = "Copyright 2017, The Cogent Project"
+__credits__ = []
+__license__ = "GPL"
+__version__ = "1.0.1"
+__maintainer__ = "R. Burke Squires"
+__email__ = "burkesquires (at) gmail.com"
+__status__ = "Production"
+
 
 def parse_position_input(raw_positions):
     """
-    Takes a string argument for positions and splits it out into individual
+    Takes a string argument of positions and splits it out into individual
     start and stop positions. The positions can be one or more columns or
     integers and linear or non-linear.
 
@@ -29,20 +36,19 @@ def parse_position_input(raw_positions):
 
     position_groupings = raw_positions.split(",")
 
-    positions_coordinates = []
+    position_coordinates = []
     for position_grouping in position_groupings:
         positions = position_grouping.split("-")
         if len(positions) == 2:
             temp_list = list(range(int(positions[0]), int(positions[1]) + 1))
-            positions_coordinates += temp_list
+            position_coordinates += temp_list
         elif len(positions) == 1:
-            positions_coordinates.append(int(positions[0]))
+            position_coordinates.append(int(positions[0]))
 
-    return positions_coordinates
+    return position_coordinates
 
 
-def confirm_ref_seq_in_alignment(reference_identifier, alignment,
-                                 msa_format="clustal"):
+def confirm_ref_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
     """
     Tests to see if the reference identifier (accession, etc) can be found in
     one of the alignment sequence identifiers.
@@ -68,15 +74,14 @@ def confirm_ref_seq_in_alignment(reference_identifier, alignment,
     return test, reference_sequence
 
 
-def confirm_seq_feature_in_ref(reference_sequence,
-                               sequence_feature_positions):
+def confirm_seq_feature_in_ref(reference_sequence, sequence_feature_positions):
     """
     Tests to see if the sequence feature positions can be found in the
     reference sequence.
 
     Parameters
     ----------
-    reference_identifier : string
+    reference_sequence : string
         The identifier (accession, gid) of the reference sequence
 
     alignment : string
@@ -205,11 +210,6 @@ def plot_variant_type_data(df_all_data, field):
 
     Parameters
     ----------
-    reference_identifier : string
-        The identifier (accession, gid) of the reference sequence
-
-    Parameters
-    ----------
     df_all_data : df_all_data
         The pandas df_all_data with all data inti
 
@@ -318,8 +318,7 @@ def main(arguments):
                 plot_variant_type_data(df_top, field)
 
     else:
-        logging.error("No reference identifier found: %s" %
-                      arguments.reference_identifier)
+        logging.error("No reference identifier found: %s" % arguments.reference_identifier)
 
 
 if __name__ == "__main__":
