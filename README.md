@@ -1,6 +1,13 @@
-<<<<<<< HEAD
-FeaVar is a python package that reads in multiple sequence alignments, a reference sequence, and given a feature location, will group individual sequences into one of many clusters or variant types. This package is a generalization of the sequence feature variant type work undertaken in hte lab of Richard Scheuermann while at UT Southwestern.
->>>>>>> origin/master
+FeaVar - **Fea**ture **Var**iant
+
+
+FeaVar, pronounced "fever", is a python package that computes clusters of unique substrings or variant types for user etermined substrings. Sequences can be nucleotide (DNA or RNA), or amino acid. FeaVar takes as input a reference sequence, a list of one or more sequence positions and a multiple sequence alignments of related sequences.
+
+This package is a generalization of the sequence feature variant type work undertaken in the laboratory of Dr. Richard Scheuermann while at UT Southwestern.
+
+
+
+
 
 Thanks to Joe Wan for the name suggestion!
 
