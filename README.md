@@ -1,15 +1,9 @@
-FeaVar - **Fea**ture **Var**iant
+Gradient
 
+Gradient is a python package that computes clusters of unique substrings or "variant types" for user selected sequence features in a set of aligned sequences. Sequences can be nucleotide (DNA or RNA), or amino acid. Gradient takes as input a reference sequence, a list of one or more sequence positions and a multiple sequence alignments of related sequences. It produces a list of the different variant types as well as a list of which variant type each input sequence belongs to.
 
-FeaVar, pronounced "fever", is a python package that computes clusters of unique substrings or variant types for user etermined substrings. Sequences can be nucleotide (DNA or RNA), or amino acid. FeaVar takes as input a reference sequence, a list of one or more sequence positions and a multiple sequence alignments of related sequences.
+This package is a generalization of the sequence feature variant type (SFVT) work undertaken in the laboratory of Dr. Richard Scheuermann while at UT Southwestern. Please see the references below.
 
-This package is a generalization of the sequence feature variant type work undertaken in the laboratory of Dr. Richard Scheuermann while at UT Southwestern.
-
-
-
-
-
-Thanks to Joe Wan for the name suggestion!
 
 References:
 
