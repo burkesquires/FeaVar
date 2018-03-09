@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-FeaVar
+Ombre
 
 This module computes the variant type in a given sequence feature and creates
 plots for each different type of metadata given.
@@ -11,7 +11,7 @@ from pandas import DataFrame
 import pandas as pd
 
 __author__ = 'R. Burke Squires, Carolyn Komatsoulis'
-__copyright__ = "Copyright 2017, The Cogent Project"
+__copyright__ = "Copyright 2018"
 __credits__ = []
 __license__ = "GPL"
 __version__ = "1.0.1"
