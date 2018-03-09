@@ -36,16 +36,21 @@ def parse_position_input(raw_positions):
 
     position_groupings = raw_positions.split(",")
 
-    position_coordinates = []
-    for position_grouping in position_groupings:
-        positions = position_grouping.split("-")
-        if len(positions) == 2:
-            temp_list = list(range(int(positions[0]), int(positions[1]) + 1))
-            position_coordinates += temp_list
-        elif len(positions) == 1:
-            position_coordinates.append(int(positions[0]))
+    try:
+        position_coordinates = []
 
-    return position_coordinates
+        for position_grouping in position_groupings:
+            positions = position_grouping.split("-")
+            if len(positions) == 2:
+                temp_list = list(range(int(positions[0]), int(positions[1]) + 1))
+                position_coordinates += temp_list
+            elif len(positions) == 1:
+                position_coordinates.append(int(positions[0]))
+
+            return position_coordinates
+
+    except ValueError:
+        print("There is a problem with the positions!")
 
 
 def confirm_ref_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
