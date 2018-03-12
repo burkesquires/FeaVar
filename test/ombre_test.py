@@ -3,11 +3,6 @@ from ombre import ombre
 # test entire script
 
 
-
-
-
-
-
 # Test various position strings to make sure that they all work
 
 def parse_position_input_test():

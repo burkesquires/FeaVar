@@ -13,11 +13,11 @@ import pandas as pd
 __author__ = 'R. Burke Squires, Carolyn Komatsoulis'
 __copyright__ = "Copyright 2018"
 __credits__ = []
-__license__ = "GPL"
+__license__ = "MIT"
 __version__ = "1.0.1"
 __maintainer__ = "R. Burke Squires"
 __email__ = "burkesquires (at) gmail.com"
-__status__ = "Production"
+__status__ = "Beta"
 
 
 def parse_position_input(raw_positions):
@@ -351,9 +351,8 @@ if __name__ == "__main__":
     PARSER.add_argument("-p", "--positions",
                         required=True,
                         type=str,
-                        help="The position(s) of the sequence feature. No"
-                             "spaces are allowed. Example: '100-110' or "
-                             "'100-110,120,130'")
+                        help="The position(s) of the sequence feature, enclosed in quotes and comma separated"
+                        "Example: '100-110' or '100-110,120,130'")
     PARSER.add_argument("-m", "--metadata_file",
                         required=False,
                         type=str,
