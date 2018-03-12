@@ -1,6 +1,6 @@
 from ombre import ombre
 
-# test entire script
+# tests entire script
 
 
 # Test various position strings to make sure that they all work

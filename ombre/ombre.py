@@ -102,7 +102,7 @@ def confirm_seq_feature_in_ref(reference_sequence, sequence_feature_positions):
         if position > length:
             test = False
 
-    logging.debug("confirm seq feature in reference test result: %s" % test)
+    logging.debug("confirm seq feature in reference tests result: %s" % test)
     return test
 
 
@@ -252,7 +252,7 @@ def main(arguments):
     """
     test, reference_sequence = confirm_ref_seq_in_alignment(
         arguments.reference_identifier, arguments.alignment)
-    logging.info("Reference seqeunce test result: %s" % test)
+    logging.info("Reference seqeunce tests result: %s" % test)
 
     # Parse positions
     positions = parse_position_input(arguments.positions)
