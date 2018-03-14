@@ -23,4 +23,8 @@ setup(name='ombre',
 
       setup_requires=['nose>=1.0'],
 
-      test_suite='nose.collector', install_requires=['pandas'])
+      test_suite='nose.collector',
+
+      install_requires=['biopython>=1.6',
+                        'pandas>=0.2']
+      )
