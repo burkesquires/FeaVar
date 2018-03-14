@@ -50,6 +50,7 @@ def parse_position_input(raw_positions):
         return position_coordinates
 
     except ValueError:
+
         print("There is a problem with the positions!")
 
 
@@ -253,23 +254,27 @@ def main(arguments):
     import Bio
     import pandas as pd
 
-    test, reference_sequence = confirm_ref_seq_in_alignment(
-        arguments.reference_identifier, arguments.alignment)
+    test = True
+
+    test, reference_sequence = confirm_ref_seq_in_alignment(arguments.reference_identifier, arguments.alignment)
     logging.info("Reference seqeunce tests result: %s" % test)
 
     # Parse positions
     positions = parse_position_input(arguments.positions)
-    logging.info("The positions (parsed): %s" % positions)
+    logging.info("Parsed positions: %s" % positions)
+
+    if positions is None:
+        test = False
 
     test = confirm_seq_feature_in_ref(reference_sequence, positions)
 
     if test:
+
         # read in multiple sequence alignment
         alignment = Bio.AlignIO.read(arguments.alignment,
                                      arguments.alignment_format)
 
-        checked_positions = check_reference_positions(reference_sequence,
-                                                      positions)
+        checked_positions = check_reference_positions(reference_sequence, positions)
 
         variants = []
         for record in alignment:

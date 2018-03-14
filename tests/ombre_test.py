@@ -29,7 +29,7 @@ def test_parse_position_input_fail_missing_comma():
     assert parse_position_input("10,21,32 43") == None
 
 def test_parse_position_input_fail_missing_dash():
-    parse_position_input("10 21,32,43") == None
+    assert parse_position_input("10 21,32,43") == None
 
 def test_parse_position_input_fail_missing_range_end():
-    parse_position_input("10 -") == None
+    assert parse_position_input("10 -") == None
