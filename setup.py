@@ -23,4 +23,4 @@ setup(name='ombre',
 
       setup_requires=['nose>=1.0'],
 
-      test_suite='nose.collector')
+      test_suite='nose.collector', install_requires=['pandas'])

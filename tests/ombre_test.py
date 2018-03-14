@@ -1,75 +1,35 @@
-from ombre import ombre
+from ombre.ombre import parse_position_input
+import pytest
 
-# tests entire script
 
+def test_parse_position_input_1():
+    positions1 = '10, 21, 32, 43'
+    assert parse_position_input(positions1) == [10, 21, 32, 43]
 
-# Test various position strings to make sure that they all work
+def test_parse_position_input_2():
+    positions2 = '10,21,32,43'
+    assert parse_position_input(positions2) == [10, 21, 32, 43]
 
-def parse_position_input_test():
-    positions1 = "10, 21, 32, 43"
-    positions2 = "10,21,32,43"
-    positions3 = "10-21,32,43"
+def test_parse_position_input_3():
+    positions3 = "10-16"
+    assert parse_position_input(positions3) == [10, 11, 12, 13, 14, 15, 16]
+
+def test_parse_position_input_test_4():
     positions4 = "10 - 21, 32, 43"
+    assert parse_position_input(positions4) == [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 32, 43]
+
+def test_parse_position_input_test_5():
     positions5 = "10-21"
+    assert parse_position_input(positions5) == [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 
-    assert ombre.parse_position_input(positions1) == "10, 21, 32, 43"
-    assert ombre.parse_position_input(positions2) == "10, 21, 32, 43"
-    assert ombre.parse_position_input(positions3) == "10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 32, 43"
-    assert ombre.parse_position_input(positions4) == "10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 32, 43"
-    assert ombre.parse_position_input(positions5) == "10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21"
+def test_parse_position_input_fail_empty_string():
+     assert parse_position_input("") == None
 
+def test_parse_position_input_fail_missing_comma():
+    assert parse_position_input("10,21,32 43") == None
 
-def parse_position_input_fail_test():
-    fail_positions1 = ""
-    fail_positions2 = "10,21,32 43"
-    fail_positions3 = "10 21,32,43"
-    fail_positions4 = "10 21, 32, 43"
-    fail_positions5 = "10 -"
+def test_parse_position_input_fail_missing_dash():
+    parse_position_input("10 21,32,43") == None
 
-    try:
-        ombre.parse_position_input(fail_positions1)
-        assert False
-    except ValueError:
-        assert True
-
-    try:
-        ombre.parse_position_input(fail_positions2)
-        assert False
-    except ValueError:
-        assert True
-
-    try:
-        ombre.parse_position_input(fail_positions3)
-        assert False
-    except ValueError:
-        assert True
-
-    try:
-        ombre.parse_position_input(fail_positions4)
-        assert False
-    except ValueError:
-        assert True
-
-    try:
-        ombre.parse_position_input(fail_positions5)
-        assert False
-    except ValueError:
-        assert True
-
-# Test confirm_seq_feature_in_ref
-
-
-
-
-
-
-# check_reference_positions
-
-
-
-
-# import_metadata
-
-
-
-
+def test_parse_position_input_fail_missing_range_end():
+    parse_position_input("10 -") == None

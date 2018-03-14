@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!~/anaconda3/bin python
 """
 Ombre
 
@@ -6,9 +6,6 @@ This module computes the variant type in a given sequence feature and creates
 plots for each different type of metadata given.
 
 """
-from Bio import AlignIO
-from pandas import DataFrame
-import pandas as pd
 
 __author__ = 'R. Burke Squires, Carolyn Komatsoulis'
 __copyright__ = "Copyright 2018"
@@ -37,17 +34,20 @@ def parse_position_input(raw_positions):
     position_groupings = raw_positions.split(",")
 
     try:
+
         position_coordinates = []
 
         for position_grouping in position_groupings:
+
             positions = position_grouping.split("-")
+
             if len(positions) == 2:
                 temp_list = list(range(int(positions[0]), int(positions[1]) + 1))
-                position_coordinates += temp_list
+                position_coordinates.extend(temp_list)
             elif len(positions) == 1:
                 position_coordinates.append(int(positions[0]))
 
-            return position_coordinates
+        return position_coordinates
 
     except ValueError:
         print("There is a problem with the positions!")
@@ -71,7 +71,7 @@ def confirm_ref_seq_in_alignment(reference_identifier, alignment, msa_format="cl
     """
     reference_sequence = ""
     test = False
-    for alignment in AlignIO.parse(alignment, msa_format):
+    for alignment in Bio.AlignIO.parse(alignment, msa_format):
         for record in alignment:
             if reference_identifier in record.id:
                 test = True
@@ -195,7 +195,7 @@ def count_seqs_per_variant_type(dataframe, file_path):
     file_path : string
         The file path of the output file to be saved.
     """
-    df_by_variant_type = DataFrame({'count' : dataframe.groupby(
+    df_by_variant_type = pandas.DataFrame({'count' : dataframe.groupby(
         ["variant_type"]).size()}).reset_index()
     df_by_variant_type.sort('count', ascending=False, inplace=True)
 
@@ -250,6 +250,9 @@ def main(arguments):
     Main method for the sequence feature variant type python script
 
     """
+    import Bio
+    import pandas as pd
+
     test, reference_sequence = confirm_ref_seq_in_alignment(
         arguments.reference_identifier, arguments.alignment)
     logging.info("Reference seqeunce tests result: %s" % test)
@@ -262,8 +265,8 @@ def main(arguments):
 
     if test:
         # read in multiple sequence alignment
-        alignment = AlignIO.read(arguments.alignment,
-                                 arguments.alignment_format)
+        alignment = Bio.AlignIO.read(arguments.alignment,
+                                     arguments.alignment_format)
 
         checked_positions = check_reference_positions(reference_sequence,
                                                       positions)
