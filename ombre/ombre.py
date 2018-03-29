@@ -70,9 +70,12 @@ def confirm_ref_seq_in_alignment(reference_identifier, alignment, msa_format="cl
     msa_format : string
         The msa_format of the alignment, default is clustal
     """
+    from Bio import AlignIO
+
     reference_sequence = ""
+
     test = False
-    for alignment in Bio.AlignIO.parse(alignment, msa_format):
+    for alignment in AlignIO.parse(alignment, msa_format):
         for record in alignment:
             if reference_identifier in record.id:
                 test = True
@@ -196,9 +199,9 @@ def count_seqs_per_variant_type(dataframe, file_path):
     file_path : string
         The file path of the output file to be saved.
     """
-    df_by_variant_type = pandas.DataFrame({'count' : dataframe.groupby(
+    df_by_variant_type = pd.DataFrame({'count' : dataframe.groupby(
         ["variant_type"]).size()}).reset_index()
-    df_by_variant_type.sort('count', ascending=False, inplace=True)
+    df_by_variant_type.sort_values('count', ascending=False, inplace=True)
 
     row_length = len(df_by_variant_type)
     df_by_variant_type["VT"] = [VT_count(i) for i in range(1, row_length + 1)]
@@ -251,8 +254,7 @@ def main(arguments):
     Main method for the sequence feature variant type python script
 
     """
-    import Bio
-    import pandas as pd
+
 
     test = True
 
@@ -271,7 +273,7 @@ def main(arguments):
     if test:
 
         # read in multiple sequence alignment
-        alignment = Bio.AlignIO.read(arguments.alignment,
+        alignment = AlignIO.read(arguments.alignment,
                                      arguments.alignment_format)
 
         checked_positions = check_reference_positions(reference_sequence, positions)
@@ -339,6 +341,8 @@ if __name__ == "__main__":
     import logging
     import datetime
     import argparse
+    from Bio import AlignIO
+    import pandas as pd
 
     PARSER = argparse.ArgumentParser()
     PARSER.add_argument('-a', "--alignment",
