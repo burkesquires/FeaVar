@@ -13,7 +13,7 @@ setup(name='ombre',
       author_email='burkesquires@gmail.com',
 
       description='A python package to compute clusters of sequence feature variant types (SFVTs) \
-      based upon user-selected subsequence',
+      based upon user-selected position(s).',
 
       packages=find_packages(exclude=['tests']),
 
