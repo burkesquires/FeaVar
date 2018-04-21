@@ -16,6 +16,7 @@ __maintainer__ = "R. Burke Squires"
 __email__ = "burkesquires (at) gmail.com"
 __status__ = "Beta"
 
+#TODO Add abililty to use native IEDB format (H25, H45, V46, N47, L496, S306, L307, P308, T333; B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400
 
 def parse_position_input(raw_positions):
     """
