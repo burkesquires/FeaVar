@@ -7,9 +7,9 @@ plots for each different type of metadata given.
 
 """
 
-__author__ = 'R. Burke Squires, Carolyn Komatsoulis'
+__author__ = 'R. Burke Squires'
 __copyright__ = "Copyright 2018"
-__credits__ = []
+__credits__ = ["Carolyn Komatsoulis"]
 __license__ = "MIT"
 __version__ = "1.0.1"
 __maintainer__ = "R. Burke Squires"

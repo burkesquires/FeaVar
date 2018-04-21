@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(name='ombre',
 
-      version='1.0.1',
+      version='0.1',
 
       url='https://github.com/burkesquires/ombre',
 
@@ -25,6 +25,6 @@ setup(name='ombre',
 
       test_suite='nose.collector',
 
-      install_requires=['biopython>=1.6',
-                        'pandas>=0.2']
+      install_requires=['biopython',
+                        'pandas']
       )
