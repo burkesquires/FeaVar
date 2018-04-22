@@ -16,7 +16,9 @@ __maintainer__ = "R. Burke Squires"
 __email__ = "burkesquires (at) gmail.com"
 __status__ = "Beta"
 
-#TODO Add abililty to use native IEDB format (H25, H45, V46, N47, L496, S306, L307, P308, T333; B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400
+# TODO Add abililty to use native IEDB format (H25, H45, V46, N47, L496, S306, L307, P308, T333;
+# B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400
+
 
 def parse_position_input(raw_positions):
     """
@@ -48,11 +50,68 @@ def parse_position_input(raw_positions):
             elif len(positions) == 1:
                 position_coordinates.append(int(positions[0]))
 
-        return position_coordinates
+        return position_coordinates.sort()
 
     except ValueError:
 
         print("There is a problem with the positions!")
+
+
+def adjust_positions_for_insertions(positions, ref_seq):
+    """
+    Takes a string argument of positions and the aligned reference sequence and
+    corrects the sequence feature positions for any insertions in the reference sequence.
+
+    Parameters
+    ----------
+    positions : string
+        The positions of the reference sequence to assemble a sequence feature from.
+
+    ref_seq : string
+        The reference sequence pulled from the alignment (with insertion dashes included (if applicable))
+
+    """
+    # SFVT      [   23  45   89   ]
+    # Positions [--123--456-78901-]
+    # Reference [--TTA--GGG-TAGGG-]
+    # Aligned   [AATTAAAGGGTTAGGGG]
+    # Positions [12345678901234567]
+    # Output    [   45  89   13,14]
+    # dashes    [0, 1, 5, 6, 10, 17]
+
+
+    # TODO: check to see if there are any other characters?, ike a period or substitute characters
+
+    # get positions of all dashes in the reference sequence [0, 1, 5, 6, 10,16]
+
+    c = '-'
+    dash_indicies = [pos for pos, char in enumerate(ref_seq) if char == c]
+
+    # NOTE: remember that the indices begin at 0 and the sf positions begin at 1
+
+    prior_position = 0
+    index_adjustment = 0
+    corrected_positions = []
+
+    # loop though the sf positions
+
+    for position in positions:
+
+        # Check for any dashes (indices + 1) between the prior position and the current position
+
+        dashes_in_ange = len(list(x for x in dash_indicies if prior_position <= x <= position))
+
+        # if any dashes are found, increment the adjustment for each dash AND add adjustment to current SF position
+
+        index_adjustment += dashes_in_ange
+
+        # reset prior position, repeat
+
+        corrected_positions.append(position + index_adjustment - 1)
+
+        prior_position = position
+
+    return corrected_positions
 
 
 def confirm_ref_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
@@ -256,6 +315,8 @@ def main(arguments):
 
     """
 
+    # TODO remove variant types with one or more dashes; add option to leave in
+    # TODO add report of algorithm version, results, etc; look at importing pandas-html I think
 
     test = True
 
@@ -264,6 +325,7 @@ def main(arguments):
 
     # Parse positions
     positions = parse_position_input(arguments.positions)
+    positions =  adjust_positions_for_insertions(positions)
     logging.info("Parsed positions: %s" % positions)
 
     if positions is None:
