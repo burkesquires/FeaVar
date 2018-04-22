@@ -310,20 +310,21 @@ def select_vts_to_plot(df, count):
     return df_selected
 
 
-def set_output_directory(output_file_path):
+def set_output_directory(output_dir, output_file_name):
     """
-    Create an OS specific or agnostic path for output
+    Create an OS independent path for output
 
     Parameters
     ----------
-    output_file_path : string
-        The file path of the current output file
+    output_dir : string
+        The directory to save output in
 
+    output_file_name : string
+        The name of the output file to save
     """
+    import os
 
-    output_dir = "output/"
-
-    return '%s%s' % (output_dir, output_file_path)
+    return os.path.join(os.path.dirname(output_dir), output_file_name)
 
 
 def main(arguments):
@@ -445,6 +446,10 @@ if __name__ == "__main__":
                         type=str,
                         help="The position(s) of the sequence feature, enclosed in quotes and comma separated"
                         "Example: '100-110' or '100-110,120,130'")
+    PARSER.add_argument("-d", "--project_directory",
+                        required=False,
+                        type=str,
+                        help="The directory of the project.")
     PARSER.add_argument("-m", "--metadata_file",
                         required=False,
                         type=str,
