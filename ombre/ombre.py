@@ -297,7 +297,8 @@ def plot_variant_type_data(df_all_data, field):
     plot = unpacked.plot(kind='bar', stacked=True, subplots=False)
     fig = plot.get_figure()
     fig.set_size_inches(18.5, 10.5)
-    fig.savefig("sfvt_stacked_%s.svg" % field, dpi=100)
+    fig.savefig(set_output_directory("sfvt_stacked_%s.svg" % field, dpi=100))
+
 
 def select_vts_to_plot(df, count):
     """
@@ -307,6 +308,22 @@ def select_vts_to_plot(df, count):
     vts_to_select =  ["VT-%03d" % i for i in range(count)]
     df_selected = df[df['VT'].isin(vts_to_select)]
     return df_selected
+
+
+def set_output_directory(output_file_path):
+    """
+    Create an OS specific or agnostic path for output
+
+    Parameters
+    ----------
+    output_file_path : string
+        The file path of the current output file
+
+    """
+
+    output_dir = "output/"
+
+    return '%s%s' % (output_dir, output_file_path)
 
 
 def main(arguments):
@@ -336,8 +353,7 @@ def main(arguments):
     if test:
 
         # read in multiple sequence alignment
-        alignment = AlignIO.read(arguments.alignment,
-                                     arguments.alignment_format)
+        alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
 
         checked_positions = check_reference_positions(reference_sequence, positions)
 
@@ -351,13 +367,14 @@ def main(arguments):
 
         null, null, null, file_name, null = parse_filepath(arguments.alignment)
 
+        output_dir = "output"
         headers = ['accession', 'variant_type']
         df_starter = pd.DataFrame(variants, columns=headers)
         if arguments.loglevel == 'debug':
-            df_starter.to_csv('df_accession_index.csv')
+            df_starter.to_csv(set_output_directory('df_accession_index.csv'))
 
         df_by_variant_type = count_seqs_per_variant_type(df_starter, file_name)
-        df_by_variant_type.to_csv("variant_types.csv")
+        df_by_variant_type.to_csv(set_output_directory("variant_types.csv"))
 
         if arguments.metadata_file is not None:
 
@@ -368,20 +385,20 @@ def main(arguments):
             df_all_data = pd.merge(df_starter, df_metadata, on='accession',
                                    how='outer')
             if arguments.loglevel == 'debug':
-                df_all_data.to_csv("df_all_data.csv")
+                df_all_data.to_csv(set_output_directory("df_all_data.csv"))
 
             df_all_data_with_variant_type = pd.merge(df_all_data,
                                                      df_by_variant_type,
                                                      on='variant_type',
                                                      how='outer')
             df_file_name = "df_all_data_with_variant_type.csv"
-            df_all_data_with_variant_type.to_csv(df_file_name)
+            df_all_data_with_variant_type.to_csv(set_output_directory(df_file_name))
 
             # for large dataframes select the top X rows
             df_top = select_vts_to_plot(df_all_data_with_variant_type,
                                         arguments.top)
             if arguments.loglevel == 'debug':
-                df_top.to_csv("df_top.csv")
+                df_top.to_csv(set_output_directory("df_top.csv"))
 
             columns = list(df_all_data.columns)
             logging.debug("The columns in the %s dataframe are: %s" %
