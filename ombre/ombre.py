@@ -57,6 +57,43 @@ def parse_position_input(raw_positions):
         print("There is a problem with the positions!")
 
 
+def create_index_offset_list(ref_seq):
+    l = len(ref_seq)
+
+    dash_indicies = [pos for pos, char in enumerate(ref_seq) if char == "-"]
+
+    # NOTE: remember that the indices begin at 0 and the sf positions begin at 1
+
+    index_correction_factor = [0] * l
+
+    for dash_idx in dash_indicies:
+
+        for idx in range(dash_idx, l):
+            index_correction_factor[idx] += 1
+
+    return index_correction_factor
+
+
+def correct_index_dict(ref_seq):
+
+    corrected_index = {}
+
+    dash_count = 0
+    char_count = 1
+
+    for idx, char in enumerate(ref_seq):
+
+        if char == "-":
+            dash_count += 1
+            continue
+
+        corrected_index[char_count] = char_count + dash_count
+
+        char_count += 1
+
+    return corrected_index
+
+
 def adjust_positions_for_insertions(positions, ref_seq):
     """
     Takes a string argument of positions and the aligned reference sequence and
@@ -64,7 +101,7 @@ def adjust_positions_for_insertions(positions, ref_seq):
 
     Parameters
     ----------
-    positions : string
+    positions : list
         The positions of the reference sequence to assemble a sequence feature from.
 
     ref_seq : string
@@ -84,32 +121,13 @@ def adjust_positions_for_insertions(positions, ref_seq):
 
     # get positions of all dashes in the reference sequence [0, 1, 5, 6, 10,16]
 
-    c = '-'
-    dash_indicies = [pos for pos, char in enumerate(ref_seq) if char == c]
+    corrected_indices = correct_index_dict(ref_seq)
 
-    # NOTE: remember that the indices begin at 0 and the sf positions begin at 1
-
-    prior_position = 0
-    index_adjustment = 0
     corrected_positions = []
-
-    # loop though the sf positions
 
     for position in positions:
 
-        # Check for any dashes (indices + 1) between the prior position and the current position
-
-        dashes_in_ange = len(list(x for x in dash_indicies if prior_position <= x <= position))
-
-        # if any dashes are found, increment the adjustment for each dash AND add adjustment to current SF position
-
-        index_adjustment += dashes_in_ange
-
-        # reset prior position, repeat
-
-        corrected_positions.append(position + index_adjustment - 1)
-
-        prior_position = position
+        corrected_positions.append(corrected_indices[position])
 
     return corrected_positions
 
@@ -343,7 +361,7 @@ def main(arguments):
 
     # Parse positions
     positions = parse_position_input(arguments.positions)
-    positions =  adjust_positions_for_insertions(positions)
+    positions =  adjust_positions_for_insertions(positions, reference_sequence)
     logging.info("Parsed positions: %s" % positions)
 
     if positions is None:
