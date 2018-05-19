@@ -10,4 +10,4 @@ Development Lead
 Contributors
 ------------
 
-None yet. Why not be the first?
+* Carolyn Komatsoulis <cdog114@gmail.com>

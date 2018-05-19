@@ -1,6 +1,6 @@
-Ombre
+nVariant
 
-Ombre, pronounced "om-bay," is a python package that computes clusters of unique substrings or "variant types" for user selected sequence features in a set of aligned sequences. Sequences can be nucleotide (DNA or RNA), or amino acid. Gradient takes as input a reference sequence, a list of one or more sequence positions and a multiple sequence alignments of related sequences. It produces a list of the different variant types as well as a list of which variant type each input sequence belongs to.
+nVariant is a python package that computes clusters of unique substrings or "variant types" for user selected sequence features in a set of aligned sequences. Sequences can be nucleotide (DNA or RNA), or amino acid. Gradient takes as input a reference sequence, a list of one or more sequence positions and a multiple sequence alignments of related sequences. It produces a list of the different variant types as well as a list of which variant type each input sequence belongs to.
 
 The term ombre, originally French, describes the layers coloring of hair or desserts, usually from white though many shade of blue, pink or numerous other colors. 
 
