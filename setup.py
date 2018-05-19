@@ -1,30 +1,54 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""The setup script."""
+
 from setuptools import setup, find_packages
 
-setup(name='nvariant',
+with open('README.rst') as readme_file:
+    readme = readme_file.read()
 
-      version='0.1',
+with open('HISTORY.rst') as history_file:
+    history = history_file.read()
 
-      url='https://github.com/burkesquires/nvariant',
+requirements = ['Click>=6.0', ]
 
-      license='MIT',
+setup_requirements = ['pytest-runner', ]
 
-      author='R. Burke Squires',
+test_requirements = ['pytest', ]
 
-      author_email='burkesquires@gmail.com',
-
-      description='A python package to compute clusters of sequence feature variant types (SFVTs) \
-      based upon user-selected position(s).',
-
-      packages=find_packages(exclude=['tests']),
-
-      long_description=open('README.md').read(),
-
-      zip_safe=False,
-
-      setup_requires=['nose>=1.0'],
-
-      test_suite='nose.collector',
-
-      install_requires=['biopython',
-                        'pandas']
-      )
+setup(
+    author="Richard Burke Squires",
+    author_email='burkesquires@gmail.com',
+    classifiers=[
+        'Development Status :: 2 - Pre-Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        "Programming Language :: Python :: 2",
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+    ],
+    description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
+    entry_points={
+        'console_scripts': [
+            'nvariant=nvariant.cli:main',
+        ],
+    },
+    install_requires=requirements,
+    license="MIT license",
+    long_description=readme + '\n\n' + history,
+    include_package_data=True,
+    keywords='nvariant',
+    name='nvariant',
+    packages=find_packages(include=['nvariant']),
+    setup_requires=setup_requirements,
+    test_suite='tests',
+    tests_require=test_requirements,
+    url='https://github.com/burkesquires/nvariant',
+    version='0.1.0',
+    zip_safe=False,
+)
