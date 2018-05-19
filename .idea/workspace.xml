@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ombre.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nvariant.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ombre/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/nvariant/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ombre/ombre.py" beforeDir="false" afterPath="$PROJECT_DIR$/nvariant/nvariant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/adjust_positions_for_insertions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/adjust_positions_for_insertions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/confirm_ref_seq_in_alignment_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/confirm_ref_seq_in_alignment_tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/ombre_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ombre_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/parse_position_input_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/parse_position_input_test.py" afterDir="false" />
-    </list>
+    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

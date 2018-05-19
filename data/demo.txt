@@ -1,0 +1,4 @@
+accession for PB2 used in paper
+CY010795
+
+https://www.ncbi.nlm.nih.gov/nuccore/CY010795.1
