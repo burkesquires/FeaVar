@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="" />
+    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/nvariant/nvariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/nvariant/nvariant.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,13 +16,18 @@
       <file leaf-file-name="nvariant.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2729">
-              <caret line="359" column="62" selection-start-line="359" selection-start-column="62" selection-end-line="359" selection-end-column="62" />
+            <state relative-caret-position="150">
+              <caret line="149" column="7" lean-forward="true" selection-start-line="149" selection-start-column="7" selection-end-line="149" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ombren</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,6 +41,7 @@
         <option value="$PROJECT_DIR$/tests/adjust_positions_for_insertions.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
         <option value="$PROJECT_DIR$/ombre/ombre.py" />
+        <option value="$PROJECT_DIR$/nvariant/nvariant.py" />
       </list>
     </option>
   </component>
@@ -67,6 +75,11 @@
               <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
               <item name="nvariant" type="462c0819:PsiDirectoryNode" />
               <item name="nvariant" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
+              <item name="output" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -115,7 +128,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scratch">
+  <component name="RunManager" selected="Python.nvariant -h">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="nvariant" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -259,6 +272,10 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="StructuralSearchPlugin">
+    <replaceConfiguration name="user defined" created="1526735630926" text="ombre" recursive="false" caseInsensitive="false" type="ActionScript" reformatAccordingToStyle="true" shortenFQN="true" useStaticImport="true" replacement="nvariant" history="1" />
+    <replaceConfiguration name="user defined" created="1526735573081" text="ombre" recursive="false" caseInsensitive="true" type="ActionScript" reformatAccordingToStyle="true" shortenFQN="true" useStaticImport="true" replacement="nvariant" history="1" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -298,27 +315,28 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1340" height="873" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928573" weight="0.32938075" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5022388" side_tool="true" visible="true" weight="0.28035045" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67164177" weight="0.47058824" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="8" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.67164177" weight="0.47058824" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2761194" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4977612" weight="0.32916147" />
-      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.22628827" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.22628827" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
   </component>
@@ -366,6 +384,13 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5385">
+          <caret line="359" column="62" selection-start-line="359" selection-start-column="62" selection-end-line="359" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5445">
@@ -543,8 +568,8 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
     <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2729">
-          <caret line="359" column="62" selection-start-line="359" selection-start-column="62" selection-end-line="359" selection-end-column="62" />
+        <state relative-caret-position="150">
+          <caret line="149" column="7" lean-forward="true" selection-start-line="149" selection-start-column="7" selection-end-line="149" selection-end-column="7" />
         </state>
       </provider>
     </entry>

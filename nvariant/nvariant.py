@@ -1,6 +1,6 @@
 #!~/anaconda3/bin python
 """
-Ombre
+nVariant
 
 This module computes the variant type in a given sequence feature and creates
 plots for each different type of metadata given.
