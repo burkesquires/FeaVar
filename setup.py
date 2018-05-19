@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
-setup(name='ombre',
+setup(name='nvariant',
 
       version='0.1',
 
-      url='https://github.com/burkesquires/ombre',
+      url='https://github.com/burkesquires/nvariant',
 
       license='MIT',
 

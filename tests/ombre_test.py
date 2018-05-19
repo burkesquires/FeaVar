@@ -1,4 +1,4 @@
-from ombre.ombre import parse_position_input
+from nvariant.nvariant import parse_position_input
 import pytest
 
 

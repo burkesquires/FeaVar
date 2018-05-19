@@ -4,7 +4,7 @@ from Bio._py3k import StringIO
 
 from Bio.AlignIO.ClustalIO import ClustalIterator, ClustalWriter
 
-import ombre
+import nvariant
 
 
 # This is a truncated version of the example in Tests/cw02.aln
