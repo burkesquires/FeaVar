@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nvariant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nvariant.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nvariant/nvariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/nvariant/nvariant.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,8 +22,11 @@
       <file leaf-file-name="nvariant.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="205">
+              <caret line="365" column="94" selection-start-line="365" selection-start-column="74" selection-end-line="365" selection-end-column="94" />
+              <folding>
+                <element signature="e#25#170#1" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,6 +51,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -59,8 +66,8 @@
         <option value="$PROJECT_DIR$/tests/adjust_positions_for_insertions.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
         <option value="$PROJECT_DIR$/ombre/ombre.py" />
-        <option value="$PROJECT_DIR$/nvariant/nvariant.py" />
         <option value="$PROJECT_DIR$/README.rst" />
+        <option value="$PROJECT_DIR$/nvariant/nvariant.py" />
       </list>
     </option>
   </component>
@@ -82,45 +89,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="ombre" type="cbb8eebc:String" user="ombre" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="ombre" type="cbb8eebc:String" user="ombre" />
-              <item name="ombre" type="cbb8eebc:String" user="ombre" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -340,6 +309,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1626" height="984" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928573" weight="0.32938075" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.3296433" side_tool="true" weight="0.47032967" />
@@ -365,28 +335,28 @@
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.32857144" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22755228" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6703567" weight="0.47032967" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22755228" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928573" weight="0.32938075" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6703567" weight="0.47032967" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.32857144" />
-      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49925372" weight="0.32916147" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.22628827" />
       <window_info anchor="right" x="0" y="0" width="285" height="673" id="Documentation" order="0" side_tool="true" weight="0.32985073" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.3296433" side_tool="true" visible="true" weight="0.47032967" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="right" id="SciView" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.32857144" />
+      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49925372" weight="0.32916147" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,8 +593,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="205">
+          <caret line="365" column="94" selection-start-line="365" selection-start-column="74" selection-end-line="365" selection-end-column="94" />
+          <folding>
+            <element signature="e#25#170#1" />
+          </folding>
         </state>
       </provider>
     </entry>
