@@ -436,6 +436,7 @@ def main(arguments):
 
 
 if __name__ == "__main__":
+    import os
     import sys
     import logging
     import datetime
@@ -484,8 +485,12 @@ if __name__ == "__main__":
                              "(info, debug, error; default=info).")
     ARGS = PARSER.parse_args()
 
+    log_directory = "../output/logs"
+    if not os.path.exists(log_directory):
+        os.makedirs(log_directory)
+
     D = datetime.date.today()
-    logging.FileHandler('./%s.log' % D.isoformat())
+    logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
     logging.basicConfig(stream=sys.stdout, level=ARGS.loglevel.upper())
 
     main(ARGS)
