@@ -36,25 +36,30 @@ def parse_position_input(raw_positions):
 
     position_groupings = raw_positions.split(",")
 
-    try:
+    if len(position_groupings) > 0:
 
         position_coordinates = []
 
-        for position_grouping in position_groupings:
+        for position_group in position_groupings:
 
-            positions = position_grouping.split("-")
+            positions = position_group.split("-")
 
             if len(positions) == 2:
                 temp_list = list(range(int(positions[0]), int(positions[1]) + 1))
                 position_coordinates.extend(temp_list)
+
             elif len(positions) == 1:
                 position_coordinates.append(int(positions[0]))
 
         return position_coordinates.sort()
 
-    except ValueError:
+    else:
 
-        print("There is a problem with the positions!")
+        return []
+
+    #except ValueError:
+
+    #    print("There is a problem with the positions!")
 
 
 def create_index_offset_list(ref_seq):
@@ -94,18 +99,19 @@ def correct_index_dict(ref_seq):
     return corrected_index
 
 
-def adjust_positions_for_insertions(positions, ref_seq):
+def adjust_positions_for_insertions(positions: list, ref_seq):
     """
     Takes a string argument of positions and the aligned reference sequence and
     corrects the sequence feature positions for any insertions in the reference sequence.
 
     Parameters
     ----------
-    positions : list
+    positions : string
         The positions of the reference sequence to assemble a sequence feature from.
 
     ref_seq : string
         The reference sequence pulled from the alignment (with insertion dashes included (if applicable))
+        :rtype: list
 
     """
     # SFVT      [   23  45   89   ]
@@ -132,7 +138,7 @@ def adjust_positions_for_insertions(positions, ref_seq):
     return corrected_positions
 
 
-def confirm_ref_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
+def test_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
     """
     Tests to see if the reference identifier (accession, etc) can be found in
     one of the alignment sequence identifiers.
@@ -351,25 +357,33 @@ def main(arguments):
 
     """
 
-    # TODO remove variant types with one or more dashes; add option to leave in
     # TODO add report of algorithm version, results, etc; look at importing pandas-html I think
 
-    test = True
+    #test = True
+    ref_seq_in_alignment = False
+    positions = []
+    reference_sequence = ""
 
-    test, reference_sequence = confirm_ref_seq_in_alignment(arguments.reference_identifier, arguments.alignment)
-    logging.info("Reference seqeunce tests result: %s" % test)
+    ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier, arguments.alignment)
+    logging.info("Reference seqeunce tests result: %s" % ref_seq_in_alignment)
 
     # Parse positions
     positions = parse_position_input(arguments.positions)
-    positions =  adjust_positions_for_insertions(positions, reference_sequence)
+
+    positions = adjust_positions_for_insertions(positions, reference_sequence)
+
     logging.info("Parsed positions: %s" % positions)
 
-    if positions is None:
-        test = False
+#    if positions is None:
+#        test = False
 
-    test = confirm_seq_feature_in_ref(reference_sequence, positions)
+#    test = confirm_seq_feature_in_ref(reference_sequence, positions)
 
-    if test:
+    rules = [len(positions) > 0,
+             confirm_seq_feature_in_ref(reference_sequence, positions) == True,
+             ref_seq_in_alignment == True]
+
+    if all(rules):
 
         # read in multiple sequence alignment
         alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
