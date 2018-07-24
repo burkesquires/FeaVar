@@ -126,14 +126,12 @@ aln_example4 = \
 
 class Test_confirm_ref_seq_in_alignment(unittest.TestCase):
 
-    from nvariant import
+    import nvariant as nv
 
     def test_one(self):
         alignments = list(ClustalIterator(StringIO(aln_example1)))
 
-        corrected_positions = om.adjust_positions_for_insertions()
-
-
+        corrected_positions = nv.adjust_positions_for_insertions()
 
         self.assertEqual(1, len(alignments))
         self.assertEqual(alignments[0]._version, "1.81")

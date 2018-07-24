@@ -31,6 +31,7 @@ aln_example1 = \
 # This example is a truncated version of the dataset used here:
 # http://virgil.ruc.dk/kurser/Sekvens/Treedraw.htm
 # with the last record repeated twice (deliberate toture test)
+
 aln_example2 = \
     """CLUSTAL X (1.83) multiple sequence alignment
     V_Harveyi_PATH                 --MKNWIKVAVAAIA--LSAA------------------TVQAATEVKVG
