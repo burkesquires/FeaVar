@@ -34,11 +34,11 @@ def parse_position_input(raw_positions):
 
     """
 
+    position_coordinates = []
+
     position_groupings = raw_positions.split(",")
 
     if len(position_groupings) > 0:
-
-        position_coordinates = []
 
         for position_group in position_groupings:
 
@@ -51,11 +51,7 @@ def parse_position_input(raw_positions):
             elif len(positions) == 1:
                 position_coordinates.append(int(positions[0]))
 
-        return position_coordinates.sort()
-
-    else:
-
-        return []
+    return position_coordinates #.sort()
 
     #except ValueError:
 
@@ -99,7 +95,7 @@ def correct_index_dict(ref_seq):
     return corrected_index
 
 
-def adjust_positions_for_insertions(positions: list, ref_seq):
+def adjust_positions_for_insertions(positions, ref_seq):
     """
     Takes a string argument of positions and the aligned reference sequence and
     corrects the sequence feature positions for any insertions in the reference sequence.
@@ -361,26 +357,21 @@ def main(arguments):
 
     #test = True
     ref_seq_in_alignment = False
-    positions = []
     reference_sequence = ""
+    parsed_positions = []
 
     ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier, arguments.alignment)
     logging.info("Reference seqeunce tests result: %s" % ref_seq_in_alignment)
 
     # Parse positions
-    positions = parse_position_input(arguments.positions)
+    parsed_positions = parse_position_input(arguments.positions)
 
-    positions = adjust_positions_for_insertions(positions, reference_sequence)
+    corrected_positions = adjust_positions_for_insertions(parsed_positions, reference_sequence)
 
-    logging.info("Parsed positions: %s" % positions)
+    logging.info("Corrected positions: %s" % corrected_positions)
 
-#    if positions is None:
-#        test = False
-
-#    test = confirm_seq_feature_in_ref(reference_sequence, positions)
-
-    rules = [len(positions) > 0,
-             confirm_seq_feature_in_ref(reference_sequence, positions) == True,
+    rules = [len(corrected_positions) > 0,
+             confirm_seq_feature_in_ref(reference_sequence, corrected_positions) == True,
              ref_seq_in_alignment == True]
 
     if all(rules):
@@ -388,7 +379,7 @@ def main(arguments):
         # read in multiple sequence alignment
         alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
 
-        checked_positions = check_reference_positions(reference_sequence, positions)
+        checked_positions = check_reference_positions(reference_sequence, corrected_positions)
 
         variants = []
         for record in alignment:
@@ -403,11 +394,10 @@ def main(arguments):
         output_dir = "output"
         headers = ['accession', 'variant_type']
         df_starter = pd.DataFrame(variants, columns=headers)
-        if arguments.loglevel == 'debug':
-            df_starter.to_csv(set_output_directory('df_accession_index.csv'))
+        if arguments.loglevel == 'debug': df_starter.to_csv(set_output_directory(output_dir, 'df_accession_index.csv'))
 
         df_by_variant_type = count_seqs_per_variant_type(df_starter, file_name)
-        df_by_variant_type.to_csv(set_output_directory("variant_types.csv"))
+        df_by_variant_type.to_csv(set_output_directory(output_dir, "variant_types.csv"))
 
         if arguments.metadata_file is not None:
 
@@ -418,20 +408,20 @@ def main(arguments):
             df_all_data = pd.merge(df_starter, df_metadata, on='accession',
                                    how='outer')
             if arguments.loglevel == 'debug':
-                df_all_data.to_csv(set_output_directory("df_all_data.csv"))
+                df_all_data.to_csv(set_output_directory(output_dir, "df_all_data.csv"))
 
             df_all_data_with_variant_type = pd.merge(df_all_data,
                                                      df_by_variant_type,
                                                      on='variant_type',
                                                      how='outer')
             df_file_name = "df_all_data_with_variant_type.csv"
-            df_all_data_with_variant_type.to_csv(set_output_directory(df_file_name))
+            df_all_data_with_variant_type.to_csv(set_output_directory(output_dir, df_file_name))
 
             # for large dataframes select the top X rows
             df_top = select_vts_to_plot(df_all_data_with_variant_type,
                                         arguments.top)
             if arguments.loglevel == 'debug':
-                df_top.to_csv(set_output_directory("df_top.csv"))
+                df_top.to_csv(set_output_directory(output_dir, "df_top.csv"))
 
             columns = list(df_all_data.columns)
             logging.debug("The columns in the %s dataframe are: %s" %

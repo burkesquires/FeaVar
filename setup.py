@@ -11,14 +11,14 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', ]
+requirements = [ ]
 
 setup_requirements = ['pytest-runner', ]
 
 test_requirements = ['pytest', ]
 
 setup(
-    author="Richard Burke Squires",
+    author="R. Burke Squires",
     author_email='burkesquires@gmail.com',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
@@ -31,6 +31,7 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
     description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
     entry_points={
