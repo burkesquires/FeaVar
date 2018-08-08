@@ -19,6 +19,19 @@ __status__ = "Beta"
 # TODO Add abililty to use native IEDB format (H25, H45, V46, N47, L496, S306, L307, P308, T333;
 # B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400
 
+import datetime
+import logging
+import os
+
+
+log_directory = "../output/logs"
+if not os.path.exists(log_directory):
+    os.makedirs(log_directory)
+
+D = datetime.date.today()
+logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
+#logging.basicConfig(stream=sys.stdout, level=ARGS.loglevel.upper())
+
 
 def parse_position_input(raw_positions):
     """
@@ -51,11 +64,7 @@ def parse_position_input(raw_positions):
             elif len(positions) == 1:
                 position_coordinates.append(int(positions[0]))
 
-    return position_coordinates #.sort()
-
-    #except ValueError:
-
-    #    print("There is a problem with the positions!")
+    return position_coordinates.sort()
 
 
 def create_index_offset_list(ref_seq):
@@ -190,7 +199,7 @@ def confirm_seq_feature_in_ref(reference_sequence, sequence_feature_positions):
     return test
 
 
-def check_reference_positions(reference_sequence, positions):
+def check_reference_positions(reference_sequence: str, positions: str):
     """
     Takes the aligned reference sequence and the list of parsed positions
     and checks to see if there are any dashes at the beginning of the sequence.
@@ -208,9 +217,19 @@ def check_reference_positions(reference_sequence, positions):
     length_raw = len(reference_sequence)
     length_adjusted = len(reference_sequence.lstrip('-'))
     adjustment = length_raw - length_adjusted
+
+    # Adjust all positions based on leading gap
     if adjustment != 0:
-        positions[:] = [x - 13 for x in positions]
-    return positions
+        positions[:] = [x + adjustment for x in positions]
+
+    # how to discover if adjusted positions are actually deletion (dashes)?
+    test = True
+
+    for position in positions:
+        if reference_sequence[position - 1] == "-":
+            test = False
+
+    return test
 
 
 def parse_filepath(file_path):
@@ -442,7 +461,7 @@ def main(arguments):
 if __name__ == "__main__":
     import os
     import sys
-    import logging
+    #import logging
     import datetime
     import argparse
     from Bio import AlignIO
@@ -489,12 +508,12 @@ if __name__ == "__main__":
                              "(info, debug, error; default=info).")
     ARGS = PARSER.parse_args()
 
-    log_directory = "../output/logs"
-    if not os.path.exists(log_directory):
-        os.makedirs(log_directory)
+    #log_directory = "../output/logs"
+    #if not os.path.exists(log_directory):
+    #    os.makedirs(log_directory)
 
-    D = datetime.date.today()
-    logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
+    #D = datetime.date.today()
+    #logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
     logging.basicConfig(stream=sys.stdout, level=ARGS.loglevel.upper())
 
     main(ARGS)

@@ -3,7 +3,9 @@ from unittest import TestCase
 # "-a ../data/flu_test_small.clw -r CY010795 -p "124,142,143,268,331,332" -r CY021716"
 
 class TestParse_position_input(TestCase):
+
     def test_parse_position_input(self):
+
         from nvariant.nvariant import parse_position_input
 
         def test_parse_position_input_1():

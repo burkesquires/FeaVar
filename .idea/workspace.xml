@@ -5,132 +5,152 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_check_reference_positions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_confirm_seq_feature_in_ref.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_correct_index_dict.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_create_index_offset_list.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_import_metadata.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_parse_filepath.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_parse_position_input.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_plot_variant_type_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_select_vts_to_plot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_set_output_directory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_test_for_ref_seq_in_alignment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nvariant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nvariant.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/adjust_positions_for_insertions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/adjust_positions_for_insertions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/confirm_ref_seq_in_alignment_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/confirm_ref_seq_in_alignment_tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nvariant/nvariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/nvariant/nvariant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements_dev.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements_dev.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/clustal_align.clw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/nvariant_testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/tests/nvariant_testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_check_reference_positions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_check_reference_positions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_nvariant_old.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_parse_filepath.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_parse_filepath.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_parse_position_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_parse_position_input.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/nvariant$nvariant_continous.coverage" NAME="nvariant continous Coverage Results" MODIFIED="1532440334919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/nvariant$nvariant_py_test_1.coverage" NAME="nvariant py.test 1 Coverage Results" MODIFIED="1532445659452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/nvariant$nvariant_both.coverage" NAME="nvariant both Coverage Results" MODIFIED="1532440554142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/nvariant$nvariant_6_discontigous.coverage" NAME="nvariant 6 discontigous Coverage Results" MODIFIED="1532440206088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant__h.coverage" NAME="nvariant -h Coverage Results" MODIFIED="1532440621418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant_both.coverage" NAME="nvariant both Coverage Results" MODIFIED="1532440554142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant.coverage" NAME="nvariant Coverage Results" MODIFIED="1532454630558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/nvariant$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1533325351524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant_continous.coverage" NAME="nvariant continous Coverage Results" MODIFIED="1532440334919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant_py_test_1.coverage" NAME="nvariant py.test 1 Coverage Results" MODIFIED="1533756025164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant_6_discontigous.coverage" NAME="nvariant 6 discontigous Coverage Results" MODIFIED="1532440206088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-932613494">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.8" value="3" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="716" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="716" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="nvariant.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2203">
-              <caret line="318" column="32" selection-start-line="318" selection-start-column="32" selection-end-line="318" selection-end-column="32" />
+            <state relative-caret-position="425">
+              <caret line="265" selection-start-line="265" selection-end-line="265" />
+              <folding>
+                <element signature="e#590#605#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parse_position_input_test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/parse_position_input_test.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/test_parse_filepath.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" lean-forward="true" selection-end-line="48" selection-end-column="47" />
+            <state relative-caret-position="358">
+              <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_parse_position_input.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_parse_position_input.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+            <state relative-caret-position="255">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_nvariant.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/test_nvariant.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_check_reference_positions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="255">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adjust_positions_for_insertions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/adjust_positions_for_insertions.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_correct_index_dict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="131" column="44" selection-end-line="207" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_adjust_positions_for_insertions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3120">
-              <caret line="208" column="29" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="29" />
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="confirm_ref_seq_in_alignment_tests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/confirm_ref_seq_in_alignment_tests.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_plot_variant_type_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="51" lean-forward="true" selection-end-line="203" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_confirm_seq_feature_in_ref.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_confirm_seq_feature_in_ref.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3075">
-              <caret line="205" column="44" selection-start-line="205" selection-start-column="44" selection-end-line="205" selection-end-column="44" />
+            <state relative-caret-position="570">
+              <caret line="38" selection-start-line="5" selection-end-line="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_set_output_directory.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_set_output_directory.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_nvariant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_select_vts_to_plot.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_select_vts_to_plot.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+            <state relative-caret-position="345">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+              <folding>
+                <element signature="e#84#97#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,7 +176,6 @@
         <option value="$PROJECT_DIR$/HISTORY.rst" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/tests/parse_position_input_test.py" />
-        <option value="$PROJECT_DIR$/nvariant/nvariant.py" />
         <option value="$PROJECT_DIR$/tests/adjust_positions_for_insertions.py" />
         <option value="$PROJECT_DIR$/tests/confirm_ref_seq_in_alignment_tests.py" />
         <option value="$PROJECT_DIR$/nvariant/test_parse_position_input.py" />
@@ -174,7 +193,13 @@
         <option value="$PROJECT_DIR$/nvariant/test_set_output_directory.py" />
         <option value="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" />
         <option value="$PROJECT_DIR$/tests/test_confirm_seq_feature_in_ref.py" />
+        <option value="$PROJECT_DIR$/tests/test_nvariant.py" />
+        <option value="$PROJECT_DIR$/tests/nvariant_testing.ipynb" />
+        <option value="$PROJECT_DIR$/requirements_dev.txt" />
         <option value="$PROJECT_DIR$/tests/test_parse_position_input.py" />
+        <option value="$PROJECT_DIR$/tests/test_check_reference_positions.py" />
+        <option value="$PROJECT_DIR$/nvariant/nvariant.py" />
+        <option value="$PROJECT_DIR$/tests/test_parse_filepath.py" />
       </list>
     </option>
   </component>
@@ -184,14 +209,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-496" />
-    <option name="y" value="-1417" />
-    <option name="width" value="2126" />
-    <option name="height" value="1354" />
+    <option name="y" value="23" />
+    <option name="width" value="1390" />
+    <option name="height" value="1023" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -270,6 +291,24 @@
     </option>
   </component>
   <component name="RunManager" selected="Python tests.nvariant py.test 1">
+    <configuration name="nvariant" type="JupiterNotebook" factoryName="Jupyter Notebook">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="additionalOptions" value="" />
+      <option name="ipnbHost" value="127.0.0.1" />
+      <option name="ipnbPort" value="8888" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="nvariant" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -288,6 +327,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="nvariant -h" type="PythonConfigurationType" factoryName="Python">
       <module name="nvariant" />
@@ -307,6 +349,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="nvariant 6 discontigous" type="PythonConfigurationType" factoryName="Python">
       <module name="nvariant" />
@@ -326,6 +371,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="nvariant both" type="PythonConfigurationType" factoryName="Python">
       <module name="nvariant" />
@@ -345,6 +393,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="nvariant continous" type="PythonConfigurationType" factoryName="Python">
       <module name="nvariant" />
@@ -364,6 +415,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="nvariant" />
@@ -383,6 +437,25 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unnamed" type="tests" factoryName="py.test">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
     <configuration name="nvariant py.test 1" type="tests" factoryName="py.test">
       <module name="nvariant" />
@@ -398,12 +471,15 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Jupyter Notebook.nvariant" />
       <item itemvalue="Python.nvariant -h" />
       <item itemvalue="Python.nvariant 6 discontigous" />
       <item itemvalue="Python.nvariant continous" />
       <item itemvalue="Python.nvariant both" />
+      <item itemvalue="Python tests.Unnamed" />
       <item itemvalue="Python tests.nvariant py.test 1" />
       <item itemvalue="Python.scratch" />
     </list>
@@ -463,38 +539,52 @@
       <option name="project" value="LOCAL" />
       <updated>1532440249519</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added new tests">
+      <created>1532454391435</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1532454391435</updated>
+    </task>
+    <task id="LOCAL-00009" summary="delete old tests">
+      <created>1532454449830</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1532454449830</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="nvariant_py_test_1 - 2018.06.02 at 10h 04m 48s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 13h 26m 27s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.06.03 at 14h 26m 50s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 14h 59m 46s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.06.27 at 15h 14m 03s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 15h 15m 59s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.06.27 at 15h 14m 12s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 15h 16m 03s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.07.06 at 15h 39m 15s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 15h 18m 06s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.07.24 at 09h 57m 09s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 15h 18m 15s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.07.24 at 10h 15m 33s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 15h 18m 55s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.07.24 at 11h 11m 12s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 15h 19m 33s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.07.24 at 11h 20m 28s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 15h 19m 48s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.07.24 at 11h 21m 01s.xml">
+    <history-entry file="nvariant_py_test_1 - 2018.08.08 at 15h 20m 26s.xml">
       <configuration name="nvariant py.test 1" configurationId="tests" />
     </history-entry>
   </component>
@@ -508,55 +598,57 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-496" y="-1417" width="2126" height="1354" extended-state="0" />
+    <frame x="0" y="23" width="1390" height="1023" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928573" weight="0.32938075" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.3296433" side_tool="true" weight="0.47032967" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49925372" weight="0.32916147" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6703567" weight="0.46937153" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18953934" />
-      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32856005" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.32807216" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.3296433" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30934718" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" visible="true" weight="0.27128083" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.3277645" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6703567" visible="true" weight="0.46723953" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.2706767" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928573" weight="0.32938075" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49925372" weight="0.32916147" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.3296433" side_tool="true" weight="0.47032967" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32856005" />
+      <window_info anchor="right" x="0" y="0" width="285" height="673" id="Documentation" order="0" side_tool="true" weight="0.32985073" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="285" height="673" id="Documentation" order="0" side_tool="true" weight="0.32985073" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="4" weight="0.3296433" />
+      <window_info anchor="right" id="Database" order="5" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22979797" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30934718" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928573" weight="0.32938075" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6703567" visible="true" weight="0.470124" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.22628827" />
-      <window_info anchor="right" x="0" y="0" width="285" height="673" id="Documentation" order="0" side_tool="true" weight="0.32985073" />
-      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.3277645" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6703567" visible="true" weight="0.46723953" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.27100682" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928573" weight="0.32938075" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49925372" weight="0.32916147" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.3296433" side_tool="true" weight="0.47032967" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32856005" />
+      <window_info anchor="right" x="0" y="0" width="285" height="673" id="Documentation" order="0" side_tool="true" weight="0.32985073" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="right" id="SciView" order="4" weight="0.3296433" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.32857144" />
-      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49925372" weight="0.32916147" />
+      <window_info anchor="right" id="Database" order="5" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,7 +663,9 @@
     <MESSAGE value="updated log directory" />
     <MESSAGE value="fix position function that replortedly did not return anything" />
     <MESSAGE value="Fixed missing output path" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed missing output path" />
+    <MESSAGE value="added new tests" />
+    <MESSAGE value="delete old tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete old tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -593,12 +687,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nvariant/nvariant.py</url>
-          <line>125</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/nvariant/nvariant.py</url>
-          <line>366</line>
+          <line>385</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
@@ -612,7 +701,6 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -621,37 +709,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="84" column="36" selection-start-line="59" selection-end-line="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/Bio/SeqRecord.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/Bio/Align/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/tests/adjust_positions_for_insertions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
-    <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
-          <caret line="91" selection-start-line="91" selection-end-line="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/adjust_positions_for_insertions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="331">
@@ -677,13 +734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" selection-start-line="23" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements_dev.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -755,24 +805,18 @@
           <nodes />
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="844.5" y="306.0" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="845.0" y="306.0" />
           <SelectedNodes />
           <Categories>
             <Category>Methods</Category>
             <Category>Inner Classes</Category>
             <Category>Fields</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_create_index_offset_list.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_correct_index_dict.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
@@ -786,20 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_check_reference_positions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_parse_filepath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_import_metadata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -807,14 +837,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+    <entry file="file://$PROJECT_DIR$/tests/adjust_positions_for_insertions.py" />
+    <entry file="file://$PROJECT_DIR$/tests/confirm_ref_seq_in_alignment_tests.py" />
+    <entry file="file://$PROJECT_DIR$/tests/parse_position_input_test.py" />
+    <entry file="file://$PROJECT_DIR$/tests/nvariant_testing.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_plot_variant_type_data.py">
+    <entry file="file://$PROJECT_DIR$/requirements_dev.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="743">
+          <caret line="208" column="29" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_set_output_directory.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
@@ -828,72 +875,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_set_output_directory.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_nvariant_old.py" />
+    <entry file="file://$PROJECT_DIR$/tests/test_correct_index_dict.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2203">
-          <caret line="318" column="32" selection-start-line="318" selection-start-column="32" selection-end-line="318" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/adjust_positions_for_insertions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="131" column="44" selection-end-line="207" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3120">
-          <caret line="208" column="29" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/confirm_ref_seq_in_alignment_tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="51" lean-forward="true" selection-end-line="203" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_confirm_seq_feature_in_ref.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3075">
-          <caret line="205" column="44" selection-start-line="205" selection-start-column="44" selection-end-line="205" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/parse_position_input_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" lean-forward="true" selection-end-line="48" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_parse_position_input.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+        <state relative-caret-position="570">
+          <caret line="38" selection-start-line="5" selection-end-line="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_nvariant.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="345">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#84#97#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_parse_position_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_plot_variant_type_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_check_reference_positions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="265" selection-start-line="265" selection-end-line="265" />
+          <folding>
+            <element signature="e#590#605#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_parse_filepath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
