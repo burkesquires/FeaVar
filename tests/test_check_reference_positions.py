@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 
-class TestCheck_reference_positions(TestCase):
+class TestCheckReferencePositions(TestCase):
 
     def test_check_reference_positions(self):
 

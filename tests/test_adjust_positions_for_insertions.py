@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 
-class TestAdjust_positions_for_insertions(TestCase):
+class TestAdjustPositionsForInsertions(TestCase):
 
     def test_adjust_positions_for_insertions(self):
 

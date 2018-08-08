@@ -1,6 +1,6 @@
 from unittest import TestCase
 
 
-class TestImport_metadata(TestCase):
+class TestImportMetadata(TestCase):
     def test_import_metadata(self):
         self.fail()

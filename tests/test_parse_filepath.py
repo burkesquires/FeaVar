@@ -3,7 +3,7 @@ from unittest import TestCase
 import logging
 import os
 
-class TestParse_filepath(TestCase):
+class TestParseFilepath(TestCase):
 
     def test_parse_filepath(self):
 

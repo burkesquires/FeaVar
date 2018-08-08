@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 
-class TestConfirm_seq_feature_in_ref(TestCase):
+class TestConfirmSeqFeatureInRef(TestCase):
     def test_confirm_seq_feature_in_ref(self):
         import unittest
 
