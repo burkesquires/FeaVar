@@ -5,8 +5,6 @@ class TestCheckReferencePositions(TestCase):
 
     def test_check_reference_positions(self):
 
-        import py.test
-
         from nvariant.nvariant import check_reference_positions
 
         test_ref_seq = "---------MSPQTETKASVGFKAGVKEYKLTYYTPEYETKDTDILAAFRVTPQPG-----------------" \

@@ -385,7 +385,7 @@ def main(arguments):
     # Parse positions
     parsed_positions = parse_position_input(arguments.positions)
 
-    corrected_positions = adjust_positions_for_insertions(parsed_positions, reference_sequence)
+    corrected_positions =adjust_positions_for_insertions(parsed_positions, reference_sequence)
 
     logging.info("Corrected positions: %s" % corrected_positions)
 
@@ -403,8 +403,7 @@ def main(arguments):
         variants = []
         for record in alignment:
             sequence = record.seq
-            sequence_feature_temp = ''.join([sequence[index] for index in
-                                             checked_positions])
+            sequence_feature_temp = ''.join([sequence[index] for index in checked_positions])
             variants.append([record.id, sequence_feature_temp])
             # logging.debug(sequence_feature_temp)
 
