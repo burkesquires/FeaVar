@@ -128,7 +128,7 @@ def adjust_positions_for_insertions(positions, ref_seq):
     # dashes    [0, 1, 5, 6, 10, 17]
 
 
-    # TODO: check to see if there are any other characters?, ike a period or substitute characters
+    # TODO: check to see if there are any other characters?, like a period or substitute characters
 
     # get positions of all dashes in the reference sequence [0, 1, 5, 6, 10,16]
 
@@ -380,12 +380,12 @@ def main(arguments):
     parsed_positions = []
 
     ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier, arguments.alignment)
-    logging.info("Reference seqeunce tests result: %s" % ref_seq_in_alignment)
+    logging.info("Reference sequence tests result: %s" % ref_seq_in_alignment)
 
     # Parse positions
     parsed_positions = parse_position_input(arguments.positions)
 
-    corrected_positions =adjust_positions_for_insertions(parsed_positions, reference_sequence)
+    corrected_positions = adjust_positions_for_insertions(parsed_positions, reference_sequence)
 
     logging.info("Corrected positions: %s" % corrected_positions)
 
@@ -460,7 +460,7 @@ def main(arguments):
 if __name__ == "__main__":
     import os
     import sys
-    #import logging
+    import logging
     import datetime
     import argparse
     from Bio import AlignIO
@@ -507,12 +507,16 @@ if __name__ == "__main__":
                              "(info, debug, error; default=info).")
     ARGS = PARSER.parse_args()
 
-    #log_directory = "../output/logs"
-    #if not os.path.exists(log_directory):
-    #    os.makedirs(log_directory)
+    log_directory = "../output/logs"
+    if not os.path.exists(log_directory):
+        os.makedirs(log_directory)
 
-    #D = datetime.date.today()
-    #logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
-    logging.basicConfig(stream=sys.stdout, level=ARGS.loglevel.upper())
+    D = datetime.date.today()
+    logging.basicConfig(level=ARGS.loglevel.upper(),
+                        format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                        datefmt='%m-%d %H:%M',
+                        filename='%s/%s.log' % (log_directory, D.isoformat()),
+                        filemode='w')
+    logging.debug("Arguments:" + str(ARGS))
 
     main(ARGS)

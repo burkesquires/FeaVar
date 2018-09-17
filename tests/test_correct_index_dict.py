@@ -7,7 +7,7 @@ class TestCorrectIndexDict(TestCase):
         from nvariant.nvariant import correct_index_dict
 
         # Do I need to test for an empy sequence?
-        
+
         test_ref_seq = "-M---SP---QTE----TKAS-"
         corrected_positions = correct_index_dict(test_ref_seq)
 
