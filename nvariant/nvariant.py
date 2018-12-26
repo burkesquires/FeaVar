@@ -523,10 +523,9 @@ if __name__ == "__main__":
         os.makedirs(log_directory)
 
     D = datetime.date.today()
-    logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
+    f_handler = logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
     # logging.basicConfig(stream=sys.stdout, level=ARGS.loglevel.upper())
     logging.basicConfig(level=ARGS.loglevel.upper(),
-                        #format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                         format='%(name)s - %(levelname)s - %(message)s',
                         datefmt='%m-%d %H:%M',
                         filename=os.path.join(log_directory, '%s.log' % D.isoformat()),
@@ -539,7 +538,7 @@ if __name__ == "__main__":
 
     # Create handlers
     c_handler = logging.StreamHandler()
-    f_handler = logging.FileHandler('file.log')
+    #f_handler = logging.FileHandler('file.log')
     c_handler.setLevel(logging.WARNING)
     f_handler.setLevel(logging.ERROR)
 
