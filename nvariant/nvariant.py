@@ -16,36 +16,24 @@ __maintainer__ = "R. Burke Squires"
 __email__ = "burkesquires (at) gmail.com"
 __status__ = "Beta"
 
-# TODO Add abililty to use native IEDB format (H25, H45, V46, N47, L496, S306, L307, P308, T333;
+# TODO Add ability to use native IEDB format (H25, H45, V46, N47, L496, S306, L307, P308, T333;
 # B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400
 
-import datetime
-import logging
-import os
-
-
-log_directory = "../output/logs"
-if not os.path.exists(log_directory):
-    os.makedirs(log_directory)
-
-D = datetime.date.today()
-logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
-#logging.basicConfig(stream=sys.stdout, level=ARGS.loglevel.upper())
-
-
-def parse_position_input(raw_positions):
+def parse_position_input(raw_positions: str) -> list:
     """
     Takes a string argument of positions and splits it out into individual
     start and stop positions. The positions can be one or more columns or
     integers and linear or non-linear.
 
-    Parameters
-    ----------
-    raw_positions : string
-        The raw positions of the reference sequence to assemble a sequence
-        feature from.
+    Args:
+        raw_positions : The raw positions of the reference sequence to assemble a sequence feature from.
+
+    Returns:
+        A list is returned
 
     """
+
+    logging.debug("parse_position_input raw positions: " + raw_positions)
 
     position_coordinates = []
 
@@ -64,22 +52,36 @@ def parse_position_input(raw_positions):
             elif len(positions) == 1:
                 position_coordinates.append(int(positions[0]))
 
-    return position_coordinates.sort()
+    sorted_positions = position_coordinates.sort()
+
+    logging.debug("parse_position_input parsed positions: " + str(sorted_positions))
+
+    return sorted_positions
 
 
-def create_index_offset_list(ref_seq):
+def create_index_offset_list(ref_seq) -> list:
+    """
+
+    :param ref_seq:
+    :return:
+    """
+
+    logging.debug("create_index_offset_list ref_seq: " + ref_seq)
+
     l = len(ref_seq)
 
-    dash_indicies = [pos for pos, char in enumerate(ref_seq) if char == "-"]
+    dash_indices = [pos for pos, char in enumerate(ref_seq) if char == "-"]
 
-    # NOTE: remember that the indices begin at 0 and the sf positions begin at 1
+    # NOTE: remember that the indices begin at 0 and the sequence feature positions begin at 1
 
     index_correction_factor = [0] * l
 
-    for dash_idx in dash_indicies:
+    for dash_idx in dash_indices:
 
         for idx in range(dash_idx, l):
             index_correction_factor[idx] += 1
+
+    logging.debug("create_index_offset_list index_correction_factor: " + index_correction_factor)
 
     return index_correction_factor
 
@@ -104,7 +106,7 @@ def correct_index_dict(ref_seq):
     return corrected_index
 
 
-def adjust_positions_for_insertions(positions, ref_seq):
+def adjust_positions_for_insertions(positions, ref_seq) -> list:
     """
     Takes a string argument of positions and the aligned reference sequence and
     corrects the sequence feature positions for any insertions in the reference sequence.
@@ -132,16 +134,21 @@ def adjust_positions_for_insertions(positions, ref_seq):
 
     # get positions of all dashes in the reference sequence [0, 1, 5, 6, 10,16]
 
-    corrected_indices = correct_index_dict(ref_seq)
+    if positions is not None:
 
-    corrected_positions = []
+        corrected_indices = correct_index_dict(ref_seq)
 
-    for position in positions:
+        corrected_positions = []
 
-        corrected_positions.append(corrected_indices[position])
+        for position in positions:
 
-    return corrected_positions
+            corrected_positions.append(corrected_indices[position])
 
+        return corrected_positions
+
+    else:
+
+        print("No positions to adjust.")
 
 def test_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
     """
@@ -374,15 +381,14 @@ def main(arguments):
 
     # TODO add report of algorithm version, results, etc; look at importing pandas-html I think
 
-    #test = True
     ref_seq_in_alignment = False
     reference_sequence = ""
-    parsed_positions = []
 
     ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier, arguments.alignment)
+
     logging.info("Reference sequence tests result: %s" % ref_seq_in_alignment)
 
-    # Parse positions
+    logging.info("Positions : %s" % arguments.positions)
     parsed_positions = parse_position_input(arguments.positions)
 
     corrected_positions = adjust_positions_for_insertions(parsed_positions, reference_sequence)
@@ -460,7 +466,6 @@ def main(arguments):
 if __name__ == "__main__":
     import os
     import os.path
-    import sys
     import logging
     import datetime
     import argparse
@@ -508,16 +513,43 @@ if __name__ == "__main__":
                              "(info, debug, error; default=info).")
     ARGS = PARSER.parse_args()
 
-    log_directory = os.path.join("output", "logs")
+    # TODO: Is it better to have one log and append to it with date and time or have a log for each day or run?
+    import os
+
+    cwd = os.getcwd()
+    log_directory = os.path.join(cwd, "logs")
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
 
     D = datetime.date.today()
+    logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
+    # logging.basicConfig(stream=sys.stdout, level=ARGS.loglevel.upper())
     logging.basicConfig(level=ARGS.loglevel.upper(),
-                        format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                        #format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                        format='%(name)s - %(levelname)s - %(message)s',
                         datefmt='%m-%d %H:%M',
                         filename=os.path.join(log_directory, '%s.log' % D.isoformat()),
                         filemode='w')
+    logging.info("Logging started")
     logging.debug("Arguments:" + str(ARGS))
+
+    # Create a custom logger
+    logger = logging.getLogger(__name__)
+
+    # Create handlers
+    c_handler = logging.StreamHandler()
+    f_handler = logging.FileHandler('file.log')
+    c_handler.setLevel(logging.WARNING)
+    f_handler.setLevel(logging.ERROR)
+
+    # Create formatters and add it to handlers
+    c_format = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+    f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    c_handler.setFormatter(c_format)
+    f_handler.setFormatter(f_format)
+
+    # Add handlers to the logger
+    logger.addHandler(c_handler)
+    logger.addHandler(f_handler)
 
     main(ARGS)
