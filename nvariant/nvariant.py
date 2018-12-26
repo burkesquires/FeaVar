@@ -284,7 +284,7 @@ def import_metadata(file_path):
         The file path of the metadata file to be imported.
     """
     df_metadata = pd.read_table(file_path)  # , skiprows=[0,1,2], header=0)?
-    df_metadata.to_csv("df_metadata.csv")
+    df_metadata.to_csv(os.path.join(output_dir, "df_metadata.csv"))
     return df_metadata
 
 
@@ -313,7 +313,7 @@ def count_seqs_per_variant_type(dataframe, file_path):
     df_by_variant_type["VT"] = [VT_count(i) for i in range(1, row_length + 1)]
     df_by_variant_type.reindex(index=["VT"])
 
-    df_by_variant_type.to_csv("sfvt_%s.csv" % file_path)
+    df_by_variant_type.to_csv(os.path.join(output_dir, "sfvt_%s.csv" % file_path))
     report = df_by_variant_type.to_string()
     logging.info("Sequences per variant type:\n%s" % report)
 
@@ -331,7 +331,7 @@ def plot_variant_type_data(df_all_data, field):
     field : string
         The metadata field to be plotted.
     """
-    df_all_data.to_csv("df_by_field.csv")
+    df_all_data.to_csv(os.path.join(output_dir, "df_by_field.csv"))
     df_by_one_field = df_all_data.groupby(['VT', field]).size()
     df_by_one_field.to_csv("df_by_%s.csv" % field)
 
@@ -343,7 +343,7 @@ def plot_variant_type_data(df_all_data, field):
     plot = unpacked.plot(kind='bar', stacked=True, subplots=False)
     fig = plot.get_figure()
     fig.set_size_inches(18.5, 10.5)
-    fig.savefig(set_output_directory("sfvt_stacked_%s.svg" % field, dpi=100))
+    fig.savefig(os.path.join(output_dir,"sfvt_stacked_%s.svg" % field, dpi=100))
 
 
 def select_vts_to_plot(df, count):
@@ -416,13 +416,12 @@ def main(arguments):
 
         null, null, null, file_name, null = parse_filepath(arguments.alignment)
 
-        output_dir = "output"
         headers = ['accession', 'variant_type']
         df_starter = pd.DataFrame(variants, columns=headers)
-        if arguments.loglevel == 'debug': df_starter.to_csv(set_output_directory(output_dir, 'df_accession_index.csv'))
+        if arguments.loglevel == 'debug': df_starter.to_csv(os.path.join(output_dir, 'df_accession_index.csv'))
 
         df_by_variant_type = count_seqs_per_variant_type(df_starter, file_name)
-        df_by_variant_type.to_csv(set_output_directory(output_dir, "variant_types.csv"))
+        df_by_variant_type.to_csv(os.path.join(output_dir, "variant_types.csv"))
 
         if arguments.metadata_file is not None:
 
@@ -432,21 +431,22 @@ def main(arguments):
             df_metadata = import_metadata(arguments.metadata_file)
             df_all_data = pd.merge(df_starter, df_metadata, on='accession',
                                    how='outer')
+
             if arguments.loglevel == 'debug':
-                df_all_data.to_csv(set_output_directory(output_dir, "df_all_data.csv"))
+                df_all_data.to_csv(os.path.join(output_dir, "df_all_data.csv"))
 
             df_all_data_with_variant_type = pd.merge(df_all_data,
                                                      df_by_variant_type,
                                                      on='variant_type',
                                                      how='outer')
             df_file_name = "df_all_data_with_variant_type.csv"
-            df_all_data_with_variant_type.to_csv(set_output_directory(output_dir, df_file_name))
+            df_all_data_with_variant_type.to_csv(os.path.join(output_dir, df_file_name))
 
             # for large dataframes select the top X rows
             df_top = select_vts_to_plot(df_all_data_with_variant_type,
                                         arguments.top)
             if arguments.loglevel == 'debug':
-                df_top.to_csv(set_output_directory(output_dir, "df_top.csv"))
+                df_top.to_csv(os.path.join(output_dir, "df_top.csv"))
 
             columns = list(df_all_data.columns)
             logging.debug("The columns in the %s dataframe are: %s" %
@@ -521,6 +521,10 @@ if __name__ == "__main__":
     log_directory = os.path.join(cwd, "logs")
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
+
+    output_dir = os.path.join(cwd, "output")
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     D = datetime.date.today()
     f_handler = logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
