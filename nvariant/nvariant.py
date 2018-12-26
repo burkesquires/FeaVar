@@ -395,21 +395,22 @@ def main(arguments):
 
     logging.info("Corrected positions: %s" % corrected_positions)
 
+    checked_positions = check_reference_positions(reference_sequence, corrected_positions)
+
     rules = [len(corrected_positions) > 0,
              confirm_seq_feature_in_ref(reference_sequence, corrected_positions) == True,
-             ref_seq_in_alignment == True]
+             ref_seq_in_alignment == True,
+             checked_positions == True]
 
     if all(rules):
 
         # read in multiple sequence alignment
         alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
 
-        checked_positions = check_reference_positions(reference_sequence, corrected_positions)
-
         variants = []
         for record in alignment:
             sequence = record.seq
-            sequence_feature_temp = ''.join([sequence[index] for index in checked_positions])
+            sequence_feature_temp = ''.join([sequence[index] for index in corrected_positions])
             variants.append([record.id, sequence_feature_temp])
             # logging.debug(sequence_feature_temp)
 

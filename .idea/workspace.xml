@@ -4,13 +4,10 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="made log paths OS agnostic">
+    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="fixed problem with .sort() not returning anything by default; switched to sorted">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nvariant/nvariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/nvariant/nvariant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/df_accession_index.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/sfvt_flu_test_small.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/variant_types.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/nvariant_testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/tests/nvariant_testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_parse_position_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_parse_position_input.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +19,7 @@
     <SUITE FILE_PATH="coverage/nvariant$nvariant_py_test_1.coverage" NAME="nvariant py.test 1 Coverage Results" MODIFIED="1537209700348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant__h.coverage" NAME="nvariant -h Coverage Results" MODIFIED="1545420904822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant_6_discontigous.coverage" NAME="nvariant 6 discontigous Coverage Results" MODIFIED="1545426542102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/nvariant$nvariant_continous.coverage" NAME="nvariant continous Coverage Results" MODIFIED="1545847741769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant_continous.coverage" NAME="nvariant continous Coverage Results" MODIFIED="1545850042302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
     <SUITE FILE_PATH="coverage/nvariant$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1533926635830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant_both.coverage" NAME="nvariant both Coverage Results" MODIFIED="1532440554142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant.coverage" NAME="nvariant Coverage Results" MODIFIED="1545420727659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -32,8 +29,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="28" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="29" />
+            <state relative-caret-position="110">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -41,18 +41,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="538" lean-forward="true" selection-start-line="538" selection-end-line="538" />
-              <folding>
-                <element signature="e#589#604#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="405">
+              <caret line="402" column="38" selection-start-line="402" selection-start-column="38" selection-end-line="402" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_parse_position_input.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nvariant/logs/2018-12-26.log">
-          <provider selected="true" editor-type-id="LogFileEditorProvider" />
+          <provider selected="true" editor-type-id="LogFileEditorProvider">
+            <state relative-caret-position="110">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -71,6 +81,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Burke Squires &lt;burkesquires@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -102,12 +117,10 @@
         <option value="$PROJECT_DIR$/requirements_dev.txt" />
         <option value="$PROJECT_DIR$/tests/test_for_ref_seq_in_alignment.py" />
         <option value="$PROJECT_DIR$/tests/test_set_output_directory.py" />
-        <option value="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" />
         <option value="$PROJECT_DIR$/tests/test_confirm_seq_feature_in_ref.py" />
         <option value="$PROJECT_DIR$/tests/test_create_index_offset_list.py" />
         <option value="$PROJECT_DIR$/tests/test_import_metadata.py" />
         <option value="$PROJECT_DIR$/tests/test_parse_filepath.py" />
-        <option value="$PROJECT_DIR$/tests/test_parse_position_input.py" />
         <option value="$PROJECT_DIR$/tests/test_plot_variant_type_data.py" />
         <option value="$PROJECT_DIR$/tests/test_select_vts_to_plot.py" />
         <option value="$PROJECT_DIR$/tests/test_check_reference_positions.py" />
@@ -115,6 +128,8 @@
         <option value="$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py" />
         <option value="$PROJECT_DIR$/tests/nvariant_testing.ipynb" />
         <option value="$PROJECT_DIR$/nvariant/temp.ipynb" />
+        <option value="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" />
+        <option value="$PROJECT_DIR$/tests/test_parse_position_input.py" />
         <option value="$PROJECT_DIR$/nvariant/nvariant.py" />
       </list>
     </option>
@@ -147,6 +162,11 @@
               <item name="nvariant" type="462c0819:PsiDirectoryNode" />
               <item name="nvariant" type="462c0819:PsiDirectoryNode" />
               <item name="logs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -407,7 +427,7 @@
       <updated>1524194868912</updated>
       <workItem from="1544728711821" duration="40000" />
       <workItem from="1544728778305" duration="7000" />
-      <workItem from="1545417392137" duration="6058000" />
+      <workItem from="1545417392137" duration="8260000" />
     </task>
     <task id="LOCAL-00003" summary="Started conversion to class; not sure it makes sense">
       <created>1527880608717</created>
@@ -500,7 +520,21 @@
       <option name="project" value="LOCAL" />
       <updated>1537210657239</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fixed log path to cwd of file">
+      <created>1545847826397</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1545847826397</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fixed problem with .sort() not returning anything by default; switched to sorted">
+      <created>1545848523233</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1545848523233</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -536,7 +570,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6105000" />
+    <option name="totallyTimeSpent" value="8307000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -551,12 +585,12 @@
     <frame x="-519" y="-1406" width="1937" height="1375" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3166227" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3166227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.3270925" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6703567" visible="true" weight="0.5095238" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6703567" visible="true" weight="0.5095238" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.26825398" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -618,7 +652,10 @@
     <MESSAGE value="added test TestCorrectIndexDict" />
     <MESSAGE value="Updated logging" />
     <MESSAGE value="made log paths OS agnostic" />
-    <option name="LAST_COMMIT_MESSAGE" value="made log paths OS agnostic" />
+    <MESSAGE value="fixed log path to cwd of file" />
+    <MESSAGE value="fixed problem with .sort() not returning anything by default; switched to sorted" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed problem with .sort() not returning anything by default; switched to sorted" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -642,11 +679,6 @@
           <url>file://$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py</url>
           <line>28</line>
           <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/nvariant/nvariant.py</url>
-          <line>141</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -790,13 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_parse_position_input.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_create_index_offset_list.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -867,13 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="28" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/logs/2018-09-17.log">
       <provider selected="true" editor-type-id="LogFileEditorProvider" />
       <provider editor-type-id="text-editor" />
@@ -881,18 +899,36 @@
     <entry file="file://$PROJECT_DIR$/output/logs/2018-12-21.log">
       <provider selected="true" editor-type-id="LogFileEditorProvider" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="538" lean-forward="true" selection-start-line="538" selection-end-line="538" />
+        <state relative-caret-position="110">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
           <folding>
-            <element signature="e#589#604#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_parse_position_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="402" column="38" selection-start-line="402" selection-start-column="38" selection-end-line="402" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/nvariant/logs/2018-12-26.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider" />
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="110">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
