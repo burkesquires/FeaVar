@@ -52,7 +52,7 @@ def parse_position_input(raw_positions: str) -> list:
             elif len(positions) == 1:
                 position_coordinates.append(int(positions[0]))
 
-    sorted_positions = position_coordinates.sort()
+    sorted_positions = sorted(position_coordinates)
 
     logging.debug("parse_position_input parsed positions: " + str(sorted_positions))
 

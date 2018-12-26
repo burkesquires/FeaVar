@@ -1,4 +1,7 @@
+import unittest
 from unittest import TestCase
+
+import nvariant
 
 
 class TestAdjustPositionsForInsertions(TestCase):
@@ -8,8 +11,6 @@ class TestAdjustPositionsForInsertions(TestCase):
         from Bio._py3k import StringIO
 
         from Bio.AlignIO.ClustalIO import ClustalIterator, ClustalWriter
-
-        import nvariant
 
         # This is a truncated version of the example in Tests/cw02.aln
         # Notice the inclusion of sequence numbers (right hand side)
@@ -128,12 +129,11 @@ class TestAdjustPositionsForInsertions(TestCase):
             """
 
         class Test_confirm_ref_seq_in_alignment(TestCase):
-            import nvariant as nv
 
             def test_one(self):
                 alignments = list(ClustalIterator(StringIO(aln_example1)))
 
-                corrected_positions = nv.adjust_positions_for_insertions()
+                corrected_positions = nvariant.adjust_positions_for_insertions()
 
                 self.assertEqual(1, len(alignments))
                 self.assertEqual(alignments[0]._version, "1.81")
