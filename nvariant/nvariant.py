@@ -492,8 +492,9 @@ if __name__ == "__main__":
     PARSER.add_argument("-p", "--positions",
                         required=True,
                         type=str,
-                        help="The position(s) of the sequence feature, enclosed in quotes and comma separated"
-                        "Example: '100-110' or '100-110,120,130'")
+                        help="The position(s) of the sequence feature, enclosed in quotes, "
+                             "comma separated, dashes for ranges. "
+                             "Example: '100-110' or '100-110,120,130'")
     PARSER.add_argument("-d", "--project_directory",
                         required=False,
                         type=str,
