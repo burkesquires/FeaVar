@@ -12,8 +12,6 @@ class TestAdjustPositionsForInsertions(TestCase):
 
         from Bio.AlignIO.ClustalIO import ClustalIterator, ClustalWriter
 
-        # This is a truncated version of the example in Tests/cw02.aln
-        # Notice the inclusion of sequence numbers (right hand side)
         aln_example1 = \
             """CLUSTAL W (1.81) multiple sequence alignment
             gi|4959044|gb|AAD34209.1|AF069      MENSDSNDKGSDQSAAQRRSQMDRLDREEAFYQFVNNLSEEDYRLMRDNN 50
@@ -31,11 +29,8 @@ class TestAdjustPositionsForInsertions(TestCase):
             gi|4959044|gb|AAD34209.1|AF069      VPTTRAQRRA 210
             gi|671626|emb|CAA85685.1|           VAYVKTFQGP 151
                                                 *. .:: : .
-            """  # noqa : W291
+            """
 
-        # This example is a truncated version of the dataset used here:
-        # http://virgil.ruc.dk/kurser/Sekvens/Treedraw.htm
-        # with the last record repeated twice (deliberate toture test)
         aln_example2 = \
             """CLUSTAL X (1.83) multiple sequence alignment
             V_Harveyi_PATH                 --MKNWIKVAVAAIA--LSAA------------------TVQAATEVKVG
@@ -68,7 +63,7 @@ class TestAdjustPositionsForInsertions(TestCase):
             HISJ_E_COLI                    LKAKKIDAIMSSLSITEKRQQEIAFTDKLYAADSRLV
             HISJ_E_COLI                    LKAKKIDAIMSSLSITEKRQQEIAFTDKLYAADSRLV
                                            *.: . *        .  *     *:          :
-            """  # noqa : W291
+            """
 
         aln_example3 = \
             """CLUSTAL 2.0.9 multiple sequence alignment
@@ -120,7 +115,7 @@ class TestAdjustPositionsForInsertions(TestCase):
             AT3G20900.1-SEQ      GCTGGGGATGGAGAGGGAACAGAGTAG
             AT3G20900.1-CDS      GCTGGGGATGGAGAGGGAACAGAGTAG
                                  *************************  
-            """  # noqa : W291
+            """
 
         aln_example4 = \
             """Kalign (2.0) alignment in ClustalW format
@@ -128,7 +123,7 @@ class TestAdjustPositionsForInsertions(TestCase):
             AT3G20900.1-SEQ      GCTGGGGATGGAGAGGGAACAGAGTAG
             """
 
-        class Test_confirm_ref_seq_in_alignment(TestCase):
+        class TestConfirmRefSeqInAlignment(TestCase):
 
             def test_one(self):
                 alignments = list(ClustalIterator(StringIO(aln_example1)))
@@ -185,7 +180,7 @@ class TestAdjustPositionsForInsertions(TestCase):
             def test_write_read_single(self):
                 """Testing write/read when there is only one sequence."""
                 alignment = next(ClustalIterator(StringIO(aln_example1)))
-                # Now thae just the first row as a new alignment:
+                # Now that just the first row as a new alignment:
                 alignment = alignment[0:1]
                 handle = StringIO()
                 ClustalWriter(handle).write_file([alignment])
@@ -203,7 +198,6 @@ class TestAdjustPositionsForInsertions(TestCase):
                 """Make sure we can parse the Kalign header."""
                 alignments = next(ClustalIterator(StringIO(aln_example4)))
                 self.assertEqual(2, len(alignments))
-
 
         if __name__ == "__main__":
             runner = unittest.TextTestRunner(verbosity=2)

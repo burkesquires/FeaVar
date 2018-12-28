@@ -15,4 +15,4 @@ class TestCheckReferencePositions(TestCase):
 
         test_result = check_reference_positions(test_ref_seq, test_positions)
 
-        assert test_result == True
+        assert test_result is True

@@ -9,8 +9,6 @@ class TestConfirmSeqFeatureInRef(TestCase):
 
         from Bio.AlignIO.ClustalIO import ClustalIterator, ClustalWriter
 
-        import nvariant
-
         # This is a truncated version of the example in Tests/cw02.aln
         # Notice the inclusion of sequence numbers (right hand side)
         aln_example1 = \
@@ -128,7 +126,7 @@ class TestConfirmSeqFeatureInRef(TestCase):
             AT3G20900.1-SEQ      GCTGGGGATGGAGAGGGAACAGAGTAG
             """
 
-        class Test_confirm_ref_seq_in_alignment(unittest.TestCase):
+        class TestConfirmRefSeqInAlignment(unittest.TestCase):
 
             def test_one(self):
                 alignments = list(ClustalIterator(StringIO(aln_example1)))

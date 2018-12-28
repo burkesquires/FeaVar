@@ -38,13 +38,13 @@ class TestParsePositionInput(TestCase):
         # TODO: Test if a period was actually typed instead of a comma
 
         def test_parse_position_input_fail_empty_string():
-            assert parse_position_input("") == None
+            assert parse_position_input("") is None
 
         def test_parse_position_input_fail_missing_comma():
-            assert parse_position_input("10,21,32 43") == None
+            assert parse_position_input("10,21,32 43") is None
 
         def test_parse_position_input_fail_missing_dash():
-            assert parse_position_input("10 21,32,43") == None
+            assert parse_position_input("10 21,32,43") is None
 
         def test_parse_position_input_fail_missing_range_end():
-            assert parse_position_input("10 -") == None
+            assert parse_position_input("10 -") is None

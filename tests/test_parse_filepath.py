@@ -1,7 +1,7 @@
-from unittest import TestCase
-
 import logging
 import os
+from unittest import TestCase
+
 
 class TestParseFilepath(TestCase):
 
@@ -10,16 +10,15 @@ class TestParseFilepath(TestCase):
         from nvariant.nvariant import parse_filepath
 
         cwd = os.getcwd()
-        test_file_path = "%s/nvariant.py" % cwd
+        test_file_path = os.path.join(cwd, "nvariant.py")
         logging.debug(test_file_path)
 
         assert test_file_path != ""
 
-        test_absolute_path, test_directory_name, test_base_name, test_file_name, \
-        test_file_extension = parse_filepath(test_file_path)
+        absolute_path, directory_name, base_name, file_name, file_extension = parse_filepath(test_file_path)
 
-        assert test_absolute_path == test_file_path
-        assert test_base_name == "nvariant.py"
-        assert test_file_name == "nvariant"
-        assert test_file_extension == "py"
-        assert test_directory_name == cwd
+        assert absolute_path == test_file_path
+        assert base_name == "nvariant.py"
+        assert file_name == "nvariant"
+        assert file_extension == "py"
+        assert directory_name == cwd

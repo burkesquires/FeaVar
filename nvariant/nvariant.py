@@ -1,9 +1,9 @@
 #!~/anaconda3/bin python
 """
-nVariant
+nvariant
 
-This module computes the variant type in a given sequence feature and creates
-plots for each different type of metadata given.
+This module computes the variant type(s) in a given sequence feature and
+creates plots for each different type of metadata given.
 
 """
 
@@ -19,6 +19,7 @@ __status__ = "Beta"
 # TODO Add ability to use native IEDB format (H25, H45, V46, N47, L496, S306, L307, P308, T333;
 # B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400
 
+
 def parse_position_input(raw_positions: str) -> list:
     """
     Takes a string argument of positions and splits it out into individual
@@ -29,7 +30,7 @@ def parse_position_input(raw_positions: str) -> list:
         raw_positions : The raw positions of the reference sequence to assemble a sequence feature from.
 
     Returns:
-        A list is returned
+        A list of individual positions is returned
 
     """
 
@@ -46,10 +47,12 @@ def parse_position_input(raw_positions: str) -> list:
             positions = position_group.split("-")
 
             if len(positions) == 2:
+
                 temp_list = list(range(int(positions[0]), int(positions[1]) + 1))
                 position_coordinates.extend(temp_list)
 
             elif len(positions) == 1:
+
                 position_coordinates.append(int(positions[0]))
 
     sorted_positions = sorted(position_coordinates)
@@ -61,33 +64,43 @@ def parse_position_input(raw_positions: str) -> list:
 
 def create_index_offset_list(ref_seq) -> list:
     """
+    Adjust the indicies of the reference sequence if necessary.
 
-    :param ref_seq:
-    :return:
+    Args:
+        ref_seq : The reference sequence as an alignment, with possible upstream dashes.
+
+    Returns:
+        A list of offset values for each position in the alignment
+
     """
 
     logging.debug("create_index_offset_list ref_seq: " + ref_seq)
 
-    l = len(ref_seq)
+    seq_length = len(ref_seq)
 
     dash_indices = [pos for pos, char in enumerate(ref_seq) if char == "-"]
 
     # NOTE: remember that the indices begin at 0 and the sequence feature positions begin at 1
 
-    index_correction_factor = [0] * l
+    index_correction_factor = [0] * seq_length
 
     for dash_idx in dash_indices:
 
-        for idx in range(dash_idx, l):
+        for idx in range(dash_idx, seq_length):
             index_correction_factor[idx] += 1
 
-    logging.debug("create_index_offset_list index_correction_factor: " + index_correction_factor)
+    logging.debug("create_index_offset_list index_correction_factor: " + str(index_correction_factor))
 
     return index_correction_factor
 
 
-def correct_index_dict(ref_seq):
+def correct_index_dict(ref_seq) -> dict:
+    """
 
+
+    :param ref_seq:
+    :return:
+    """
     corrected_index = {}
 
     dash_count = 0
@@ -129,7 +142,6 @@ def adjust_positions_for_insertions(positions, ref_seq) -> list:
     # Output    [   45  89   13,14]
     # dashes    [0, 1, 5, 6, 10, 17]
 
-
     # TODO: check to see if there are any other characters?, like a period or substitute characters
 
     # get positions of all dashes in the reference sequence [0, 1, 5, 6, 10,16]
@@ -149,6 +161,7 @@ def adjust_positions_for_insertions(positions, ref_seq) -> list:
     else:
 
         print("No positions to adjust.")
+
 
 def test_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
     """
@@ -171,15 +184,20 @@ def test_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="c
     reference_sequence = ""
 
     test = False
+
     for alignment in AlignIO.parse(alignment, msa_format):
+
         for record in alignment:
+
             if reference_identifier in record.id:
+
                 test = True
                 reference_sequence = record.seq
+
     return test, reference_sequence
 
 
-def confirm_seq_feature_in_ref(reference_sequence, sequence_feature_positions):
+def confirm_seq_feature_in_ref(reference_sequence: str, sequence_feature_positions: list) -> bool:
     """
     Tests to see if the sequence feature positions can be found in the
     reference sequence.
@@ -189,24 +207,24 @@ def confirm_seq_feature_in_ref(reference_sequence, sequence_feature_positions):
     reference_sequence : string
         The identifier (accession, gid) of the reference sequence
 
-    alignment : string
-        The alignment to be used for the SFVT analysis
-
-    sequence_feature_positions : string
-        A list of the positions of teh variant type in the sequence feature
+    sequence_feature_positions : list
+        A list of the positions of the variant type in the sequence feature
     """
 
     test = True
+
     length = len(reference_sequence)
+
     for position in sequence_feature_positions:
         if position > length:
             test = False
 
     logging.debug("confirm seq feature in reference tests result: %s" % test)
+
     return test
 
 
-def check_reference_positions(reference_sequence: str, positions: str):
+def check_reference_positions(reference_sequence: str, positions: list) -> bool:
     """
     Takes the aligned reference sequence and the list of parsed positions
     and checks to see if there are any dashes at the beginning of the sequence.
@@ -217,29 +235,32 @@ def check_reference_positions(reference_sequence: str, positions: str):
     reference_sequence : string
         The reference sequence from the alignment
 
-    positions : string
+    positions : list
         The list of parsed positions
     """
 
-    length_raw = len(reference_sequence)
-    length_adjusted = len(reference_sequence.lstrip('-'))
-    adjustment = length_raw - length_adjusted
+    seq_length = len(reference_sequence)
 
-    # Adjust all positions based on leading gap
-    if adjustment != 0:
-        positions[:] = [x + adjustment for x in positions]
-
-    # how to discover if adjusted positions are actually deletion (dashes)?
     test = True
 
-    for position in positions:
-        if reference_sequence[position - 1] == "-":
-            test = False
+    # check that all positions are in sequence
 
-    return test
+    if all(i <= seq_length for i in positions):
+
+        for position in positions:
+
+            if reference_sequence[position - 1] == "-":
+
+                test = False
+
+        return test
+
+    else:
+
+        return False
 
 
-def parse_filepath(file_path):
+def parse_filepath(file_path: str) -> str:
     """
     Parses a file path, file name and extension. The conventions used follow a
     PHP convention (apparently).
@@ -265,8 +286,7 @@ def parse_filepath(file_path):
         file_extension = base_name.split(".")[1]
         directory_name = os.path.dirname(file_path)
 
-        return absolute_path, directory_name, base_name, file_name, \
-               file_extension
+        return absolute_path, directory_name, base_name, file_name, file_extension
 
     else:
 
@@ -285,11 +305,14 @@ def import_metadata(file_path):
     """
     df_metadata = pd.read_table(file_path)  # , skiprows=[0,1,2], header=0)?
     df_metadata.to_csv(os.path.join(output_dir, "df_metadata.csv"))
+
     return df_metadata
 
 
-def VT_count(i):
+def vt_count(i):
+
     vt_id = "VT-%03d" % (i,)
+
     return vt_id
 
 
@@ -305,12 +328,12 @@ def count_seqs_per_variant_type(dataframe, file_path):
     file_path : string
         The file path of the output file to be saved.
     """
-    df_by_variant_type = pd.DataFrame({'count' : dataframe.groupby(
+    df_by_variant_type = pd.DataFrame({'count': dataframe.groupby(
         ["variant_type"]).size()}).reset_index()
     df_by_variant_type.sort_values('count', ascending=False, inplace=True)
 
     row_length = len(df_by_variant_type)
-    df_by_variant_type["VT"] = [VT_count(i) for i in range(1, row_length + 1)]
+    df_by_variant_type["VT"] = [vt_count(i) for i in range(1, row_length + 1)]
     df_by_variant_type.reindex(index=["VT"])
 
     df_by_variant_type.to_csv(os.path.join(output_dir, "sfvt_%s.csv" % file_path))
@@ -343,15 +366,15 @@ def plot_variant_type_data(df_all_data, field):
     plot = unpacked.plot(kind='bar', stacked=True, subplots=False)
     fig = plot.get_figure()
     fig.set_size_inches(18.5, 10.5)
-    fig.savefig(os.path.join(output_dir,"sfvt_stacked_%s.svg" % field, dpi=100))
+    fig.savefig(os.path.join(output_dir, "sfvt_stacked_%s.svg" % field), dpi=100)
 
 
 def select_vts_to_plot(df, count):
     """
-    Selects top variant top for plotting
+    Selects top variant for plotting
 
     """
-    vts_to_select =  ["VT-%03d" % i for i in range(count)]
+    vts_to_select = ["VT-%03d" % i for i in range(count)]
     df_selected = df[df['VT'].isin(vts_to_select)]
     return df_selected
 
@@ -368,9 +391,12 @@ def set_output_directory(output_dir, output_file_name):
     output_file_name : string
         The name of the output file to save
     """
+
     import os
 
-    return os.path.join(os.path.dirname(output_dir), output_file_name)
+    dir_name = os.path.dirname(output_dir)
+
+    return os.path.join(dir_name, output_file_name)
 
 
 def main(arguments):
@@ -381,14 +407,12 @@ def main(arguments):
 
     # TODO add report of algorithm version, results, etc; look at importing pandas-html I think
 
-    ref_seq_in_alignment = False
-    reference_sequence = ""
-
-    ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier, arguments.alignment)
+    ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier,
+                                                                             arguments.alignment)
 
     logging.info("Reference sequence tests result: %s" % ref_seq_in_alignment)
-
     logging.info("Positions : %s" % arguments.positions)
+
     parsed_positions = parse_position_input(arguments.positions)
 
     corrected_positions = adjust_positions_for_insertions(parsed_positions, reference_sequence)
@@ -398,9 +422,9 @@ def main(arguments):
     checked_positions = check_reference_positions(reference_sequence, corrected_positions)
 
     rules = [len(corrected_positions) > 0,
-             confirm_seq_feature_in_ref(reference_sequence, corrected_positions) == True,
-             ref_seq_in_alignment == True,
-             checked_positions == True]
+             confirm_seq_feature_in_ref(reference_sequence, corrected_positions) is True,
+             ref_seq_in_alignment is True,
+             checked_positions is True]
 
     if all(rules):
 
@@ -418,7 +442,8 @@ def main(arguments):
 
         headers = ['accession', 'variant_type']
         df_starter = pd.DataFrame(variants, columns=headers)
-        if arguments.loglevel == 'debug': df_starter.to_csv(os.path.join(output_dir, 'df_accession_index.csv'))
+        if arguments.loglevel == 'debug':
+            df_starter.to_csv(os.path.join(output_dir, 'df_accession_index.csv'))
 
         df_by_variant_type = count_seqs_per_variant_type(df_starter, file_name)
         df_by_variant_type.to_csv(os.path.join(output_dir, "variant_types.csv"))
@@ -446,7 +471,7 @@ def main(arguments):
             df_top = select_vts_to_plot(df_all_data_with_variant_type,
                                         arguments.top)
             if arguments.loglevel == 'debug':
-                df_top.to_csv(os.path.join(output_dir, "df_top.csv"))
+                df_top.to_csv(os.path.join(output_dir, "df_top.csv"), index=False)
 
             columns = list(df_all_data.columns)
             logging.debug("The columns in the %s dataframe are: %s" %
@@ -543,7 +568,7 @@ if __name__ == "__main__":
 
     # Create handlers
     c_handler = logging.StreamHandler()
-    #f_handler = logging.FileHandler('file.log')
+    # f_handler = logging.FileHandler('file.log')
     c_handler.setLevel(logging.WARNING)
     f_handler.setLevel(logging.ERROR)
 
