@@ -180,7 +180,7 @@ def test_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="c
         The identifier (accession, gid) of the reference sequence
 
     alignment :
-        The alignment to be used for the SFVT analysis
+        The multiple sequence alignment to be used for the SFVT analysis
 
     msa_format : string
         The msa_format of the alignment, default is clustal
@@ -198,7 +198,7 @@ def test_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="c
             if reference_identifier in record.id:
 
                 test = True
-                reference_sequence = record.seq
+                reference_sequence = str(record.seq)
 
     return test, reference_sequence
 
@@ -214,7 +214,7 @@ def confirm_seq_feature_in_ref(reference_sequence: str, sequence_feature_positio
         The identifier (accession, gid) of the reference sequence
 
     sequence_feature_positions : list
-        A list of the positions of the variant type in the sequence feature
+        A list of the positions (as integers) of the variant type in the sequence feature
     """
 
     test = True
@@ -268,42 +268,6 @@ def check_reference_positions(reference_sequence: str, positions: list) -> bool:
     else:
 
         return False
-
-
-def parse_filepath(file_path: str) -> str:
-    """
-    Parses a file path, file name and extension. The conventions used follow a PHP convention (apparently).
-
-        /path/to/file.zip     # path
-        /path/to              # dirname
-        file.zip              # basename
-        file                  # filename
-        zip                   # extension
-
-    Parameters
-    ----------
-    file_path : string
-        The input relative or full path of a file
-    """
-    import os.path
-
-
-
-
-    if os.path.exists(file_path):
-
-        absolute_path = os.path.abspath(file_path)
-        base_name = os.path.basename(file_path)
-        file_name = base_name.split(".")[0]
-        file_extension = base_name.split(".")[1]
-        directory_name = os.path.dirname(file_path)
-
-        return absolute_path, directory_name, base_name, file_name, file_extension
-
-    else:
-
-        logging.error("File was not found: %s" % file_path)
-        return None, None, None, None, None
 
 
 def import_metadata(file_path):
@@ -427,17 +391,15 @@ def main(arguments):
 
     if ref_seq_in_alignment:
 
-        seq_fea_in_ref_seq = confirm_seq_feature_in_ref(reference_sequence, arguments.positions)
+        parsed_positions = parse_position_input(arguments.positions)
 
-        if seq_fea_in_ref_seq:
+        seq_fea_in_ref_seq = confirm_seq_feature_in_ref(reference_sequence, parsed_positions)
 
-            parsed_positions = parse_position_input(arguments.positions)
+        corrected_positions = adjust_positions_for_insertions(reference_sequence, parsed_positions)
 
-            corrected_positions = adjust_positions_for_insertions(reference_sequence, parsed_positions)
+        logging.info("Corrected positions: %s" % corrected_positions)
 
-            logging.info("Corrected positions: %s" % corrected_positions)
-
-            checked_positions = check_reference_positions(reference_sequence, corrected_positions)
+        checked_positions = check_reference_positions(reference_sequence, corrected_positions)
 
     rules = [ref_seq_in_alignment,
              seq_fea_in_ref_seq,
@@ -456,7 +418,7 @@ def main(arguments):
             variants.append([record.id, sequence_feature_temp])
             # logging.debug(sequence_feature_temp)
 
-        null, null, null, file_name, null = parse_filepath(arguments.alignment)
+        dir_name, file_name = os.path.split(arguments.alignment)
 
         headers = ['accession', 'variant_type']
         df_starter = pd.DataFrame(variants, columns=headers)
