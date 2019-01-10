@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="removed unnecessary files">
+    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="fixed reference length check; removed unnecessary adjustment code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nvariant/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/nvariant/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nvariant/nvariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/nvariant/nvariant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements_dev.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements_dev.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_check_reference_positions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_check_reference_positions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_confirm_seq_feature_in_ref.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_confirm_seq_feature_in_ref.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_parse_filepath.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_parse_filepath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_parse_position_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_parse_position_input.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,22 +16,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/nvariant$nvariant_py_test_1.coverage" NAME="nvariant py.test 1 Coverage Results" MODIFIED="1545944900027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/nvariant$nvariant__h.coverage" NAME="nvariant -h Coverage Results" MODIFIED="1545857289061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/nvariant$nvariant_continous.coverage" NAME="nvariant continous Coverage Results" MODIFIED="1545930949615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant_6_discontigous.coverage" NAME="nvariant 6 discontigous Coverage Results" MODIFIED="1545944916003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
     <SUITE FILE_PATH="coverage/nvariant$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1533926635830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant_both.coverage" NAME="nvariant both Coverage Results" MODIFIED="1545850234373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/nvariant$nvariant_test.coverage" NAME="nvariant test Coverage Results" MODIFIED="1546034763263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/nvariant$nvariant.coverage" NAME="nvariant Coverage Results" MODIFIED="1545420727659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/nvariant$pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_not_enough_sequence.coverage" NAME="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence Coverage Results" MODIFIED="1547063551858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant_test.coverage" NAME="nvariant test Coverage Results" MODIFIED="1546271703006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant.coverage" NAME="nvariant Coverage Results" MODIFIED="1546264528643" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant_py_test_1.coverage" NAME="nvariant py.test 1 Coverage Results" MODIFIED="1545944900027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant__h.coverage" NAME="nvariant -h Coverage Results" MODIFIED="1545857289061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant_continous.coverage" NAME="nvariant continous Coverage Results" MODIFIED="1545930949615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/nvariant$pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence.coverage" NAME="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence Coverage Results" MODIFIED="1547063404561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/nvariant$pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions1.coverage" NAME="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions1 Coverage Results" MODIFIED="1547059117546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/nvariant$pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_adjust_positions_for_insertions.coverage" NAME="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_adjust_positions_for_insertions Coverage Results" MODIFIED="1546271927788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/nvariant$pytest_for_test_check_reference_positions_TestCheckReferencePositions.coverage" NAME="pytest for test_check_reference_positions.TestCheckReferencePositions Coverage Results" MODIFIED="1547058817203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="770">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="396">
+              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -43,41 +44,57 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="419">
+              <caret line="48" column="1" lean-forward="true" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/test_check_reference_positions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="16" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="16" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/nvariant_tutorial.ipynb">
+          <provider selected="true" editor-type-id="ipnb-editor">
+            <state>
+              <selected id="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="288" column="21" selection-start-line="288" selection-start-column="21" selection-end-line="288" selection-end-column="21" />
+            <state relative-caret-position="287">
+              <caret line="295" column="24" selection-start-line="295" selection-start-column="24" selection-end-line="295" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nvariant/output/variant_types.csv">
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" rowLines="3" />
-          </provider>
           <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="2" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
+            <state>
+              <caret selection-end-line="6" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nvariant/output/sfvt_flu-test.csv">
           <provider editor-type-id="csv-table-editor">
             <state showInfoPanel="true" rowLines="3" />
-          </provider>
-          <provider selected="true" editor-type-id="csv-text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/Bio/Seq.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="236" selection-start-line="236" selection-end-line="236" />
-            </state>
           </provider>
         </entry>
       </file>
@@ -98,6 +115,7 @@
       <find>error</find>
       <find>.csv</find>
       <find>df_by</find>
+      <find>len</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,13 +162,14 @@
         <option value="$PROJECT_DIR$/nvariant/temp.ipynb" />
         <option value="$PROJECT_DIR$/tests/nvariant_testing.ipynb" />
         <option value="$PROJECT_DIR$/requirements_dev.txt" />
-        <option value="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" />
-        <option value="$PROJECT_DIR$/tests/test_check_reference_positions.py" />
         <option value="$PROJECT_DIR$/tests/test_parse_filepath.py" />
         <option value="$PROJECT_DIR$/tests/test_parse_position_input.py" />
-        <option value="$PROJECT_DIR$/nvariant/__init__.py" />
         <option value="$PROJECT_DIR$/tests/test_confirm_seq_feature_in_ref.py" />
+        <option value="$PROJECT_DIR$/docs/nvariant_tutorial.ipynb" />
         <option value="$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py" />
+        <option value="$PROJECT_DIR$/nvariant/__init__.py" />
+        <option value="$PROJECT_DIR$/tests/test_check_reference_positions.py" />
+        <option value="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" />
         <option value="$PROJECT_DIR$/nvariant/nvariant.py" />
       </list>
     </option>
@@ -166,6 +185,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -209,7 +229,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Course" />
     </panes>
   </component>
@@ -250,7 +269,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.nvariant test">
+  <component name="RunManager" selected="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence">
     <configuration name="nvariant" type="JupiterNotebook" factoryName="Jupyter Notebook">
       <module name="nvariant" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -455,6 +474,86 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_adjust_positions_for_insertions" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_adjust_positions_for_insertions&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions1" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions1&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_check_reference_positions.TestCheckReferencePositions" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_check_reference_positions.TestCheckReferencePositions&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Jupyter Notebook.nvariant" />
       <item itemvalue="Python.nvariant -h" />
@@ -465,7 +564,21 @@
       <item itemvalue="Python.scratch" />
       <item itemvalue="Python tests.Unnamed" />
       <item itemvalue="Python tests.nvariant py.test 1" />
+      <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_adjust_positions_for_insertions" />
+      <item itemvalue="Python tests.pytest for test_check_reference_positions.TestCheckReferencePositions" />
+      <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions1" />
+      <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" />
+      <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence" />
+        <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" />
+        <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions1" />
+        <item itemvalue="Python tests.pytest for test_check_reference_positions.TestCheckReferencePositions" />
+        <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_adjust_positions_for_insertions" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="StructuralSearchPlugin">
     <replaceConfiguration name="user defined" created="1526735630926" text="ombre" recursive="false" caseInsensitive="false" type="ActionScript" reformatAccordingToStyle="true" shortenFQN="true" useStaticImport="true" replacement="nvariant" history="1" />
@@ -487,7 +600,11 @@
       <workItem from="1545919632800" duration="51000" />
       <workItem from="1545919724287" duration="1790000" />
       <workItem from="1545922416731" duration="11770000" />
-      <workItem from="1546020678836" duration="5333000" />
+      <workItem from="1546020678836" duration="13703000" />
+      <workItem from="1546529369525" duration="839000" />
+      <workItem from="1546888452220" duration="600000" />
+      <workItem from="1546890340365" duration="4447000" />
+      <workItem from="1547052223819" duration="6588000" />
     </task>
     <task id="LOCAL-00003" summary="Started conversion to class; not sure it makes sense">
       <created>1527880608717</created>
@@ -622,43 +739,50 @@
       <option name="project" value="LOCAL" />
       <updated>1545922360325</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixed reference length check; removed unnecessary adjustment code">
+      <created>1546034915853</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1546034915853</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="nvariant_py_test_1 - 2018.08.10 at 15h 55m 47s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 40m 10s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.08.16 at 16h 34m 59s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 40m 44s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.08.16 at 16h 53m 22s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 42m 12s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.08.16 at 16h 56m 42s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 42m 48s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.08.16 at 16h 56m 43s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 43m 08s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.09.11 at 14h 10m 21s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 44m 20s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.09.17 at 14h 27m 41s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 14h 42m 40s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.09.17 at 14h 41m 42s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 14h 50m 05s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.12.27 at 15h 30m 07s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_not_enough_sequence - 2019.01.09 at 14h 50m 31s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence" configurationId="tests" />
     </history-entry>
-    <history-entry file="nvariant_py_test_1 - 2018.12.27 at 16h 08m 26s.xml">
-      <configuration name="nvariant py.test 1" configurationId="tests" />
+    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_not_enough_sequence - 2019.01.09 at 14h 52m 32s.xml">
+      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33223000" />
+    <option name="totallyTimeSpent" value="54067000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -673,13 +797,13 @@
     <frame x="-122" y="-1177" width="1680" height="1023" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22954823" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.20081967" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.32599118" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6703567" visible="true" weight="0.39867842" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.31277534" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.41519824" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6703567" weight="0.2555938" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.3123924" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928573" weight="0.32862523" />
@@ -698,19 +822,19 @@
       <window_info anchor="right" id="Database" order="5" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27316293" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.20081967" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.326742" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6703567" visible="true" weight="0.5094162" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.26825398" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49692497" visible="true" weight="0.41519824" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6703567" weight="0.2555938" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.3123924" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928573" weight="0.32862523" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32936507" />
       <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49925372" weight="0.32916147" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32929516" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.3296433" side_tool="true" weight="0.47032967" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
@@ -719,7 +843,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.3296433" />
+      <window_info anchor="right" id="SciView" order="4" weight="0.32960597" />
       <window_info anchor="right" id="Database" order="5" />
     </layout-to-restore>
   </component>
@@ -746,7 +870,8 @@
     <MESSAGE value="removed logging file.log" />
     <MESSAGE value="moved output to output directory" />
     <MESSAGE value="removed unnecessary files" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed unnecessary files" />
+    <MESSAGE value="fixed reference length check; removed unnecessary adjustment code" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed reference length check; removed unnecessary adjustment code" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -769,18 +894,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py</url>
-          <line>48</line>
+          <line>56</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nvariant/nvariant.py</url>
-          <line>448</line>
+          <line>466</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nvariant/nvariant.py</url>
-          <line>247</line>
+          <line>257</line>
           <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/test_check_reference_positions.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -793,7 +923,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/adjust_positions_for_insertions.py" />
     <entry file="file://$PROJECT_DIR$/tests/confirm_ref_seq_in_alignment_tests.py" />
     <entry file="file://$PROJECT_DIR$/tests/parse_position_input_test.py" />
     <entry file="file://$PROJECT_DIR$/tests/test_nvariant_old.py" />
@@ -894,18 +1023,18 @@
       <provider selected="true" editor-type-id="LogFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/nvariant/output/df_accession_index.csv">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" rowLines="3" />
       </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
-      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/nvariant/output/sfvt_flu_test_small.csv">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" rowLines="3" />
       </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
-      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements_dev.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -941,20 +1070,6 @@
     <entry file="file://$PROJECT_DIR$/tests/output/feavar.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_check_reference_positions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nvariant/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/readme.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
@@ -968,19 +1083,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2342">
-          <caret line="174" column="81" lean-forward="true" selection-start-line="174" selection-start-column="81" selection-end-line="174" selection-end-column="81" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/flu_test_small.clw">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8945" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nvariant/output/sfvt_flu-test.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" rowLines="3" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/Bio/Seq.py">
@@ -992,35 +1103,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="396">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nvariant/output/sfvt_flu-test.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nvariant/output/variant_types.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="2" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
+    <entry file="file://$PROJECT_DIR$/nvariant/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/nvariant_tutorial.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nvariant/output/variant_types.csv">
       <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state>
+          <caret selection-end-line="6" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" rowLines="3" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_check_reference_positions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="48" column="1" lean-forward="true" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="288" column="21" selection-start-line="288" selection-start-column="21" selection-end-line="288" selection-end-column="21" />
+        <state relative-caret-position="287">
+          <caret line="295" column="24" selection-start-line="295" selection-start-column="24" selection-end-line="295" selection-end-column="24" />
         </state>
       </provider>
     </entry>

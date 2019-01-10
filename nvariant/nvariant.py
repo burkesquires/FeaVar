@@ -119,14 +119,14 @@ def correct_index_dict(ref_seq) -> dict:
     return corrected_index
 
 
-def adjust_positions_for_insertions(positions, ref_seq) -> list:
+def adjust_positions_for_insertions(ref_seq: str, positions: list) -> list:
     """
     Takes a string argument of positions and the aligned reference sequence and
     corrects the sequence feature positions for any insertions in the reference sequence.
 
     Parameters
     ----------
-    positions : string
+    positions : list
         The positions of the reference sequence to assemble a sequence feature from.
 
     ref_seq : string
@@ -146,17 +146,23 @@ def adjust_positions_for_insertions(positions, ref_seq) -> list:
 
     # get positions of all dashes in the reference sequence [0, 1, 5, 6, 10,16]
 
-    if positions is not None:
+    if positions:
 
-        corrected_indices = correct_index_dict(ref_seq)
+        if ref_seq:
 
-        corrected_positions = []
+            corrected_indices = correct_index_dict(ref_seq)
 
-        for position in positions:
+            corrected_positions = []
 
-            corrected_positions.append(corrected_indices[position])
+            for position in positions:
 
-        return corrected_positions
+                corrected_positions.append(corrected_indices[position])
+
+            return corrected_positions
+
+        else:
+
+            print("No reference sequence found.")
 
     else:
 
@@ -213,13 +219,17 @@ def confirm_seq_feature_in_ref(reference_sequence: str, sequence_feature_positio
 
     test = True
 
-    length = len(reference_sequence)
+    raw_sequence = reference_sequence.replace("-", "")
+
+    length = len(raw_sequence)
 
     for position in sequence_feature_positions:
+
         if position > length:
+
             test = False
 
-    logging.debug("confirm seq feature in reference tests result: %s" % test)
+    logging.debug('Confirm seq feature in reference tests result: {}'.format(test))
 
     return test
 
@@ -262,8 +272,7 @@ def check_reference_positions(reference_sequence: str, positions: list) -> bool:
 
 def parse_filepath(file_path: str) -> str:
     """
-    Parses a file path, file name and extension. The conventions used follow a
-    PHP convention (apparently).
+    Parses a file path, file name and extension. The conventions used follow a PHP convention (apparently).
 
         /path/to/file.zip     # path
         /path/to              # dirname
@@ -277,6 +286,9 @@ def parse_filepath(file_path: str) -> str:
         The input relative or full path of a file
     """
     import os.path
+
+
+
 
     if os.path.exists(file_path):
 
@@ -410,21 +422,27 @@ def main(arguments):
     ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier,
                                                                              arguments.alignment)
 
-    logging.info("Reference sequence tests result: %s" % ref_seq_in_alignment)
-    logging.info("Positions : %s" % arguments.positions)
+    logging.info("Reference sequence tests result: {}".format(ref_seq_in_alignment))
+    logging.info("Positions : {}".format(arguments.positions))
 
-    parsed_positions = parse_position_input(arguments.positions)
+    if ref_seq_in_alignment:
 
-    corrected_positions = adjust_positions_for_insertions(parsed_positions, reference_sequence)
+        seq_fea_in_ref_seq = confirm_seq_feature_in_ref(reference_sequence, arguments.positions)
 
-    logging.info("Corrected positions: %s" % corrected_positions)
+        if seq_fea_in_ref_seq:
 
-    checked_positions = check_reference_positions(reference_sequence, corrected_positions)
+            parsed_positions = parse_position_input(arguments.positions)
 
-    rules = [len(corrected_positions) > 0,
-             confirm_seq_feature_in_ref(reference_sequence, corrected_positions) is True,
-             ref_seq_in_alignment is True,
-             checked_positions is True]
+            corrected_positions = adjust_positions_for_insertions(reference_sequence, parsed_positions)
+
+            logging.info("Corrected positions: %s" % corrected_positions)
+
+            checked_positions = check_reference_positions(reference_sequence, corrected_positions)
+
+    rules = [ref_seq_in_alignment,
+             seq_fea_in_ref_seq,
+             len(corrected_positions) > 0,
+             checked_positions]
 
     if all(rules):
 
