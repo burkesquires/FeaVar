@@ -8,7 +8,7 @@ creates plots for each different type of metadata given.
 """
 
 __author__ = 'R. Burke Squires'
-__copyright__ = "Copyright 2018"
+__copyright__ = "Copyright 2019"
 __credits__ = ["Carolyn Komatsoulis"]
 __license__ = "MIT"
 __version__ = "1.0.1"
@@ -22,9 +22,8 @@ __status__ = "Beta"
 
 def parse_position_input(raw_positions: str) -> list:
     """
-    Takes a string argument of positions and splits it out into individual
-    start and stop positions. The positions can be one or more columns or
-    integers and linear or non-linear.
+    Takes a string argument of positions and splits it out into individual start and stop positions.
+    The positions can be one or more columns or integers and linear or non-linear.
 
     Args:
         raw_positions : The raw positions of the reference sequence to assemble a sequence feature from.
@@ -64,7 +63,7 @@ def parse_position_input(raw_positions: str) -> list:
 
 def create_index_offset_list(ref_seq) -> list:
     """
-    Adjust the indicies of the reference sequence if necessary.
+    Adjust the indices of the reference sequence if necessary.
 
     Args:
         ref_seq : The reference sequence as an alignment, with possible upstream dashes.
@@ -74,7 +73,7 @@ def create_index_offset_list(ref_seq) -> list:
 
     """
 
-    logging.debug("create_index_offset_list ref_seq: " + ref_seq)
+    logging.debug("create_index_offset_list ref_seq: {0}".format(ref_seq))
 
     seq_length = len(ref_seq)
 
@@ -89,17 +88,20 @@ def create_index_offset_list(ref_seq) -> list:
         for idx in range(dash_idx, seq_length):
             index_correction_factor[idx] += 1
 
-    logging.debug("create_index_offset_list index_correction_factor: " + str(index_correction_factor))
+    logging.debug("create_index_offset_list index_correction_factor: {0}".format(str(index_correction_factor)))
 
     return index_correction_factor
 
 
-def correct_index_dict(ref_seq) -> dict:
+def correct_index_dict(ref_seq: str) -> dict:
     """
+    Create a dictionary of corrected position for each position in a sequence
 
+    Args:
+        ref_seq : The reference sequence as an alignment, with possible upstream dashes.
 
-    :param ref_seq:
-    :return:
+    Returns:
+        A dictionary of original positions to new positions.
     """
     corrected_index = {}
 
@@ -141,8 +143,6 @@ def adjust_positions_for_insertions(ref_seq: str, positions: list) -> list:
     # Positions [12345678901234567]
     # Output    [   45  89   13,14]
     # dashes    [0, 1, 5, 6, 10, 17]
-
-    # TODO: check to see if there are any other characters?, like a period or substitute characters
 
     # get positions of all dashes in the reference sequence [0, 1, 5, 6, 10,16]
 
@@ -205,8 +205,7 @@ def test_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="c
 
 def confirm_seq_feature_in_ref(reference_sequence: str, sequence_feature_positions: list) -> bool:
     """
-    Tests to see if the sequence feature positions can be found in the
-    reference sequence.
+    Tests to see if the sequence feature positions can be found in the reference sequence.
 
     Parameters
     ----------
@@ -279,7 +278,9 @@ def import_metadata(file_path):
     file_path : string
         The file path of the metadata file to be imported.
     """
+
     df_metadata = pd.read_table(file_path)  # , skiprows=[0,1,2], header=0)?
+
     df_metadata.to_csv(os.path.join(output_dir, "df_metadata.csv"))
 
     return df_metadata
@@ -304,17 +305,16 @@ def count_seqs_per_variant_type(dataframe, file_path):
     file_path : string
         The file path of the output file to be saved.
     """
-    df_by_variant_type = pd.DataFrame({'count': dataframe.groupby(
-        ["variant_type"]).size()}).reset_index()
+    df_by_variant_type = pd.DataFrame({'count': dataframe.groupby(["variant_type"]).size()}).reset_index()
     df_by_variant_type.sort_values('count', ascending=False, inplace=True)
 
     row_length = len(df_by_variant_type)
     df_by_variant_type["VT"] = [vt_count(i) for i in range(1, row_length + 1)]
     df_by_variant_type.reindex(index=["VT"])
 
-    df_by_variant_type.to_csv(os.path.join(output_dir, "sfvt_%s.csv" % file_path))
+    df_by_variant_type.to_csv(os.path.join(output_dir, "sfvt_{}.csv".format(file_path)))
     report = df_by_variant_type.to_string()
-    logging.info("Sequences per variant type:\n%s" % report)
+    logging.info("Sequences per variant type:\n{}".format(report))
 
     return df_by_variant_type
 
@@ -332,20 +332,20 @@ def plot_variant_type_data(df_all_data, field):
     """
     df_all_data.to_csv(os.path.join(output_dir, "df_by_field.csv"))
     df_by_one_field = df_all_data.groupby(['VT', field]).size()
-    df_by_one_field.to_csv("df_by_%s.csv" % field)
+    df_by_one_field.to_csv("df_by_{}.csv".format(field))
 
     unpacked = df_by_one_field.unstack(level=1)
     plot = unpacked.plot(kind='bar', subplots=False)
     fig = plot.get_figure()
-    fig.savefig("sfvt_%s.svg" % field)
+    fig.savefig("sfvt_{}.svg".format(field))
 
     plot = unpacked.plot(kind='bar', stacked=True, subplots=False)
     fig = plot.get_figure()
     fig.set_size_inches(18.5, 10.5)
-    fig.savefig(os.path.join(output_dir, "sfvt_stacked_%s.svg" % field), dpi=100)
+    fig.savefig(os.path.join(output_dir, "sfvt_stacked_{}.svg".format(field)), dpi=100)
 
 
-def select_vts_to_plot(df, count):
+def select_var_types_to_plot(df, count):
     """
     Selects top variant for plotting
 
@@ -355,13 +355,13 @@ def select_vts_to_plot(df, count):
     return df_selected
 
 
-def set_output_directory(output_dir, output_file_name):
+def set_output_directory(output_dir_path, output_file_name):
     """
     Create an OS independent path for output
 
     Parameters
     ----------
-    output_dir : string
+    output_dir_path : string
         The directory to save output in
 
     output_file_name : string
@@ -370,9 +370,67 @@ def set_output_directory(output_dir, output_file_name):
 
     import os
 
-    dir_name = os.path.dirname(output_dir)
+    dir_name = os.path.dirname(output_dir_path)
 
     return os.path.join(dir_name, output_file_name)
+
+
+def process_metadata(arguments, df_by_variant_type, df_starter):
+
+    df_metadata = import_metadata(arguments.metadata_file)
+    df_all_data = pd.merge(df_starter, df_metadata, on='accession', how='outer')
+    if arguments.loglevel == 'debug':
+        df_all_data.to_csv(os.path.join(output_dir, "df_all_data.csv"))
+    df_all_data_with_variant_type = pd.merge(df_all_data,
+                                             df_by_variant_type,
+                                             on='variant_type',
+                                             how='outer')
+    df_file_name = "df_all_data_with_variant_type.csv"
+    df_all_data_with_variant_type.to_csv(os.path.join(output_dir, df_file_name))
+    # for large dataframes select the top X rows
+    df_top = select_var_types_to_plot(df_all_data_with_variant_type, arguments.top)
+    if arguments.loglevel == 'debug':
+        df_top.to_csv(os.path.join(output_dir, "df_top.csv"), index=False)
+    columns = list(df_all_data.columns)
+    logging.debug("The columns in the {} dataframe are: {}".format("df_all_data", columns))
+    variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
+    logging.debug("The variant types are: {}".format(variant_types))
+    for field in columns[2:]:
+        logging.info("Now plotting graph for: {}".format(field))
+        plot_variant_type_data(df_top, field)
+
+
+def pre_flight_check(arguments):
+    """
+
+    :param arguments:
+    :return:
+    """
+
+    ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier,
+                                                                             arguments.alignment)
+    logging.info("Reference sequence tests result: {}".format(ref_seq_in_alignment))
+    logging.info("Positions : {}".format(arguments.positions))
+
+    if ref_seq_in_alignment:
+        logging.info("raw positions: {}".format(arguments.positions))
+
+        parsed_positions = parse_position_input(arguments.positions)
+
+        logging.info("parsed_positions: {}".format(parsed_positions))
+
+        corrected_positions = adjust_positions_for_insertions(reference_sequence, parsed_positions)
+
+        logging.info("Corrected positions: {}".format(corrected_positions))
+
+        checked_positions = check_reference_positions(reference_sequence, corrected_positions)
+
+    rules = [ref_seq_in_alignment,
+             confirm_seq_feature_in_ref(reference_sequence, parsed_positions),
+             len(corrected_positions) > 0,
+             checked_positions]
+
+    return corrected_positions, rules
 
 
 def main(arguments):
@@ -383,90 +441,71 @@ def main(arguments):
 
     # TODO add report of algorithm version, results, etc; look at importing pandas-html I think
 
-    ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier,
-                                                                             arguments.alignment)
-
-    logging.info("Reference sequence tests result: {}".format(ref_seq_in_alignment))
-    logging.info("Positions : {}".format(arguments.positions))
-
-    if ref_seq_in_alignment:
-
-        parsed_positions = parse_position_input(arguments.positions)
-
-        seq_fea_in_ref_seq = confirm_seq_feature_in_ref(reference_sequence, parsed_positions)
-
-        corrected_positions = adjust_positions_for_insertions(reference_sequence, parsed_positions)
-
-        logging.info("Corrected positions: %s" % corrected_positions)
-
-        checked_positions = check_reference_positions(reference_sequence, corrected_positions)
-
-    rules = [ref_seq_in_alignment,
-             seq_fea_in_ref_seq,
-             len(corrected_positions) > 0,
-             checked_positions]
+    corrected_positions, rules = pre_flight_check(arguments)
 
     if all(rules):
 
-        # read in multiple sequence alignment
-        alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
+        try:
 
-        variants = []
-        for record in alignment:
-            sequence = record.seq
-            sequence_feature_temp = ''.join([sequence[index] for index in corrected_positions])
-            variants.append([record.id, sequence_feature_temp])
-            # logging.debug(sequence_feature_temp)
+            alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
 
-        dir_name, file_name = os.path.split(arguments.alignment)
+            variants = []
+            for record in alignment:
+                sequence = record.seq
+                sequence_feature_temp = ''.join([sequence[index] for index in corrected_positions])
+                variants.append([record.id, sequence_feature_temp])
+                # logging.debug(sequence_feature_temp)
 
-        headers = ['accession', 'variant_type']
-        df_starter = pd.DataFrame(variants, columns=headers)
-        if arguments.loglevel == 'debug':
-            df_starter.to_csv(os.path.join(output_dir, 'df_accession_index.csv'))
+            dir_name, file_name = os.path.split(arguments.alignment)
 
-        df_by_variant_type = count_seqs_per_variant_type(df_starter, file_name)
-        df_by_variant_type.to_csv(os.path.join(output_dir, "variant_types.csv"))
+            headers = ['accession', 'variant_type']
+            df_starter = pd.DataFrame(variants, columns=headers)
+
+            if arguments.loglevel == 'debug':
+                df_starter.to_csv(os.path.join(output_dir, 'df_accession_index.csv'))
+
+            df_by_variant_type = count_seqs_per_variant_type(df_starter, file_name)
+            df_by_variant_type.to_csv(os.path.join(output_dir, "variant_types.csv"))
+
+        except OSError as err:
+
+            print("OS error: {0}".format(err))
+
+        except ValueError:
+
+            print("Could not load or read alignment.")
+
+        except:
+
+            print("Unexpected error:", sys.exc_info()[0])
+
+            raise
+
 
         if arguments.metadata_file is not None:
 
-            logging.debug("Metadata file is present at: %s" %
-                          arguments.metadata_file)
+            import sys
 
-            df_metadata = import_metadata(arguments.metadata_file)
-            df_all_data = pd.merge(df_starter, df_metadata, on='accession',
-                                   how='outer')
+            try:
 
-            if arguments.loglevel == 'debug':
-                df_all_data.to_csv(os.path.join(output_dir, "df_all_data.csv"))
+                logging.debug("Metadata file is present at: {}".format(arguments.metadata_file))
 
-            df_all_data_with_variant_type = pd.merge(df_all_data,
-                                                     df_by_variant_type,
-                                                     on='variant_type',
-                                                     how='outer')
-            df_file_name = "df_all_data_with_variant_type.csv"
-            df_all_data_with_variant_type.to_csv(os.path.join(output_dir, df_file_name))
+                process_metadata(arguments, df_by_variant_type, df_starter)
 
-            # for large dataframes select the top X rows
-            df_top = select_vts_to_plot(df_all_data_with_variant_type,
-                                        arguments.top)
-            if arguments.loglevel == 'debug':
-                df_top.to_csv(os.path.join(output_dir, "df_top.csv"), index=False)
+            except OSError as err:
+                print("OS error: {0}".format(err))
 
-            columns = list(df_all_data.columns)
-            logging.debug("The columns in the %s dataframe are: %s" %
-                          ("df_all_data", columns))
+            except ValueError:
+                print("Could not convert data to an integer.")
 
-            variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
-            logging.debug("The variant types are: %s" % variant_types)
+            except:
+                print("Unexpected error:", sys.exc_info()[0])
+                raise
 
-            for field in columns[2:]:
-
-                logging.info("Now plotting graph for: %s" % field)
-                plot_variant_type_data(df_top, field)
 
     else:
-        logging.error("No reference identifier found: %s" % arguments.reference_identifier)
+        logging.error("No reference identifier found: {}".format(arguments.reference_identifier))
+
 
 
 if __name__ == "__main__":
@@ -477,6 +516,7 @@ if __name__ == "__main__":
     import argparse
     from Bio import AlignIO
     import pandas as pd
+    import sys
 
     PARSER = argparse.ArgumentParser()
     PARSER.add_argument('-a', "--alignment",
@@ -520,9 +560,6 @@ if __name__ == "__main__":
                              "(info, debug, error; default=info).")
     ARGS = PARSER.parse_args()
 
-    # TODO: Is it better to have one log and append to it with date and time or have a log for each day or run?
-    import os
-
     cwd = os.getcwd()
     log_directory = os.path.join(cwd, "logs")
     if not os.path.exists(log_directory):
@@ -533,15 +570,16 @@ if __name__ == "__main__":
         os.makedirs(output_dir)
 
     D = datetime.date.today()
-    f_handler = logging.FileHandler('%s/%s.log' % (log_directory, D.isoformat()))
+    log_file_path = os.path.join(log_directory, '{}.log'.format(D.isoformat()))
+    f_handler = logging.FileHandler(log_file_path)
     # logging.basicConfig(stream=sys.stdout, level=ARGS.loglevel.upper())
     logging.basicConfig(level=ARGS.loglevel.upper(),
                         format='%(name)s - %(levelname)s - %(message)s',
                         datefmt='%m-%d %H:%M',
-                        filename=os.path.join(log_directory, '%s.log' % D.isoformat()),
+                        filename=os.path.join(log_directory, '{}.log'.format(D.isoformat())),
                         filemode='w')
     logging.info("Logging started")
-    logging.debug("Arguments:" + str(ARGS))
+    logging.debug("Arguments:{0}".format(str(ARGS)))
 
     # Create a custom logger
     logger = logging.getLogger(__name__)

@@ -35,7 +35,8 @@ class TestParsePositionInput(TestCase):
             unsorted_positions = '10, 32, 21, 43'
             assert parse_position_input(unsorted_positions) == [10, 21, 32, 43]
 
-        # TODO: Test if a period was actually typed instead of a comma
+        def test_parse_position_with_period():
+            assert parse_position_input('10. 32. 21. 43') is None
 
         def test_parse_position_input_fail_empty_string():
             assert parse_position_input("") is None
