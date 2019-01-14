@@ -17,6 +17,9 @@ __maintainer__ = "R. Burke Squires"
 __email__ = "burkesquires (at) gmail.com"
 __status__ = "Beta"
 
+import pandas
+from Bio import AlignIO
+
 # TODO Add ability to use native IEDB format (H25, H45, V46, N47, L496, S306, L307, P308, T333;
 # B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400
 
@@ -156,7 +159,6 @@ def adjust_positions_for_insertions(ref_seq: str, positions: list) -> list:
             corrected_positions = []
 
             for position in positions:
-
                 corrected_positions.append(corrected_indices[position])
 
             return corrected_positions
@@ -186,7 +188,6 @@ def check_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="
     msa_format : string
         The msa_format of the alignment, default is clustal
     """
-    from Bio import AlignIO
 
     reference_sequence = ""
 
@@ -197,7 +198,6 @@ def check_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="
         for record in alignment:
 
             if reference_identifier in record.id:
-
                 test = True
                 reference_sequence = str(record.seq)
 
@@ -226,7 +226,6 @@ def confirm_seq_feature_in_ref(reference_sequence: str, sequence_feature_positio
     for position in sequence_feature_positions:
 
         if position > length:
-
             test = False
 
     logging.debug('Confirm seq feature in reference tests result: {}'.format(test))
@@ -260,7 +259,6 @@ def check_reference_positions(reference_sequence: str, positions: list) -> bool:
         for position in positions:
 
             if reference_sequence[position - 1] == "-":
-
                 test = False
 
         return test
@@ -270,17 +268,18 @@ def check_reference_positions(reference_sequence: str, positions: list) -> bool:
         return False
 
 
-def import_metadata(file_path):
+def import_metadata(metadata_file_path: str) -> pandas.DataFrame:
     """
     Import delimited file with metadata for each sequence by accession number
 
     Parameters
     ----------
-    file_path : string
+    metadata_file_path : string
         The file path of the metadata file to be imported.
     """
+    import pandas
 
-    df_metadata = pd.read_table(file_path)  # , skiprows=[0,1,2], header=0)?
+    df_metadata = pandas.read_table(metadata_file_path)  # , skiprows=[0,1,2], header=0)?
 
     df_metadata.to_csv(os.path.join(output_dir, "df_metadata.csv"))
 
@@ -288,13 +287,12 @@ def import_metadata(file_path):
 
 
 def vt_count(i):
-
     vt_id = "VT-%03d" % (i,)
 
     return vt_id
 
 
-def count_seqs_per_variant_type(dataframe, file_path):
+def count_seqs_per_variant_type(dataframe: pandas.DataFrame, file_path) ->pandas.DataFrame:
     """
     Counts sequences per variant type
 
@@ -306,9 +304,9 @@ def count_seqs_per_variant_type(dataframe, file_path):
     file_path : string
         The file path of the output file to be saved.
     """
-    import pandas as pd
-    
-    df_by_variant_type = pd.DataFrame({'count': dataframe.groupby(["variant_type"]).size()}).reset_index()
+    import pandas
+
+    df_by_variant_type = pandas.DataFrame({'count': dataframe.groupby(["variant_type"]).size()}).reset_index()
     df_by_variant_type.sort_values('count', ascending=False, inplace=True)
 
     row_length = len(df_by_variant_type)
@@ -322,7 +320,7 @@ def count_seqs_per_variant_type(dataframe, file_path):
     return df_by_variant_type
 
 
-def plot_variant_type_data(df_all_data, field):
+def plot_variant_type_data(df_all_data: pandas.DataFrame, field: str):
     """
 
     Parameters
@@ -348,17 +346,18 @@ def plot_variant_type_data(df_all_data, field):
     fig.savefig(os.path.join(output_dir, "sfvt_stacked_{}.svg".format(field)), dpi=100)
 
 
-def select_var_types_to_plot(df, count):
+def select_var_types_to_plot(df: pandas.DataFrame, count: int) -> pandas.DataFrame:
     """
     Selects top variant for plotting
 
     """
+
     vts_to_select = ["VT-%03d" % i for i in range(count)]
     df_selected = df[df['VT'].isin(vts_to_select)]
     return df_selected
 
 
-def set_output_directory(output_dir_path, output_file_name):
+def set_output_directory(output_dir_path: str, output_file_name: str) -> str:
     """
     Create an OS independent path for output
 
@@ -386,6 +385,8 @@ def pre_flight_check(arguments):
     """
 
     logging.info("Pre-flight starting.")
+
+    global checked_positions, parsed_positions, corrected_positions
 
     ref_seq_in_alignment, reference_sequence = check_for_ref_seq_in_alignment(arguments.reference_identifier,
                                                                               arguments.alignment)
@@ -418,28 +419,33 @@ def pre_flight_check(arguments):
     return corrected_positions, rules
 
 
-def compute_variant_types(arguments, corrected_positions):
+def compute_variant_types(alignment_file_path: str, alignment_format: str, vt_positions: list, log_level: str) -> pandas.DataFrame:
+    """
 
-    from Bio import AlignIO
-    import pandas as pd
+    :param alignment_file_path:
+    :param alignment_format:
+    :param vt_positions:
+    :param log_level:
+    :return:
+    """
+    global df_starter, df_by_variant_type
 
     try:
 
-        alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
+        alignment = AlignIO.read(alignment_file_path, alignment_format)
 
         variants = []
         for record in alignment:
             sequence = record.seq
-            sequence_feature_temp = ''.join([sequence[index] for index in corrected_positions])
+            sequence_feature_temp = ''.join([sequence[index] for index in vt_positions])
             variants.append([record.id, sequence_feature_temp])
-            # logging.debug(sequence_feature_temp)
 
-        dir_name, file_name = os.path.split(arguments.alignment)
+        dir_name, file_name = os.path.split(alignment_file_path)
 
         headers = ['accession', 'variant_type']
-        df_starter = pd.DataFrame(variants, columns=headers)
+        df_starter = pandas.DataFrame(variants, columns=headers)
 
-        if arguments.loglevel == 'debug':
+        if log_level == 'debug':
             df_starter.to_csv(os.path.join(output_dir, 'df_accession_index.csv'))
 
         df_by_variant_type = count_seqs_per_variant_type(df_starter, file_name)
@@ -462,9 +468,17 @@ def compute_variant_types(arguments, corrected_positions):
     return df_by_variant_type, df_starter
 
 
-def process_metadata(metadata_file, df_by_variant_type, df_starter, no_of_vt_to_plot, loglevel):
+def process_metadata(metadata_file, df_by_variant_type, df_starter, no_of_vt_to_plot, log_level):
+    """
 
-    import pandas as pd
+    :param metadata_file: 
+    :param df_by_variant_type: 
+    :param df_starter: 
+    :param no_of_vt_to_plot: 
+    :param log_level: 
+    :return: 
+    """
+    import pandas
     import sys
 
     try:
@@ -472,15 +486,15 @@ def process_metadata(metadata_file, df_by_variant_type, df_starter, no_of_vt_to_
         logging.debug("Metadata file is present at: {}".format(metadata_file))
 
         df_metadata = import_metadata(metadata_file)
-        df_all_data = pd.merge(df_starter, df_metadata, on='accession', how='outer')
+        df_all_data = pandas.merge(df_starter, df_metadata, on='accession', how='outer')
 
-        if loglevel == 'debug':
+        if log_level == 'debug':
             df_all_data.to_csv(os.path.join(output_dir, "df_all_data.csv"))
 
-        df_all_data_with_variant_type = pd.merge(df_all_data,
-                                                 df_by_variant_type,
-                                                 on='variant_type',
-                                                 how='outer')
+        df_all_data_with_variant_type = pandas.merge(df_all_data,
+                                                     df_by_variant_type,
+                                                     on='variant_type',
+                                                     how='outer')
 
         df_file_name = "df_all_data_with_variant_type.csv"
         df_all_data_with_variant_type.to_csv(os.path.join(output_dir, df_file_name))
@@ -488,14 +502,14 @@ def process_metadata(metadata_file, df_by_variant_type, df_starter, no_of_vt_to_
         # for large dataframes select the top X rows
         df_top = select_var_types_to_plot(df_all_data_with_variant_type, no_of_vt_to_plot)
 
-        if loglevel == 'debug':
+        if log_level == 'debug':
             df_top.to_csv(os.path.join(output_dir, "df_top.csv"), index=False)
 
         columns = list(df_all_data.columns)
 
         logging.debug("The columns in the {} dataframe are: {}".format("df_all_data", columns))
 
-        variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
+        variant_types = list(pandas.unique(df_all_data.variant_type.ravel()))
 
         logging.debug("The variant types are: {}".format(variant_types))
 
@@ -526,11 +540,13 @@ def main(arguments):
 
     if all(rules):
 
-        df_by_variant_type, df_starter = compute_variant_types(arguments, corrected_positions)
+        df_by_variant_type, df_starter = compute_variant_types(arguments.alignment,
+                                                               arguments.alignment_format,
+                                                               corrected_positions,
+                                                               arguments.log_level)
 
         if arguments.metadata_file is not None:
-
-            process_metadata(arguments.metadata_file, df_by_variant_type, df_starter, arguments.top, arguments.loglevel)
+            process_metadata(arguments.metadata_file, df_by_variant_type, df_starter, arguments.top, arguments.log_level)
 
 
 if __name__ == "__main__":
@@ -539,6 +555,7 @@ if __name__ == "__main__":
     import logging
     import datetime
     import argparse
+    import pandas
     import sys
 
     PARSER = argparse.ArgumentParser()
@@ -576,7 +593,7 @@ if __name__ == "__main__":
                         type=str,
                         default=10,
                         help="The number (top) of variant types to plot (default=10).")
-    PARSER.add_argument("-log", "--loglevel",
+    PARSER.add_argument("-log", "--log_level",
                         required=False,
                         default="debug",
                         help="What level of logging would you like to see? "
@@ -595,8 +612,8 @@ if __name__ == "__main__":
     D = datetime.date.today()
     log_file_path = os.path.join(log_directory, '{}.log'.format(D.isoformat()))
     f_handler = logging.FileHandler(log_file_path)
-    # logging.basicConfig(stream=sys.stdout, level=ARGS.loglevel.upper())
-    logging.basicConfig(level=ARGS.loglevel.upper(),
+    # logging.basicConfig(stream=sys.stdout, level=ARGS.log_level.upper())
+    logging.basicConfig(level=ARGS.log_level.upper(),
                         format='%(name)s - %(levelname)s - %(message)s',
                         datefmt='%m-%d %H:%M',
                         filename=os.path.join(log_directory, '{}.log'.format(D.isoformat())),
