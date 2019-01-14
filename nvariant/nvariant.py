@@ -306,6 +306,8 @@ def count_seqs_per_variant_type(dataframe, file_path):
     file_path : string
         The file path of the output file to be saved.
     """
+    import pandas as pd
+    
     df_by_variant_type = pd.DataFrame({'count': dataframe.groupby(["variant_type"]).size()}).reset_index()
     df_by_variant_type.sort_values('count', ascending=False, inplace=True)
 
@@ -418,6 +420,9 @@ def pre_flight_check(arguments):
 
 def compute_variant_types(arguments, corrected_positions):
 
+    from Bio import AlignIO
+    import pandas as pd
+
     try:
 
         alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
@@ -459,6 +464,7 @@ def compute_variant_types(arguments, corrected_positions):
 
 def process_metadata(metadata_file, df_by_variant_type, df_starter, no_of_vt_to_plot, loglevel):
 
+    import pandas as pd
     import sys
 
     try:
@@ -533,8 +539,6 @@ if __name__ == "__main__":
     import logging
     import datetime
     import argparse
-    from Bio import AlignIO
-    import pandas as pd
     import sys
 
     PARSER = argparse.ArgumentParser()
