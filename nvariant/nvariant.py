@@ -34,7 +34,7 @@ def parse_position_input(raw_positions: str) -> list:
 
     """
 
-    logging.debug("parse_position_input raw positions: " + raw_positions)
+    logging.debug("parse_position_input raw positions: {0}".format(raw_positions))
 
     position_coordinates = []
 
@@ -376,47 +376,6 @@ def set_output_directory(output_dir_path, output_file_name):
     return os.path.join(dir_name, output_file_name)
 
 
-def process_metadata(metadata_file, df_by_variant_type, df_starter, loglevel):
-
-    import sys
-
-    try:
-
-        logging.debug("Metadata file is present at: {}".format(metadata_file))
-
-        df_metadata = import_metadata(metadata_file)
-        df_all_data = pd.merge(df_starter, df_metadata, on='accession', how='outer')
-        if loglevel == 'debug':
-            df_all_data.to_csv(os.path.join(output_dir, "df_all_data.csv"))
-        df_all_data_with_variant_type = pd.merge(df_all_data,
-                                                 df_by_variant_type,
-                                                 on='variant_type',
-                                                 how='outer')
-        df_file_name = "df_all_data_with_variant_type.csv"
-        df_all_data_with_variant_type.to_csv(os.path.join(output_dir, df_file_name))
-        # for large dataframes select the top X rows
-        df_top = select_var_types_to_plot(df_all_data_with_variant_type, arguments.top)
-        if loglevel == 'debug':
-            df_top.to_csv(os.path.join(output_dir, "df_top.csv"), index=False)
-        columns = list(df_all_data.columns)
-        logging.debug("The columns in the {} dataframe are: {}".format("df_all_data", columns))
-        variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
-        logging.debug("The variant types are: {}".format(variant_types))
-        for field in columns[2:]:
-            logging.info("Now plotting graph for: {}".format(field))
-            plot_variant_type_data(df_top, field)
-
-    except OSError as err:
-        print("OS error: {0}".format(err))
-
-    except ValueError:
-        print("Could not convert data to an integer.")
-
-    except:
-        print("Unexpected error:", sys.exc_info()[0])
-        raise
-
-
 def pre_flight_check(arguments):
     """
 
@@ -428,12 +387,10 @@ def pre_flight_check(arguments):
 
     ref_seq_in_alignment, reference_sequence = check_for_ref_seq_in_alignment(arguments.reference_identifier,
                                                                               arguments.alignment)
-    logging.info("Reference sequence tests result: {}".format(ref_seq_in_alignment))
-    logging.info("Positions : {}".format(arguments.positions))
 
     if ref_seq_in_alignment:
 
-        logging.info("raw positions: {}".format(arguments.positions))
+        logging.info("Reference sequence found in alignment: {}".format(arguments.reference_identifier))
 
         parsed_positions = parse_position_input(arguments.positions)
 
@@ -453,6 +410,8 @@ def pre_flight_check(arguments):
              confirm_seq_feature_in_ref(reference_sequence, parsed_positions),
              len(corrected_positions) > 0,
              checked_positions]
+
+    print("Analysis complete.")
 
     return corrected_positions, rules
 
@@ -498,6 +457,57 @@ def compute_variant_types(arguments, corrected_positions):
     return df_by_variant_type, df_starter
 
 
+def process_metadata(metadata_file, df_by_variant_type, df_starter, no_of_vt_to_plot, loglevel):
+
+    import sys
+
+    try:
+
+        logging.debug("Metadata file is present at: {}".format(metadata_file))
+
+        df_metadata = import_metadata(metadata_file)
+        df_all_data = pd.merge(df_starter, df_metadata, on='accession', how='outer')
+
+        if loglevel == 'debug':
+            df_all_data.to_csv(os.path.join(output_dir, "df_all_data.csv"))
+
+        df_all_data_with_variant_type = pd.merge(df_all_data,
+                                                 df_by_variant_type,
+                                                 on='variant_type',
+                                                 how='outer')
+
+        df_file_name = "df_all_data_with_variant_type.csv"
+        df_all_data_with_variant_type.to_csv(os.path.join(output_dir, df_file_name))
+
+        # for large dataframes select the top X rows
+        df_top = select_var_types_to_plot(df_all_data_with_variant_type, no_of_vt_to_plot)
+
+        if loglevel == 'debug':
+            df_top.to_csv(os.path.join(output_dir, "df_top.csv"), index=False)
+
+        columns = list(df_all_data.columns)
+
+        logging.debug("The columns in the {} dataframe are: {}".format("df_all_data", columns))
+
+        variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
+
+        logging.debug("The variant types are: {}".format(variant_types))
+
+        for field in columns[2:]:
+            logging.info("Now plotting graph for: {}".format(field))
+            plot_variant_type_data(df_top, field)
+
+    except OSError as err:
+        print("OS error: {0}".format(err))
+
+    except ValueError:
+        print("Could not convert data to an integer.")
+
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+        raise
+
+
 def main(arguments):
     """
     Main method for the sequence feature variant type python script
@@ -514,7 +524,7 @@ def main(arguments):
 
         if arguments.metadata_file is not None:
 
-            process_metadata(arguments.metadata_file, df_by_variant_type, df_starter, arguments.loglevel)
+            process_metadata(arguments.metadata_file, df_by_variant_type, df_starter, arguments.top, arguments.loglevel)
 
 
 if __name__ == "__main__":
