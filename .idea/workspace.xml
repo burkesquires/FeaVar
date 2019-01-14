@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="Fixed list of integers">
+    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="moved initial checks to a pre flight function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pytest_cache/v/cache/lastfailed" beforeDir="false" afterPath="$PROJECT_DIR$/.pytest_cache/v/cache/lastfailed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pytest_cache/v/cache/nodeids" beforeDir="false" afterPath="$PROJECT_DIR$/.pytest_cache/v/cache/nodeids" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nvariant/nvariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/nvariant/nvariant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_parse_position_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_parse_position_input.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="434" lean-forward="true" selection-start-line="434" selection-end-line="434" />
+            <state relative-caret-position="372">
+              <caret line="428" column="59" selection-start-line="428" selection-start-column="59" selection-end-line="428" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -115,60 +116,16 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-551" />
-    <option name="y" value="-1417" />
-    <option name="width" value="2548" />
-    <option name="height" value="1406" />
+    <option name="x" value="-122" />
+    <option name="y" value="-1177" />
+    <option name="width" value="1680" />
+    <option name="height" value="1023" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nvariant" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nvariant" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Course" />
     </panes>
   </component>
@@ -546,7 +503,7 @@
       <workItem from="1546890340365" duration="4447000" />
       <workItem from="1547052223819" duration="17198000" />
       <workItem from="1547226026612" duration="532000" />
-      <workItem from="1547226693374" duration="2553000" />
+      <workItem from="1547226693374" duration="6549000" />
     </task>
     <task id="LOCAL-00003" summary="Started conversion to class; not sure it makes sense">
       <created>1527880608717</created>
@@ -702,7 +659,14 @@
       <option name="project" value="LOCAL" />
       <updated>1547130453634</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="moved initial checks to a pre flight function">
+      <created>1547239919421</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1547239919421</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -738,7 +702,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67762000" />
+    <option name="totallyTimeSpent" value="71758000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -750,7 +714,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-551" y="-1417" width="2548" height="1406" extended-state="0" />
+    <frame x="-122" y="-1177" width="1680" height="1023" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.2002442" />
@@ -758,7 +722,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49692497" weight="0.41519824" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6703567" visible="true" weight="0.17970565" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6703567" weight="0.2555066" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79626864" weight="0.311674" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -829,7 +793,8 @@
     <MESSAGE value="fixed reference length check; removed unnecessary adjustment code" />
     <MESSAGE value="corrected spacing, updating tests" />
     <MESSAGE value="Fixed list of integers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed list of integers" />
+    <MESSAGE value="moved initial checks to a pre flight function" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved initial checks to a pre flight function" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1097,8 +1062,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nvariant/nvariant.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="434" lean-forward="true" selection-start-line="434" selection-end-line="434" />
+        <state relative-caret-position="372">
+          <caret line="428" column="59" selection-start-line="428" selection-start-column="59" selection-end-line="428" selection-end-column="59" />
         </state>
       </provider>
     </entry>

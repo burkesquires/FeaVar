@@ -1,4 +1,5 @@
 #!~/anaconda3/bin python
+
 """
 nvariant
 
@@ -169,7 +170,7 @@ def adjust_positions_for_insertions(ref_seq: str, positions: list) -> list:
         print("No positions to adjust.")
 
 
-def test_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
+def check_for_ref_seq_in_alignment(reference_identifier, alignment, msa_format="clustal"):
     """
     Tests to see if the reference identifier (accession, etc) can be found in
     one of the alignment sequence identifiers.
@@ -375,29 +376,45 @@ def set_output_directory(output_dir_path, output_file_name):
     return os.path.join(dir_name, output_file_name)
 
 
-def process_metadata(arguments, df_by_variant_type, df_starter):
+def process_metadata(metadata_file, df_by_variant_type, df_starter, loglevel):
 
-    df_metadata = import_metadata(arguments.metadata_file)
-    df_all_data = pd.merge(df_starter, df_metadata, on='accession', how='outer')
-    if arguments.loglevel == 'debug':
-        df_all_data.to_csv(os.path.join(output_dir, "df_all_data.csv"))
-    df_all_data_with_variant_type = pd.merge(df_all_data,
-                                             df_by_variant_type,
-                                             on='variant_type',
-                                             how='outer')
-    df_file_name = "df_all_data_with_variant_type.csv"
-    df_all_data_with_variant_type.to_csv(os.path.join(output_dir, df_file_name))
-    # for large dataframes select the top X rows
-    df_top = select_var_types_to_plot(df_all_data_with_variant_type, arguments.top)
-    if arguments.loglevel == 'debug':
-        df_top.to_csv(os.path.join(output_dir, "df_top.csv"), index=False)
-    columns = list(df_all_data.columns)
-    logging.debug("The columns in the {} dataframe are: {}".format("df_all_data", columns))
-    variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
-    logging.debug("The variant types are: {}".format(variant_types))
-    for field in columns[2:]:
-        logging.info("Now plotting graph for: {}".format(field))
-        plot_variant_type_data(df_top, field)
+    import sys
+
+    try:
+
+        logging.debug("Metadata file is present at: {}".format(metadata_file))
+
+        df_metadata = import_metadata(metadata_file)
+        df_all_data = pd.merge(df_starter, df_metadata, on='accession', how='outer')
+        if loglevel == 'debug':
+            df_all_data.to_csv(os.path.join(output_dir, "df_all_data.csv"))
+        df_all_data_with_variant_type = pd.merge(df_all_data,
+                                                 df_by_variant_type,
+                                                 on='variant_type',
+                                                 how='outer')
+        df_file_name = "df_all_data_with_variant_type.csv"
+        df_all_data_with_variant_type.to_csv(os.path.join(output_dir, df_file_name))
+        # for large dataframes select the top X rows
+        df_top = select_var_types_to_plot(df_all_data_with_variant_type, arguments.top)
+        if loglevel == 'debug':
+            df_top.to_csv(os.path.join(output_dir, "df_top.csv"), index=False)
+        columns = list(df_all_data.columns)
+        logging.debug("The columns in the {} dataframe are: {}".format("df_all_data", columns))
+        variant_types = list(pd.unique(df_all_data.variant_type.ravel()))
+        logging.debug("The variant types are: {}".format(variant_types))
+        for field in columns[2:]:
+            logging.info("Now plotting graph for: {}".format(field))
+            plot_variant_type_data(df_top, field)
+
+    except OSError as err:
+        print("OS error: {0}".format(err))
+
+    except ValueError:
+        print("Could not convert data to an integer.")
+
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+        raise
 
 
 def pre_flight_check(arguments):
@@ -407,12 +424,15 @@ def pre_flight_check(arguments):
     :return:
     """
 
-    ref_seq_in_alignment, reference_sequence = test_for_ref_seq_in_alignment(arguments.reference_identifier,
-                                                                             arguments.alignment)
+    logging.info("Pre-flight starting.")
+
+    ref_seq_in_alignment, reference_sequence = check_for_ref_seq_in_alignment(arguments.reference_identifier,
+                                                                              arguments.alignment)
     logging.info("Reference sequence tests result: {}".format(ref_seq_in_alignment))
     logging.info("Positions : {}".format(arguments.positions))
 
     if ref_seq_in_alignment:
+
         logging.info("raw positions: {}".format(arguments.positions))
 
         parsed_positions = parse_position_input(arguments.positions)
@@ -425,12 +445,57 @@ def pre_flight_check(arguments):
 
         checked_positions = check_reference_positions(reference_sequence, corrected_positions)
 
+    else:
+
+        logging.error("No reference identifier found: {}".format(arguments.reference_identifier))
+
     rules = [ref_seq_in_alignment,
              confirm_seq_feature_in_ref(reference_sequence, parsed_positions),
              len(corrected_positions) > 0,
              checked_positions]
 
     return corrected_positions, rules
+
+
+def compute_variant_types(arguments, corrected_positions):
+
+    try:
+
+        alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
+
+        variants = []
+        for record in alignment:
+            sequence = record.seq
+            sequence_feature_temp = ''.join([sequence[index] for index in corrected_positions])
+            variants.append([record.id, sequence_feature_temp])
+            # logging.debug(sequence_feature_temp)
+
+        dir_name, file_name = os.path.split(arguments.alignment)
+
+        headers = ['accession', 'variant_type']
+        df_starter = pd.DataFrame(variants, columns=headers)
+
+        if arguments.loglevel == 'debug':
+            df_starter.to_csv(os.path.join(output_dir, 'df_accession_index.csv'))
+
+        df_by_variant_type = count_seqs_per_variant_type(df_starter, file_name)
+        df_by_variant_type.to_csv(os.path.join(output_dir, "variant_types.csv"))
+
+    except OSError as err:
+
+        print("OS error: {0}".format(err))
+
+    except ValueError:
+
+        print("Could not load or read alignment.")
+
+    except:
+
+        print("Unexpected error:", sys.exc_info()[0])
+
+        raise
+
+    return df_by_variant_type, df_starter
 
 
 def main(arguments):
@@ -445,67 +510,11 @@ def main(arguments):
 
     if all(rules):
 
-        try:
-
-            alignment = AlignIO.read(arguments.alignment, arguments.alignment_format)
-
-            variants = []
-            for record in alignment:
-                sequence = record.seq
-                sequence_feature_temp = ''.join([sequence[index] for index in corrected_positions])
-                variants.append([record.id, sequence_feature_temp])
-                # logging.debug(sequence_feature_temp)
-
-            dir_name, file_name = os.path.split(arguments.alignment)
-
-            headers = ['accession', 'variant_type']
-            df_starter = pd.DataFrame(variants, columns=headers)
-
-            if arguments.loglevel == 'debug':
-                df_starter.to_csv(os.path.join(output_dir, 'df_accession_index.csv'))
-
-            df_by_variant_type = count_seqs_per_variant_type(df_starter, file_name)
-            df_by_variant_type.to_csv(os.path.join(output_dir, "variant_types.csv"))
-
-        except OSError as err:
-
-            print("OS error: {0}".format(err))
-
-        except ValueError:
-
-            print("Could not load or read alignment.")
-
-        except:
-
-            print("Unexpected error:", sys.exc_info()[0])
-
-            raise
-
+        df_by_variant_type, df_starter = compute_variant_types(arguments, corrected_positions)
 
         if arguments.metadata_file is not None:
 
-            import sys
-
-            try:
-
-                logging.debug("Metadata file is present at: {}".format(arguments.metadata_file))
-
-                process_metadata(arguments, df_by_variant_type, df_starter)
-
-            except OSError as err:
-                print("OS error: {0}".format(err))
-
-            except ValueError:
-                print("Could not convert data to an integer.")
-
-            except:
-                print("Unexpected error:", sys.exc_info()[0])
-                raise
-
-
-    else:
-        logging.error("No reference identifier found: {}".format(arguments.reference_identifier))
-
+            process_metadata(arguments.metadata_file, df_by_variant_type, df_starter, arguments.loglevel)
 
 
 if __name__ == "__main__":
