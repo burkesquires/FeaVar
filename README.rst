@@ -1,29 +1,29 @@
 ========
-nvariant
+FeaVar
 ========
 
 
-.. image:: https://img.shields.io/pypi/v/nvariant.svg
-        :target: https://pypi.python.org/pypi/nvariant
+.. image:: https://img.shields.io/pypi/v/FeaVar.svg
+        :target: https://pypi.python.org/pypi/FeaVar
 
-.. image:: https://img.shields.io/travis/burkesquires/nvariant.svg
-        :target: https://travis-ci.org/burkesquires/nvariant
+.. image:: https://img.shields.io/travis/burkesquires/FeaVar.svg
+        :target: https://travis-ci.org/burkesquires/FeaVar
 
-.. image:: https://readthedocs.org/projects/nvariant/badge/?version=latest
-        :target: https://nvariant.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/FeaVar/badge/?version=latest
+        :target: https://FeaVar.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 
-.. image:: https://pyup.io/repos/github/burkesquires/nvariant/shield.svg
-     :target: https://pyup.io/repos/github/burkesquires/nvariant/
+.. image:: https://pyup.io/repos/github/burkesquires/FeaVar/shield.svg
+     :target: https://pyup.io/repos/github/burkesquires/FeaVar/
      :alt: Updates
 
 
 
 * Free software: MIT license
-* Documentation: https://nvariant.readthedocs.io.
+* Documentation: https://FeaVar.readthedocs.io.
 
-nVariant is a python package that computes clusters of unique substrings or "variant types" for user selected sequence features in a set of aligned sequences. Sequences can be nucleotide (DNA or RNA), or amino acid. Gradient takes as input a reference sequence, a list of one or more sequence positions and a multiple sequence alignments of related sequences. It produces a list of the different variant types as well as a list of which variant type each input sequence belongs to.
+FeaVar is a python package that computes clusters of unique substrings or "variant types" for user selected sequence features in a set of aligned sequences. Sequences can be nucleotide (DNA or RNA), or amino acid. Gradient takes as input a reference sequence, a list of one or more sequence positions and a multiple sequence alignments of related sequences. It produces a list of the different variant types as well as a list of which variant type each input sequence belongs to.
 
 This package is a generalization of the sequence feature variant type (SFVT) work undertaken in the laboratory of Dr. Richard Scheuermann while at UT Southwestern. Please see the references below.
 

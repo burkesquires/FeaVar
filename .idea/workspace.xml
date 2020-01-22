@@ -4,9 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="added type hints, fixed spelling">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="updated gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,21 +35,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>ombren</find>
-      <find>omb</find>
-      <find>file.log</find>
-      <find>error</find>
-      <find>.csv</find>
-      <find>df_by</find>
-      <find>len</find>
-      <find>loglevel</find>
-      <find>source</find>
-      <find>parse</find>
-      <find>auto</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
@@ -57,11 +42,6 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="1023" />
   </component>
   <component name="ProjectId" id="1WlBUenyYq6OTijgfkxk2LM2Rmr" />
   <component name="ProjectViewState">
@@ -454,7 +434,7 @@
       <workItem from="1556294290101" duration="25000" />
       <workItem from="1556294355887" duration="2484000" />
       <workItem from="1579714320700" duration="180000" />
-      <workItem from="1579714517890" duration="235000" />
+      <workItem from="1579714517890" duration="426000" />
     </task>
     <task id="LOCAL-00003" summary="Started conversion to class; not sure it makes sense">
       <created>1527880608717</created>
@@ -645,7 +625,14 @@
       <option name="project" value="LOCAL" />
       <updated>1547485557066</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="updated gitignore">
+      <created>1579714781050</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1579714781050</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -693,7 +680,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated log directory" />
     <MESSAGE value="fix position function that replortedly did not return anything" />
     <MESSAGE value="Fixed missing output path" />
     <MESSAGE value="added new tests" />
@@ -718,10 +704,15 @@
     <MESSAGE value="move metadata processing code around" />
     <MESSAGE value="added imports to each function" />
     <MESSAGE value="added type hints, fixed spelling" />
-    <option name="LAST_COMMIT_MESSAGE" value="added type hints, fixed spelling" />
+    <MESSAGE value="updated gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated gitignore" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="605" y="100" key="CommitChangelistDialog2" timestamp="1579714780817">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="605" y="100" key="CommitChangelistDialog2/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579714780817" />
     <state x="489" y="135" key="SettingsEditor" timestamp="1579714684631">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
