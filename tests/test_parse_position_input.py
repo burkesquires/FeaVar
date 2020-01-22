@@ -9,7 +9,7 @@ class TestParsePositionInput(TestCase):
 
     def test_parse_position_input(self):
 
-        from nvariant.nvariant import parse_position_input
+        from FeaVar.FeaVar import parse_position_input
 
         def test_parse_position_input_1():
             positions1 = '10, 21, 32, 43'

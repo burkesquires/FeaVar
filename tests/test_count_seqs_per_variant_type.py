@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from nvariant.nvariant import count_seqs_per_variant_type
+from FeaVar.FeaVar import count_seqs_per_variant_type
 
 sequences = [
     "gb:CY021716: TCAATTATATTCAATATGGAAAGAATAAAAGAACTAAGGAATCTAATGTCGCAATCTCGC\n\

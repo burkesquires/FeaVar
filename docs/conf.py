@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'nvariant'
+project = 'FeaVar'
 copyright = '2019, R. Burke Squires'
 author = 'R. Burke Squires'
 

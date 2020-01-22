@@ -1,7 +1,7 @@
 #!~/anaconda3/bin python
 
 """
-nvariant
+FeaVar
 
 This module computes the variant type(s) in a given sequence feature and
 creates plots for each different type of metadata given.

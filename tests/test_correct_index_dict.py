@@ -4,7 +4,7 @@ from unittest import TestCase
 class TestCorrectIndexDict(TestCase):
     def test_correct_index_dict(self):
 
-        from nvariant.nvariant import correct_index_dict
+        from FeaVar.FeaVar import correct_index_dict
 
         # Do I need to test for an empy sequence?
 

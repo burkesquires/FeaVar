@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from nvariant import nvariant
+from FeaVar import FeaVar
 
 
 class TestAdjustPositionsForInsertions(TestCase):
@@ -11,7 +11,7 @@ class TestAdjustPositionsForInsertions(TestCase):
 
         test_positions1 = [1, 3, 5]
 
-        adjusted_positions1 = nvariant.adjust_positions_for_insertions(test_ref_seq, test_positions1)
+        adjusted_positions1 = FeaVar.adjust_positions_for_insertions(test_ref_seq, test_positions1)
 
         assert adjusted_positions1 == [2, 6, 11]
 
@@ -21,7 +21,7 @@ class TestAdjustPositionsForInsertions(TestCase):
 
         test_positions1 = [1, 3, 5]
 
-        adjusted_positions1 = nvariant.adjust_positions_for_insertions(test_ref_seq, test_positions1)
+        adjusted_positions1 = FeaVar.adjust_positions_for_insertions(test_ref_seq, test_positions1)
 
         assert adjusted_positions1 == [1, 3, 5]
 
@@ -31,7 +31,7 @@ class TestAdjustPositionsForInsertions(TestCase):
 
         test_positions1 = [1, 3, 5]
 
-        adjusted_positions1 = nvariant.adjust_positions_for_insertions(test_ref_seq, test_positions1)
+        adjusted_positions1 = FeaVar.adjust_positions_for_insertions(test_ref_seq, test_positions1)
 
         assert adjusted_positions1 == [1, 3, 5]
 
@@ -41,7 +41,7 @@ class TestAdjustPositionsForInsertions(TestCase):
 
         test_positions1 = [1, 3, 5]
 
-        adjusted_positions1 = nvariant.adjust_positions_for_insertions(test_ref_seq, test_positions1)
+        adjusted_positions1 = FeaVar.adjust_positions_for_insertions(test_ref_seq, test_positions1)
 
         assert adjusted_positions1 is None, "No reference sequence"
 
@@ -51,7 +51,7 @@ class TestAdjustPositionsForInsertions(TestCase):
 
         test_positions1 = [1, 3, 5]
 
-        adjusted_positions1 = nvariant.adjust_positions_for_insertions(test_ref_seq, test_positions1)
+        adjusted_positions1 = FeaVar.adjust_positions_for_insertions(test_ref_seq, test_positions1)
 
         assert adjusted_positions1 == [2, 6, 11]
         #self.assertTrue('This is broken' in str(context.exception))
