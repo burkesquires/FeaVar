@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="updated gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FeaVar/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +79,7 @@
       <recent name="$PROJECT_DIR$/output" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unnamed">
+  <component name="RunManager" selected="Python.FeaVar 6 discontigous">
     <configuration name="nvariant" type="JupiterNotebook" factoryName="Jupyter Notebook">
       <module name="nvariant" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -96,6 +96,116 @@
       <option name="additionalOptions" value="" />
       <option name="ipnbHost" value="127.0.0.1" />
       <option name="ipnbPort" value="8888" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FeaVar -h" type="PythonConfigurationType" factoryName="Python">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FeaVar/FeaVar.py" />
+      <option name="PARAMETERS" value="-h" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FeaVar 6 discontigous" type="PythonConfigurationType" factoryName="Python">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FeaVar/FeaVar.py" />
+      <option name="PARAMETERS" value="-a ../data/flu_test_small.clw -p &quot;124,142,143,268,331,332&quot; -r CY021716" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FeaVar both" type="PythonConfigurationType" factoryName="Python">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FeaVar/FeaVar.py" />
+      <option name="PARAMETERS" value="-a ../data/flu_test_small.clw -p &quot;124-130,142,143,268,331&quot; -r CY021716" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FeaVar continous" type="PythonConfigurationType" factoryName="Python">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FeaVar/FeaVar.py" />
+      <option name="PARAMETERS" value="-a ../data/flu_test_small.clw -p &quot;124-142&quot; -r CY021716" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FeaVar test" type="PythonConfigurationType" factoryName="Python">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FeaVar/FeaVar.py" />
+      <option name="PARAMETERS" value="-a ../data/flu-test.clustal -p &quot;15-35&quot; -r CY062706" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -120,116 +230,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="nvariant -h" type="PythonConfigurationType" factoryName="Python">
-      <module name="nvariant" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nvariant" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nvariant/nvariant.py" />
-      <option name="PARAMETERS" value="-h" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="nvariant 6 discontigous" type="PythonConfigurationType" factoryName="Python">
-      <module name="nvariant" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nvariant" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nvariant/nvariant.py" />
-      <option name="PARAMETERS" value="-a ../data/flu_test_small.clw -p &quot;124,142,143,268,331,332&quot; -r CY021716" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="nvariant both" type="PythonConfigurationType" factoryName="Python">
-      <module name="nvariant" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nvariant" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nvariant/nvariant.py" />
-      <option name="PARAMETERS" value="-a ../data/flu_test_small.clw -p &quot;124-130,142,143,268,331&quot; -r CY021716" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="nvariant continous" type="PythonConfigurationType" factoryName="Python">
-      <module name="nvariant" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nvariant" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nvariant/nvariant.py" />
-      <option name="PARAMETERS" value="-a ../data/flu_test_small.clw -p &quot;124-142&quot; -r CY021716" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="nvariant test" type="PythonConfigurationType" factoryName="Python">
-      <module name="nvariant" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nvariant" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nvariant/nvariant.py" />
-      <option name="PARAMETERS" value="-a ../data/flu-test.clustal -p &quot;15-35&quot; -r CY062706" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="scratch" type="PythonConfigurationType" factoryName="Python">
       <module name="nvariant" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -237,9 +237,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/.conda/envs/ombre/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/nvariant" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -365,11 +365,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.nvariant -h" />
-      <item itemvalue="Python.nvariant 6 discontigous" />
-      <item itemvalue="Python.nvariant both" />
-      <item itemvalue="Python.nvariant continous" />
-      <item itemvalue="Python.nvariant test" />
+      <item itemvalue="Python.FeaVar -h" />
+      <item itemvalue="Python.FeaVar 6 discontigous" />
+      <item itemvalue="Python.FeaVar both" />
+      <item itemvalue="Python.FeaVar continous" />
+      <item itemvalue="Python.FeaVar test" />
       <item itemvalue="Python.scratch" />
       <item itemvalue="Python tests.Unnamed" />
       <item itemvalue="Python tests.nvariant py.test 1" />
@@ -434,7 +434,7 @@
       <workItem from="1556294290101" duration="25000" />
       <workItem from="1556294355887" duration="2484000" />
       <workItem from="1579714320700" duration="180000" />
-      <workItem from="1579714517890" duration="426000" />
+      <workItem from="1579714517890" duration="1222000" />
     </task>
     <task id="LOCAL-00003" summary="Started conversion to class; not sure it makes sense">
       <created>1527880608717</created>
@@ -635,38 +635,6 @@
     <option name="localTasksCounter" value="31" />
     <servers />
   </component>
-  <component name="TestHistory">
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 40m 44s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 42m 12s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 42m 48s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 43m 08s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 13h 44m 20s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 14h 42m 40s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_no_sequence - 2019.01.09 at 14h 50m 05s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_not_enough_sequence - 2019.01.09 at 14h 50m 31s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_not_enough_sequence - 2019.01.09 at 14h 52m 32s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_test_adjust_positions_for_insertions_TestAdjustPositionsForInsertions_test_check_adjusted_positions_right_not_enough_sequence - 2019.01.10 at 09h 15m 43s.xml">
-      <configuration name="pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence" configurationId="tests" />
-    </history-entry>
-  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -709,10 +677,30 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579715688673">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715688673" />
     <state x="605" y="100" key="CommitChangelistDialog2" timestamp="1579714780817">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
     <state x="605" y="100" key="CommitChangelistDialog2/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579714780817" />
+    <state width="1638" height="190" key="GridCell.Tab.0.bottom" timestamp="1579715702258">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state width="1638" height="190" key="GridCell.Tab.0.bottom/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715702258" />
+    <state width="1638" height="190" key="GridCell.Tab.0.center" timestamp="1579715702256">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state width="1638" height="190" key="GridCell.Tab.0.center/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715702256" />
+    <state width="1638" height="190" key="GridCell.Tab.0.left" timestamp="1579715702256">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state width="1638" height="190" key="GridCell.Tab.0.left/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715702256" />
+    <state width="1638" height="190" key="GridCell.Tab.0.right" timestamp="1579715702257">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state width="1638" height="190" key="GridCell.Tab.0.right/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715702257" />
     <state x="489" y="135" key="SettingsEditor" timestamp="1579714684631">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
@@ -757,8 +745,11 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/FeaVar$FeaVar__h.coverage" NAME="FeaVar -h Coverage Results" MODIFIED="1579715695491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
+    <SUITE FILE_PATH="coverage/FeaVar$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1579715516670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant_6_discontigous.coverage" NAME="nvariant 6 discontigous Coverage Results" MODIFIED="1556295485432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant_continous.coverage" NAME="nvariant continous Coverage Results" MODIFIED="1556295372210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant_both.coverage" NAME="nvariant both Coverage Results" MODIFIED="1553713179808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/FeaVar$FeaVar_6_discontigous.coverage" NAME="FeaVar 6 discontigous Coverage Results" MODIFIED="1579715702244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
   </component>
 </project>
