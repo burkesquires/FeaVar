@@ -5,26 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="added type hints, fixed spelling">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nvariant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nvariant.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/conf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nvariant/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nvariant/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nvariant/nvariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/FeaVar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nvariant/output/df_accession_index.csv" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/output/df_accession_index.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nvariant/output/sfvt_flu-test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/output/sfvt_flu-test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nvariant/output/sfvt_flu_test_small.clw.csv" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/output/sfvt_flu_test_small.clw.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nvariant/output/sfvt_flu_test_small.csv" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/output/sfvt_flu_test_small.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nvariant/output/variant_types.csv" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/output/variant_types.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nvariant/temp.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/temp.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_adjust_positions_for_insertions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_check_reference_positions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_check_reference_positions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_correct_index_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_correct_index_dict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_nvariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_nvariant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_parse_filepath.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_parse_filepath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_parse_position_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_parse_position_input.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +78,7 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -472,6 +454,7 @@
       <workItem from="1556294290101" duration="25000" />
       <workItem from="1556294355887" duration="2484000" />
       <workItem from="1579714320700" duration="180000" />
+      <workItem from="1579714517890" duration="235000" />
     </task>
     <task id="LOCAL-00003" summary="Started conversion to class; not sure it makes sense">
       <created>1527880608717</created>
@@ -739,10 +722,10 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="489" y="135" key="SettingsEditor" timestamp="1579714474271">
+    <state x="489" y="135" key="SettingsEditor" timestamp="1579714684631">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
-    <state x="489" y="135" key="SettingsEditor/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579714474271" />
+    <state x="489" y="135" key="SettingsEditor/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579714684631" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
