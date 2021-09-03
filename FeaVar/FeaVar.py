@@ -9,7 +9,7 @@ creates plots for each different type of metadata given.
 """
 
 __author__ = 'R. Burke Squires'
-__copyright__ = "Copyright 2019"
+__copyright__ = "Copyright 2021"
 __credits__ = ["Carolyn Komatsoulis"]
 __license__ = "MIT"
 __version__ = "1.0.1"
@@ -74,7 +74,6 @@ def create_index_offset_list(ref_seq) -> list:
 
     Returns:
         A list of offset values for each position in the alignment
-
     """
 
     logging.debug("create_index_offset_list ref_seq: {0}".format(ref_seq))
@@ -107,6 +106,7 @@ def correct_index_dict(ref_seq: str) -> dict:
     Returns:
         A dictionary of original positions to new positions.
     """
+
     corrected_index = {}
 
     dash_count = 0
@@ -156,12 +156,7 @@ def adjust_positions_for_insertions(ref_seq: str, positions: list) -> list:
 
             corrected_indices = correct_index_dict(ref_seq)
 
-            corrected_positions = []
-
-            for position in positions:
-                corrected_positions.append(corrected_indices[position])
-
-            return corrected_positions
+            return [corrected_indices[position] for position in positions]
 
         else:
 
@@ -277,6 +272,7 @@ def import_metadata(metadata_file_path: str) -> pandas.DataFrame:
     metadata_file_path : string
         The file path of the metadata file to be imported.
     """
+
     import pandas
 
     df_metadata = pandas.read_table(metadata_file_path)  # , skiprows=[0,1,2], header=0)?
@@ -291,6 +287,20 @@ def vt_count(i):
 
     return vt_id
 
+
+def compute_variant_differences_for_naming(dataframe: pandas.DataFrame):
+    """
+
+    :param dataframe: 
+    :return: 
+    """
+    
+
+#    for i in range(len(a)):
+#        if a[i] != b[i]: print i, a[i], b[i]
+#
+#    4 M N
+#    8 Z X
 
 def count_seqs_per_variant_type(dataframe: pandas.DataFrame, file_path) ->pandas.DataFrame:
     """
