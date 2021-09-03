@@ -15,12 +15,12 @@ sequences = [
      gb:CY066950: --------------TATGGAGAGAATAAAAGAACTGAGAGAACTTATGTCGCAGTCCCGC\n"
 ]
 
-,variant_type,count,VT
-3,AGAACTGAGAGATCTAATGTC,5,VT-001
-1,AGAACTAAGGAATCTAATGTC,2,VT-002
-0,AGAACTAAGAGATCTAATGTC,1,VT-003
-2,AGAACTGAGAAATCTAATGTC,1,VT-004
-4,AGAACTGAGGGATCTAATGTC,1,VT-005
+# output = ID,variant_type,count,VT
+#3,AGAACTGAGAGATCTAATGTC,5,VT-001
+#1,AGAACTAAGGAATCTAATGTC,2,VT-002
+#0,AGAACTAAGAGATCTAATGTC,1,VT-003
+#2,AGAACTGAGAAATCTAATGTC,1,VT-004
+#4,AGAACTGAGGGATCTAATGTC,1,VT-005
 
 
 region = "25 - 35"
@@ -39,9 +39,6 @@ class TestCountSeqsPerVariantType(TestCase):
 
         d = {'variant_type': ['AT', 2], 'count': [3, 4], 'VT': [3, 4]}
         expected = pd.DataFrame(data=d)
-
-        }
-
 
         file_path = ""
 

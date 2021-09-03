@@ -3,10 +3,17 @@
   <component name="AnalysisUIOptions">
     <option name="SCOPE_TYPE" value="3" />
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7d34d393-39ff-45a4-840b-7b29eed2472b" name="Default" comment="updated gitignore">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/nvariant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nvariant.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FeaVar/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FeaVar/FeaVar.py" beforeDir="false" afterPath="$PROJECT_DIR$/FeaVar/FeaVar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/nvariant_tutorial.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,22 +50,26 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="3564ffee-764e-477a-b1f9-0567d65764b7" />
   <component name="ProjectId" id="1WlBUenyYq6OTijgfkxk2LM2Rmr" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="ai.sourcery.intellij.SourceryConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -79,7 +90,7 @@
       <recent name="$PROJECT_DIR$/output" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.FeaVar 6 discontigous">
+  <component name="RunManager" selected="Python tests.FeaVar py.test 1">
     <configuration name="nvariant" type="JupiterNotebook" factoryName="Jupyter Notebook">
       <module name="nvariant" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,9 +116,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$USER_HOME$/opt/anaconda3/bin/python3.7" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -127,9 +138,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$USER_HOME$/opt/anaconda3/bin/python3.7" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -252,6 +263,23 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="FeaVar py.test 1" type="tests" factoryName="py.test">
+      <module name="nvariant" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unnamed" type="tests" factoryName="py.test">
       <module name="nvariant" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -263,24 +291,9 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="nvariant py.test 1" type="tests" factoryName="py.test">
-      <module name="nvariant" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FeaVar" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -295,6 +308,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_adjust_positions_for_insertions&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -311,6 +325,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions1&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -327,6 +342,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -343,6 +359,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_not_enough_sequence&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -359,6 +376,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_check_reference_positions.TestCheckReferencePositions&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -372,7 +390,7 @@
       <item itemvalue="Python.FeaVar test" />
       <item itemvalue="Python.scratch" />
       <item itemvalue="Python tests.Unnamed" />
-      <item itemvalue="Python tests.nvariant py.test 1" />
+      <item itemvalue="Python tests.FeaVar py.test 1" />
       <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_adjust_positions_for_insertions" />
       <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions1" />
       <item itemvalue="Python tests.pytest for test_adjust_positions_for_insertions.TestAdjustPositionsForInsertions.test_check_adjusted_positions_right_no_sequence" />
@@ -389,6 +407,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="StructuralSearchPlugin">
     <replaceConfiguration name="user defined" created="1526735630926" text="ombre" recursive="false" caseInsensitive="false" type="ActionScript" reformatAccordingToStyle="true" shortenFQN="true" useStaticImport="true" replacement="nvariant" history="1" />
     <replaceConfiguration name="user defined" created="1526735573081" text="ombre" recursive="false" caseInsensitive="true" type="ActionScript" reformatAccordingToStyle="true" shortenFQN="true" useStaticImport="true" replacement="nvariant" history="1" />
@@ -434,7 +453,33 @@
       <workItem from="1556294290101" duration="25000" />
       <workItem from="1556294355887" duration="2484000" />
       <workItem from="1579714320700" duration="180000" />
-      <workItem from="1579714517890" duration="1222000" />
+      <workItem from="1579714517890" duration="1367000" />
+      <workItem from="1579715945457" duration="516000" />
+      <workItem from="1579716473698" duration="204000" />
+      <workItem from="1579716689173" duration="4191000" />
+      <workItem from="1580316694862" duration="467000" />
+      <workItem from="1588771689623" duration="613000" />
+      <workItem from="1595439953394" duration="4394000" />
+      <workItem from="1595602595033" duration="50000" />
+      <workItem from="1595602659426" duration="134000" />
+      <workItem from="1595602803468" duration="4313000" />
+      <workItem from="1596042515441" duration="73000" />
+      <workItem from="1601322828118" duration="172000" />
+      <workItem from="1601323068680" duration="2017000" />
+      <workItem from="1601775832437" duration="171000" />
+      <workItem from="1607093914012" duration="279000" />
+      <workItem from="1607094895139" duration="661000" />
+      <workItem from="1607101324163" duration="506000" />
+      <workItem from="1612985581610" duration="421000" />
+      <workItem from="1612986743287" duration="43000" />
+      <workItem from="1620238698845" duration="31000" />
+      <workItem from="1620239014972" duration="522000" />
+      <workItem from="1620239684070" duration="832000" />
+      <workItem from="1629205286041" duration="23000" />
+      <workItem from="1629205380764" duration="615000" />
+      <workItem from="1629206881535" duration="1957000" />
+      <workItem from="1630675128422" duration="312000" />
+      <workItem from="1630675726021" duration="899000" />
     </task>
     <task id="LOCAL-00003" summary="Started conversion to class; not sure it makes sense">
       <created>1527880608717</created>
@@ -645,7 +690,7 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix position function that replortedly did not return anything" />
@@ -676,36 +721,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="updated gitignore" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579715688673">
-      <screen x="0" y="23" width="1680" height="947" />
-    </state>
-    <state x="304" y="160" key="#com.intellij.execution.impl.EditConfigurationsDialog/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715688673" />
-    <state x="605" y="100" key="CommitChangelistDialog2" timestamp="1579714780817">
-      <screen x="0" y="23" width="1680" height="947" />
-    </state>
-    <state x="605" y="100" key="CommitChangelistDialog2/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579714780817" />
-    <state width="1638" height="190" key="GridCell.Tab.0.bottom" timestamp="1579715702258">
-      <screen x="0" y="23" width="1680" height="947" />
-    </state>
-    <state width="1638" height="190" key="GridCell.Tab.0.bottom/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715702258" />
-    <state width="1638" height="190" key="GridCell.Tab.0.center" timestamp="1579715702256">
-      <screen x="0" y="23" width="1680" height="947" />
-    </state>
-    <state width="1638" height="190" key="GridCell.Tab.0.center/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715702256" />
-    <state width="1638" height="190" key="GridCell.Tab.0.left" timestamp="1579715702256">
-      <screen x="0" y="23" width="1680" height="947" />
-    </state>
-    <state width="1638" height="190" key="GridCell.Tab.0.left/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715702256" />
-    <state width="1638" height="190" key="GridCell.Tab.0.right" timestamp="1579715702257">
-      <screen x="0" y="23" width="1680" height="947" />
-    </state>
-    <state width="1638" height="190" key="GridCell.Tab.0.right/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579715702257" />
-    <state x="489" y="135" key="SettingsEditor" timestamp="1579714684631">
-      <screen x="0" y="23" width="1680" height="947" />
-    </state>
-    <state x="489" y="135" key="SettingsEditor/-503.-1417.2560.1417/0.23.1680.947@0.23.1680.947" timestamp="1579714684631" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -726,13 +741,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_count_seqs_per_variant_type.py</url>
-          <line>56</line>
+          <line>53</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_check_reference_positions.py</url>
           <line>15</line>
           <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/FeaVar/FeaVar.py</url>
+          <line>319</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -745,11 +765,15 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/FeaVar$FeaVar__h.coverage" NAME="FeaVar -h Coverage Results" MODIFIED="1579715695491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
-    <SUITE FILE_PATH="coverage/FeaVar$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1579715516670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/FeaVar$FeaVar_py_test_1.coverage" NAME="FeaVar py.test 1 Coverage Results" MODIFIED="1629305195971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant_6_discontigous.coverage" NAME="nvariant 6 discontigous Coverage Results" MODIFIED="1556295485432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/nvariant$nvariant_continous.coverage" NAME="nvariant continous Coverage Results" MODIFIED="1556295372210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/FeaVar$FeaVar_test.coverage" NAME="FeaVar test Coverage Results" MODIFIED="1595522562106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
+    <SUITE FILE_PATH="coverage/FeaVar$FeaVar_continous.coverage" NAME="FeaVar continous Coverage Results" MODIFIED="1595522555559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
+    <SUITE FILE_PATH="coverage/FeaVar$FeaVar_both.coverage" NAME="FeaVar both Coverage Results" MODIFIED="1595522540197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
+    <SUITE FILE_PATH="coverage/FeaVar$FeaVar__h.coverage" NAME="FeaVar -h Coverage Results" MODIFIED="1595522502574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
+    <SUITE FILE_PATH="coverage/FeaVar$FeaVar_6_discontigous.coverage" NAME="FeaVar 6 discontigous Coverage Results" MODIFIED="1601323823432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
     <SUITE FILE_PATH="coverage/nvariant$nvariant_both.coverage" NAME="nvariant both Coverage Results" MODIFIED="1553713179808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
-    <SUITE FILE_PATH="coverage/FeaVar$FeaVar_6_discontigous.coverage" NAME="FeaVar 6 discontigous Coverage Results" MODIFIED="1579715702244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FeaVar" />
+    <SUITE FILE_PATH="coverage/nvariant$nvariant_continous.coverage" NAME="nvariant continous Coverage Results" MODIFIED="1556295372210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/nvariant" />
+    <SUITE FILE_PATH="coverage/FeaVar$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1579715516670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
