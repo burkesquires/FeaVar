@@ -212,16 +212,11 @@ def confirm_seq_feature_in_ref(reference_sequence: str, sequence_feature_positio
         A list of the positions (as integers) of the variant type in the sequence feature
     """
 
-    test = True
-
     raw_sequence = reference_sequence.replace("-", "")
 
     length = len(raw_sequence)
 
-    for position in sequence_feature_positions:
-
-        if position > length:
-            test = False
+    test = all(position <= length for position in sequence_feature_positions)
 
     logging.debug('Confirm seq feature in reference tests result: {}'.format(test))
 
@@ -245,22 +240,13 @@ def check_reference_positions(reference_sequence: str, positions: list) -> bool:
 
     seq_length = len(reference_sequence)
 
-    test = True
-
     # check that all positions are in sequence
 
-    if all(i <= seq_length for i in positions):
-
-        for position in positions:
-
-            if reference_sequence[position - 1] == "-":
-                test = False
-
-        return test
-
-    else:
+    if any(i > seq_length for i in positions):
 
         return False
+
+    return all(reference_sequence[position - 1] != "-" for position in positions)
 
 
 def import_metadata(metadata_file_path: str) -> pandas.DataFrame:
@@ -283,9 +269,7 @@ def import_metadata(metadata_file_path: str) -> pandas.DataFrame:
 
 
 def vt_count(i):
-    vt_id = "VT-%03d" % (i,)
-
-    return vt_id
+    return "VT-%03d" % (i,)
 
 
 def compute_variant_differences_for_naming(dataframe: pandas.DataFrame):
@@ -363,8 +347,7 @@ def select_var_types_to_plot(df: pandas.DataFrame, count: int) -> pandas.DataFra
     """
 
     vts_to_select = ["VT-%03d" % i for i in range(count)]
-    df_selected = df[df['VT'].isin(vts_to_select)]
-    return df_selected
+    return df[df['VT'].isin(vts_to_select)]
 
 
 def set_output_directory(output_dir_path: str, output_file_name: str) -> str:
@@ -447,7 +430,7 @@ def compute_variant_types(alignment_file_path: str, alignment_format: str, vt_po
         variants = []
         for record in alignment:
             sequence = record.seq
-            sequence_feature_temp = ''.join([sequence[index] for index in vt_positions])
+            sequence_feature_temp = ''.join(sequence[index] for index in vt_positions)
             variants.append([record.id, sequence_feature_temp])
 
         dir_name, file_name = os.path.split(alignment_file_path)
