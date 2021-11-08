@@ -20,7 +20,6 @@ FeaVar
 
 
 
-* Free software: MIT license
 * Documentation: https://FeaVar.readthedocs.io.
 
 FeaVar is a python package that computes clusters of unique substrings or "variant types" for user selected sequence features in a set of aligned sequences. Sequences can be nucleotide (DNA or RNA), or amino acid. Gradient takes as input a reference sequence, a list of one or more sequence positions and a multiple sequence alignments of related sequences. It produces a list of the different variant types as well as a list of which variant type each input sequence belongs to.
