@@ -9,7 +9,7 @@ creates plots for each different type of metadata given.
 """
 
 __author__ = 'R. Burke Squires'
-__copyright__ = "Copyright 2021"
+__copyright__ = "Copyright 2022"
 __credits__ = ["Carolyn Komatsoulis"]
 __license__ = "MIT"
 __version__ = "1.0.1"
