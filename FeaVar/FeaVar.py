@@ -20,6 +20,7 @@ __status__ = "Beta"
 import pandas
 from Bio import AlignIO
 
+
 # TODO Add ability to use native IEDB format (H25, H45, V46, N47, L496, S306, L307, P308, T333;
 # B: D363, G364, W365, Q382, T385, Q386, I389, D390, T393, V396, N397, I400
 
@@ -323,7 +324,7 @@ def count_seqs_per_variant_type(dataframe: pandas.DataFrame, file_path) ->pandas
     df_by_variant_type["VT"] = [vt_count(i) for i in range(1, row_length + 1)]
     df_by_variant_type.reindex(index=["VT"])
 
-    df_by_variant_type.to_csv(os.path.join(output_dir, "sfvt_{}.csv".format(file_path)))
+    df_by_variant_type.to_csv(os.path.join(output_dir, "feavar_{}.csv".format(file_path)))
     report = df_by_variant_type.to_string()
     logging.info("Sequences per variant type:\n{}".format(report))
 
@@ -348,12 +349,12 @@ def plot_variant_type_data(df_all_data: pandas.DataFrame, field: str):
     unpacked = df_by_one_field.unstack(level=1)
     plot = unpacked.plot(kind='bar', subplots=False)
     fig = plot.get_figure()
-    fig.savefig("sfvt_{}.svg".format(field))
+    fig.savefig("feavar_{}.svg".format(field))
 
     plot = unpacked.plot(kind='bar', stacked=True, subplots=False)
     fig = plot.get_figure()
     fig.set_size_inches(18.5, 10.5)
-    fig.savefig(os.path.join(output_dir, "sfvt_stacked_{}.svg".format(field)), dpi=100)
+    fig.savefig(os.path.join(output_dir, "feavar_stacked_{}.svg".format(field)), dpi=100)
 
 
 def select_var_types_to_plot(df: pandas.DataFrame, count: int) -> pandas.DataFrame:
@@ -407,7 +408,7 @@ def pre_flight_check(arguments):
 
         parsed_positions = parse_position_input(arguments.positions)
 
-        logging.info("parsed_positions: {}".format(parsed_positions))
+        logging.info("Parsed positions: {}".format(parsed_positions))
 
         corrected_positions = adjust_positions_for_insertions(reference_sequence, parsed_positions)
 
@@ -546,6 +547,7 @@ def main(arguments):
 
     # TODO add report of algorithm version, results, etc; look at importing pandas-html I think
 
+    corrected_positions: list
     corrected_positions, rules = pre_flight_check(arguments)
 
     if all(rules):
