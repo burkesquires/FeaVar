@@ -289,14 +289,13 @@ def vt_count(i):
     return vt_id
 
 
-def compute_variant_differences_for_naming(dataframe: pandas.DataFrame):
-    """
-
-    :param dataframe: 
-    :return: 
-    """
-    
-
+#def compute_variant_differences_for_naming(dataframe: pandas.DataFrame):
+#    """
+#
+#    :param dataframe:
+#    :return:
+#    """
+#
 #    for i in range(len(a)):
 #        if a[i] != b[i]: print i, a[i], b[i]
 #

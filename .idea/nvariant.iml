@@ -9,6 +9,7 @@
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="$MODULE_DIR$/requirements_dev.txt" />
+    <option name="versionSpecifier" value="Greater or equal (&gt;=x.y.z)" />
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="py.test" />
