@@ -1,0 +1,14 @@
+# Ignore data and documentation directories for language stats
+data/* linguist-vendored
+docs/* linguist-vendored
+output/* linguist-vendored
+logs/* linguist-vendored
+notebooks/* linguist-vendored
+
+# Ensure specific extensions are treated as data, not code
+*.csv linguist-vendored
+*.clw linguist-vendored
+*.aln linguist-vendored
+
+# Force Python language detection for the main script if needed
+FeaVar.py linguist-language=Python
