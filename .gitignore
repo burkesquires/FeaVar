@@ -1,5 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Python template
+# --- Python Standard ---
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -10,7 +9,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -22,44 +20,59 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+# --- Virtual Environments ---
+# Common names for local environments
+env/
+.env
+venv/
+.venv/
+venv.bak/
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
+# --- Testing & Quality Assurance ---
 # Unit test / coverage reports
 htmlcov/
 .tox/
+.nox/
 .coverage
 .coverage.*
 .cache
 nosetests.xml
 coverage.xml
-*,cover
+*.cover
+.pytest_cache/
+.hypothesis/
+
+# --- Documentation ---
+# Sphinx documentation
+docs/_build/
+
+# --- Jupyter Notebooks ---
+# Checkpoints created by Jupyter
+.ipynb_checkpoints/
+
+# --- IDEs & Editors ---
+# JetBrains (PyCharm, IntelliJ)
+.idea/
+# VS Code
+.vscode/
+# Mac OS
+.DS_Store
+
+# --- Project Specific ---
+# FeaVar output and logs (based on your code)
+output/
+logs/
+*.log
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
 
 # Translations
 *.mo
 *.pot
-
-# Django stuff:
-*.log
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-.pytest_cache/
-.DS_Store
-.ipynb_checkpoints
-.idea
