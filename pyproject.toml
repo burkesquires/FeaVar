@@ -1,42 +1,142 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "FeaVar"
-version = "1.0.1"
-description = "A python package to compute clusters of sequence feature variant types (SFVTs)."
-readme = "README.rst"
-requires-python = ">=3.9"
+name = "feavar"
+version = "2.0.0"
+description = "Compute clusters of sequence feature variant types (SFVTs) in aligned sequences."
+readme = "README.md"
 license = {text = "MIT"}
+requires-python = ">=3.9"
 authors = [
     {name = "R. Burke Squires", email = "burkesquires@gmail.com"}
 ]
-keywords = ["bioinformatics", "sequence-alignment", "clustering", "variants", "genetics"]
+keywords = [
+    "bioinformatics",
+    "sequence-alignment",
+    "variant-analysis",
+    "SFVT",
+    "genetics",
+    "genomics",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Typing :: Typed",
 ]
 dependencies = [
-    "pandas>=2.1.1",
     "biopython>=1.80",
-    "click>=8.1.7"
+    "pandas>=2.0.0",
+    "click>=8.0.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.4.0"
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "pandas-stubs",
+]
+plot = [
+    "matplotlib>=3.5.0",
+]
+all = [
+    "feavar[dev,plot]",
 ]
 
-[tool.setuptools.packages.find]
-where = ["."]  # Assumes FeaVar directory is in the root
-include = ["FeaVar*"]  # Includes the FeaVar package directory
-
-# Configuring the CLI command 'feavar'
-# Note: For this to work, we may need to slightly refactor FeaVar.py 
-# to wrap the argparse logic in a callable function.
 [project.scripts]
-feavar = "FeaVar.FeaVar:run_cli"
+feavar = "feavar.cli:run_cli"
+
+[project.urls]
+Homepage = "https://github.com/burkesquires/feavar"
+Documentation = "https://feavar.readthedocs.io"
+Repository = "https://github.com/burkesquires/feavar"
+Issues = "https://github.com/burkesquires/feavar/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["feavar*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]
+
+[tool.coverage.run]
+source = ["feavar"]
+branch = true
+omit = [
+    "*/tests/*",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+    | \.venv
+    | build
+    | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.ruff.isort]
+known-first-party = ["feavar"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+ignore_missing_imports = true
