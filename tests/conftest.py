@@ -3,9 +3,6 @@ Test configuration and fixtures for FeaVar.
 """
 
 import pytest
-from pathlib import Path
-import tempfile
-import os
 
 
 @pytest.fixture

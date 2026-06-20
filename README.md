@@ -96,7 +96,6 @@ analysis = FeaVarAnalysis(
     naming_scheme="ranked",  # Traditional frequency-based naming
 )
 ```
-```
 
 ### Visualization
 
@@ -233,7 +232,7 @@ FeaVarAnalysis(
 
 - `run() -> AnalysisResult`: Run the analysis
 - `validate() -> bool`: Validate inputs before running
-- `merge_metadata(path) -> DataFrame`: Merge results with metadata
+- `merge_metadata(path, how="left") -> DataFrame`: Merge results with metadata
 - `save_results(prefix) -> Dict[str, Path]`: Save results to CSV files
 
 ### AnalysisResult

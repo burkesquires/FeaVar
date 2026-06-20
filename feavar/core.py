@@ -7,19 +7,19 @@ Provides the main FeaVarAnalysis class for computing sequence feature variant ty
 import logging
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Literal, cast
 
 import pandas as pd
 
 from feavar.alignment import AlignmentHandler, ReferenceSequence
-from feavar.parser import PositionParser
 from feavar.exceptions import FeaVarError, MetadataError
 from feavar.naming import (
     NamingScheme,
     compute_variant_names,
-    get_reference_variant_sequence,
     generate_ranked_name,
+    get_reference_variant_sequence,
 )
+from feavar.parser import PositionParser
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 class AnalysisResult:
     """
     Container for FeaVar analysis results.
-    
+
     Attributes
     ----------
     variants_df : pd.DataFrame
@@ -46,43 +46,57 @@ class AnalysisResult:
     num_variant_types : int
         Number of unique variant types found.
     """
+
     variants_df: pd.DataFrame
     summary_df: pd.DataFrame
     reference_id: str
-    positions: List[int]
-    adjusted_positions: List[int]
+    positions: list[int]
+    adjusted_positions: list[int]
     num_sequences: int = field(init=False)
     num_variant_types: int = field(init=False)
-    
-    def __post_init__(self):
+
+    def __post_init__(self) -> None:
         self.num_sequences = len(self.variants_df)
         self.num_variant_types = len(self.summary_df)
-    
+
     def get_top_variants(self, n: int = 10) -> pd.DataFrame:
         """Get the top N most common variants."""
-        return self.summary_df.head(n)
-    
-    def get_variant_for_accession(self, accession: str) -> Optional[str]:
+        return cast(pd.DataFrame, self.summary_df.head(n))
+
+    def get_variant_for_accession(self, accession: str) -> str | None:
         """Get the variant type for a specific accession."""
+        exact_matches = self.variants_df[self.variants_df["accession"] == accession]
+        if len(exact_matches) > 0:
+            return str(exact_matches.iloc[0]["variant_type"])
+
         matches = self.variants_df[
-            self.variants_df['accession'].str.contains(accession)
+            self.variants_df["accession"].str.contains(
+                accession,
+                na=False,
+                regex=False,
+            )
         ]
-        if len(matches) > 0:
-            return matches.iloc[0]['variant_type']
+        if len(matches) == 1:
+            return str(matches.iloc[0]["variant_type"])
+        if len(matches) > 1:
+            logger.warning(
+                "Accession lookup %r is ambiguous; use an exact accession identifier",
+                accession,
+            )
         return None
 
 
 class FeaVarAnalysis:
     """
     Main class for Sequence Feature Variant Type analysis.
-    
+
     This class orchestrates the complete FeaVar workflow:
     1. Load and validate alignment
     2. Parse and validate positions
     3. Adjust positions for reference gaps
     4. Extract variant types
     5. Compute statistics and optionally merge with metadata
-    
+
     Parameters
     ----------
     alignment_path : str
@@ -99,7 +113,7 @@ class FeaVarAnalysis:
         Variant naming scheme: "delta" (default) or "ranked".
         - "delta": Stable names based on differences from reference (e.g., VT-5G.12C)
         - "ranked": Traditional rank-based names (e.g., VT-001 for most common)
-        
+
     Examples
     --------
     >>> analysis = FeaVarAnalysis(
@@ -109,7 +123,7 @@ class FeaVarAnalysis:
     ... )
     >>> result = analysis.run()
     >>> print(result.summary_df.head())
-    
+
     # Use ranked naming (traditional)
     >>> analysis = FeaVarAnalysis(
     ...     alignment_path="sequences.clw",
@@ -118,14 +132,14 @@ class FeaVarAnalysis:
     ...     naming_scheme="ranked"
     ... )
     """
-    
+
     def __init__(
         self,
         alignment_path: str,
         reference_id: str,
         positions: str,
-        alignment_format: Optional[str] = None,
-        output_dir: Optional[str] = None,
+        alignment_format: str | None = None,
+        output_dir: str | None = None,
         naming_scheme: str = "delta",
     ):
         """Initialize the FeaVar analysis."""
@@ -134,56 +148,60 @@ class FeaVarAnalysis:
         self.positions_str = positions
         self.alignment_format = alignment_format  # None means auto-detect
         self.output_dir = Path(output_dir) if output_dir else Path.cwd()
-        
+
         # Set naming scheme
         try:
             self.naming_scheme = NamingScheme(naming_scheme.lower())
-        except ValueError:
+        except ValueError as e:
             valid = [s.value for s in NamingScheme]
             raise ValueError(
                 f"Invalid naming scheme '{naming_scheme}'. Must be one of: {valid}"
-            )
-        
+            ) from e
+
         # Components
         self._parser = PositionParser()
-        self._handler: Optional[AlignmentHandler] = None
-        self._reference: Optional[ReferenceSequence] = None
-        
+        self._handler: AlignmentHandler | None = None
+        self._reference: ReferenceSequence | None = None
+
         # Parsed data
-        self._positions: Optional[List[int]] = None
-        self._adjusted_positions: Optional[List[int]] = None
-        
+        self._positions: list[int] | None = None
+        self._adjusted_positions: list[int] | None = None
+
         # Results
-        self._result: Optional[AnalysisResult] = None
-    
+        self._result: AnalysisResult | None = None
+
     @property
     def handler(self) -> AlignmentHandler:
         """Get the alignment handler, loading if necessary."""
         if self._handler is None:
             # Pass None or "auto" to enable format inference
-            fmt = None if self.alignment_format in (None, "auto") else self.alignment_format
+            fmt = (
+                None
+                if self.alignment_format in (None, "auto")
+                else self.alignment_format
+            )
             self._handler = AlignmentHandler(
                 self.alignment_path,
                 fmt,
             )
         return self._handler
-    
+
     @property
     def reference(self) -> ReferenceSequence:
         """Get the reference sequence."""
         if self._reference is None:
             self._reference = self.handler.get_reference(self.reference_id)
         return self._reference
-    
+
     @property
-    def positions(self) -> List[int]:
+    def positions(self) -> list[int]:
         """Get the parsed positions."""
         if self._positions is None:
             self._positions = self._parser.parse(self.positions_str)
         return self._positions
-    
+
     @property
-    def adjusted_positions(self) -> List[int]:
+    def adjusted_positions(self) -> list[int]:
         """Get the gap-adjusted positions."""
         if self._adjusted_positions is None:
             self._adjusted_positions = self.handler.adjust_positions(
@@ -191,50 +209,49 @@ class FeaVarAnalysis:
                 self.reference,
             )
         return self._adjusted_positions
-    
+
     def validate(self) -> bool:
         """
         Validate all inputs before running analysis.
-        
+
         Returns
         -------
         bool
             True if all validations pass.
-            
+
         Raises
         ------
         FeaVarError
             If any validation fails.
         """
         logger.info("Running pre-flight validation...")
-        
+
         # This will trigger loading and validation of each component
         _ = self.handler  # Load alignment
         _ = self.reference  # Find reference
         _ = self.positions  # Parse positions
-        
+
         # Validate positions are within reference bounds
         self._parser.validate_positions(self.positions, self.reference.length)
-        
+
         # Get adjusted positions
         _ = self.adjusted_positions
-        
+
         # Validate no gaps at target positions
         if not self.handler.validate_positions_no_gaps(
-            self.adjusted_positions, 
-            self.reference
+            self.adjusted_positions, self.reference
         ):
             logger.warning(
                 "Some adjusted positions fall on gap characters in reference"
             )
-        
+
         logger.info("Validation complete - all checks passed")
         return True
-    
+
     def run(self) -> AnalysisResult:
         """
         Run the complete FeaVar analysis.
-        
+
         Returns
         -------
         AnalysisResult
@@ -242,19 +259,17 @@ class FeaVarAnalysis:
         """
         # Validate inputs
         self.validate()
-        
+
         # Extract variants for all sequences
         logger.info("Extracting variant types...")
-        variants = list(
-            self.handler.extract_all_variants(self.adjusted_positions)
-        )
-        
+        variants = list(self.handler.extract_all_variants(self.adjusted_positions))
+
         # Create variants DataFrame
-        variants_df = pd.DataFrame(variants, columns=['accession', 'variant_type'])
-        
+        variants_df = pd.DataFrame(variants, columns=["accession", "variant_type"])
+
         # Compute summary statistics
         summary_df = self._compute_summary(variants_df)
-        
+
         # Store result
         self._result = AnalysisResult(
             variants_df=variants_df,
@@ -263,23 +278,23 @@ class FeaVarAnalysis:
             positions=self.positions,
             adjusted_positions=self.adjusted_positions,
         )
-        
+
         logger.info(
             f"Analysis complete: {self._result.num_sequences} sequences, "
             f"{self._result.num_variant_types} unique variant types"
         )
-        
+
         return self._result
-    
+
     def _compute_summary(self, variants_df: pd.DataFrame) -> pd.DataFrame:
         """
         Compute variant type summary statistics.
-        
+
         Parameters
         ----------
         variants_df : pd.DataFrame
             DataFrame with 'accession' and 'variant_type' columns.
-            
+
         Returns
         -------
         pd.DataFrame
@@ -287,30 +302,28 @@ class FeaVarAnalysis:
         """
         # Count occurrences of each variant type
         summary = (
-            variants_df
-            .groupby('variant_type')
+            variants_df.groupby("variant_type")
             .size()
-            .reset_index(name='count')
-            .sort_values('count', ascending=False)
+            .reset_index(name="count")
+            .sort_values(
+                ["count", "variant_type"], ascending=[False, True], kind="stable"
+            )
             .reset_index(drop=True)
         )
-        
+
         # Generate VT names based on naming scheme
         if self.naming_scheme == NamingScheme.DELTA:
             # Get reference variant sequence
-            ref_variant = get_reference_variant_sequence(
-                variants_df, 
-                self.reference_id
-            )
-            
+            ref_variant = get_reference_variant_sequence(variants_df, self.reference_id)
+
             if ref_variant is None:
                 # Fallback: use most common variant as reference
-                ref_variant = summary.iloc[0]['variant_type']
+                ref_variant = summary.iloc[0]["variant_type"]
                 logger.warning(
                     f"Reference '{self.reference_id}' not found in variants. "
                     f"Using most common variant as reference for naming."
                 )
-            
+
             # Generate delta names for each variant
             name_map = compute_variant_names(
                 variants_df,
@@ -318,26 +331,29 @@ class FeaVarAnalysis:
                 self.positions,  # Use original 1-based positions
                 NamingScheme.DELTA,
             )
-            summary['VT'] = summary['variant_type'].map(name_map)
-            
-            logger.info(f"Using delta naming scheme (reference variant: {ref_variant[:20]}...)")
-            
+            summary["VT"] = summary["variant_type"].map(name_map)
+
+            logger.info(
+                f"Using delta naming scheme (reference variant: {ref_variant[:20]}...)"
+            )
+
         else:  # NamingScheme.RANKED
             # Traditional rank-based naming (VT-001, VT-002, etc.)
-            summary['VT'] = [generate_ranked_name(i + 1) for i in range(len(summary))]
+            summary["VT"] = [generate_ranked_name(i + 1) for i in range(len(summary))]
             logger.info("Using ranked naming scheme")
-        
-        return summary
-    
+
+        return cast(pd.DataFrame, summary)
+
     def merge_metadata(
         self,
-        metadata_path: str,
-        merge_column: str = 'accession',
-        delimiter: str = '\t',
+        metadata_path: str | Path,
+        merge_column: str = "accession",
+        delimiter: str = "\t",
+        how: Literal["left", "right", "inner", "outer"] = "left",
     ) -> pd.DataFrame:
         """
         Merge analysis results with metadata file.
-        
+
         Parameters
         ----------
         metadata_path : str
@@ -346,12 +362,15 @@ class FeaVarAnalysis:
             Column to merge on (default: 'accession').
         delimiter : str, optional
             Delimiter for metadata file (default: tab).
-            
+        how : {"left", "right", "inner", "outer"}, optional
+            Join type. A left join is the default so every analyzed sequence is
+            retained; use ``outer`` to also report metadata-only records.
+
         Returns
         -------
         pd.DataFrame
             Merged DataFrame with variants and metadata.
-            
+
         Raises
         ------
         MetadataError
@@ -359,47 +378,78 @@ class FeaVarAnalysis:
         """
         if self._result is None:
             raise FeaVarError("Must run analysis before merging metadata")
-        
+
+        if how not in {"left", "right", "inner", "outer"}:
+            raise MetadataError(f"Unsupported merge type: {how!r}")
+
         try:
-            metadata = pd.read_csv(metadata_path, delimiter=delimiter)
-        except Exception as e:
+            metadata = pd.read_csv(
+                metadata_path, sep=delimiter, dtype={merge_column: "string"}
+            )
+        except (OSError, UnicodeDecodeError, pd.errors.ParserError) as e:
             raise MetadataError(
                 f"Failed to load metadata file '{metadata_path}': {e}"
             ) from e
-        
+
         if merge_column not in metadata.columns:
             raise MetadataError(
                 f"Merge column '{merge_column}' not found in metadata. "
                 f"Available columns: {list(metadata.columns)}"
             )
-        
-        # Merge variants with metadata
-        merged = self._result.variants_df.merge(
-            metadata,
-            on=merge_column,
-            how='outer',
-        )
-        
+
+        if merge_column not in self._result.variants_df.columns:
+            raise MetadataError(
+                f"Merge column '{merge_column}' is not available in analysis results. "
+                f"Available columns: {list(self._result.variants_df.columns)}"
+            )
+
+        variants = self._result.variants_df.copy()
+        variants[merge_column] = variants[merge_column].astype("string")
+        metadata[merge_column] = metadata[merge_column].astype("string")
+
+        # An alignment has one row per accession; metadata may legitimately have
+        # repeated observations for the same accession.
+        try:
+            merged = variants.merge(
+                metadata,
+                on=merge_column,
+                how=how,
+                validate="one_to_many",
+                indicator=True,
+            )
+        except pd.errors.MergeError as e:
+            raise MetadataError(f"Could not merge metadata: {e}") from e
+
+        unmatched_variants = (merged["_merge"] == "left_only").sum()
+        if unmatched_variants:
+            logger.warning(
+                "%d analyzed sequences have no matching metadata", unmatched_variants
+            )
+        merged = merged.drop(columns="_merge")
+
         # Add VT labels from summary
-        vt_map = dict(zip(
-            self._result.summary_df['variant_type'],
-            self._result.summary_df['VT'],
-        ))
-        merged['VT'] = merged['variant_type'].map(vt_map)
-        
+        vt_map = dict(
+            zip(
+                self._result.summary_df["variant_type"],
+                self._result.summary_df["VT"],
+                strict=True,
+            )
+        )
+        merged["VT"] = merged["variant_type"].map(vt_map)
+
         logger.info(f"Merged {len(merged)} records with metadata")
-        
-        return merged
-    
+
+        return cast(pd.DataFrame, merged)
+
     def save_results(
         self,
         prefix: str = "feavar",
         save_variants: bool = True,
         save_summary: bool = True,
-    ) -> Dict[str, Path]:
+    ) -> dict[str, Path]:
         """
         Save analysis results to CSV files.
-        
+
         Parameters
         ----------
         prefix : str, optional
@@ -408,7 +458,7 @@ class FeaVarAnalysis:
             Whether to save the variants DataFrame (default: True).
         save_summary : bool, optional
             Whether to save the summary DataFrame (default: True).
-            
+
         Returns
         -------
         Dict[str, Path]
@@ -416,25 +466,25 @@ class FeaVarAnalysis:
         """
         if self._result is None:
             raise FeaVarError("Must run analysis before saving results")
-        
+
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         saved_files = {}
-        
+
         if save_variants:
             path = self.output_dir / f"{prefix}_variants.csv"
             self._result.variants_df.to_csv(path, index=False)
-            saved_files['variants'] = path
+            saved_files["variants"] = path
             logger.info(f"Saved variants to {path}")
-        
+
         if save_summary:
             path = self.output_dir / f"{prefix}_summary.csv"
             self._result.summary_df.to_csv(path, index=False)
-            saved_files['summary'] = path
+            saved_files["summary"] = path
             logger.info(f"Saved summary to {path}")
-        
+
         return saved_files
-    
-    def get_result(self) -> Optional[AnalysisResult]:
+
+    def get_result(self) -> AnalysisResult | None:
         """Get the analysis result, or None if not yet run."""
         return self._result
